@@ -1,6 +1,11 @@
 baseURL = 'https://thaddeuskoenig.com'
+copyright = "© 2025 Thaddeus Koenig"
 languageCode = 'en-us'
-title = 'Thaddeus Koenig personal website'
+title = 'Thaddeus Koenig'
+enableRobotsTXT = true
+enableGitInfo = true
+
+
 [markup]
   # (Optional) To be able to use all Prism plugins, the theme enables unsafe
   # rendering by default
@@ -9,6 +14,10 @@ title = 'Thaddeus Koenig personal website'
 [build]
   # Merge build config of the theme
   _merge = "deep"
+
+[imaging]
+  # JPEG and WebP quality
+  quality = 90
 
 # This hopefully will be simpler in the future.
 # See: https://github.com/schnerring/hugo-theme-gruvbox/issues/16
@@ -59,3 +68,52 @@ title = 'Thaddeus Koenig personal website'
     # Add hugo_stats.json to Hugo's server watcher
     source = "hugo_stats.json"
     target = "assets/watching/hugo_stats.json"
+
+[menu]
+  [[menu.main]]
+    identifier = "blog"
+    name = "Blog"
+    url = "/blog"
+    weight = 10
+  [[menu.main]]
+    identifier = "projects"
+    name = "Projects"
+    url = "/projects"
+    weight = 20
+  #[[menu.main]]
+  #  identifier = "cv"
+  #  name = "CV"
+  #  url = "/cv"
+  #  weight = 30
+  [[menu.main]]
+    identifier = "about"
+    name = "About"
+    url = "/about"
+    weight = 40
+  #[[menu.main]]
+  #  identifier = "stats"
+  #  name = "Stats"
+  #  url = "/stats"
+  #  weight = 50
+
+[languages]
+  [languages.en]
+    languageName = "English"
+    weight = 10
+    [languages.en.params.jsonResume]
+      present = "present"
+
+#[params]
+  # dark or light, defaults to light
+  #defaultTheme = "dark"
+  # gray red green yellow blue purple aqua orange, defaults to blue
+  #themeColor = "aqua"
+  # soft medium hard, defaults to medium
+  #themeContrast = "hard"
+  #author = "Thaddeus Koenig"
+  #subtitle = "Person who does things"
+  #description = "Thaddeus Koenig is a guy who likes computers."
+
+  #[params.logo]
+    #text = "thaddeuskoenig.com"
+    #url = "/"

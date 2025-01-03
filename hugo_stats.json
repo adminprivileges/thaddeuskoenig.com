@@ -9,6 +9,7 @@
       "div",
       "footer",
       "h1",
+      "h2",
       "head",
       "header",
       "hr",
@@ -26,7 +27,13 @@
       "script",
       "style",
       "svg",
+      "table",
+      "tbody",
+      "td",
+      "th",
+      "thead",
       "title",
+      "tr",
       "ul"
     ],
     "classes": [
@@ -57,6 +64,7 @@
       "jr__item",
       "layout",
       "light--hidden",
+      "link--external",
       "logo",
       "logo__chevron",
       "logo__cursor",
@@ -68,17 +76,23 @@
       "pagination",
       "post",
       "post-content",
+      "post-header",
+      "post-heading__anchor",
+      "post-meta",
       "search",
       "search__suggestions--hidden",
       "sidebar",
       "theme__toggle"
     ],
     "ids": [
+      "contact",
+      "legal",
       "menu",
       "prism-dark",
       "prism-light",
       "search__suggestions",
-      "search__text"
+      "search__text",
+      "site-tech-stack"
     ]
   }
 }

@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Thaddeus Koenig personal website</title>
+    <title>Thaddeus&#39;s Personal Site on Thaddeus Koenig</title>
     <link>http://localhost:1313/</link>
-    <description>Recent content on Thaddeus Koenig personal website</description>
+    <description>Recent content in Thaddeus&#39;s Personal Site on Thaddeus Koenig</description>
     <generator>Hugo</generator>
-    <language>en-us</language>
+    <language>en</language>
+    <copyright>© 2025 Thaddeus Koenig</copyright>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>About</title>
+      <link>http://localhost:1313/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/about/</guid>
+      <description>&lt;p&gt;Growing up, I didn&amp;rsquo;t have much access to technology and wasnt really aware of the magic possible with computers. I&amp;rsquo;m a lifelong learner and love finding out new things that computers can do. I&amp;rsquo;m extremely grateful for my ability to work in technology which allows me to turn my curiosity to a profession. I enjoy using technology to scratch my own personal itches as well as experiment with new ways to solve problems with tech. I am also extremely passionate in digital privacy, security, and privacy although finding a balalce of pragmatism and convienence can be a bit of an issue. I try to be practically dilligent for my own life as well as educate others on how to do the same. I am by no means an expert or as much of a hermit as I would like to be sometimes., i&amp;rsquo;m just a guy.&lt;/p&gt;</description>
+    </item>
   </channel>
 </rss>
