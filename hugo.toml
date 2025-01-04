@@ -103,17 +103,17 @@ enableGitInfo = true
     [languages.en.params.jsonResume]
       present = "present"
 
-#[params]
+[params]
   # dark or light, defaults to light
-  #defaultTheme = "dark"
+  defaultTheme = "dark"
   # gray red green yellow blue purple aqua orange, defaults to blue
-  #themeColor = "aqua"
+  themeColor = "aqua"
   # soft medium hard, defaults to medium
-  #themeContrast = "hard"
-  #author = "Thaddeus Koenig"
-  #subtitle = "Person who does things"
-  #description = "Thaddeus Koenig is a guy who likes computers."
+  themeContrast = "hard"
+  author = "Thaddeus Koenig"
+  subtitle = "Person who does things"
+  description = "Thaddeus Koenig is a guy who likes computers."
 
-  #[params.logo]
-    #text = "thaddeuskoenig.com"
-    #url = "/"
+  [params.logo]
+    text = "thaddeuskoenig.com"
+    url = "/"
