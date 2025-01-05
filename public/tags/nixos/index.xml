@@ -7,14 +7,14 @@
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>© 2025 Thaddeus Koenig</copyright>
-    <lastBuildDate>Thu, 02 Jan 2025 16:04:07 -0500</lastBuildDate>
+    <lastBuildDate>Fri, 03 Jan 2025 20:55:02 -0500</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/nixos/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>01JAN25 - Hugo Site Plans</title>
+      <title>02JAN25 - NixOS</title>
       <link>http://localhost:1313/blog/02jan25/</link>
       <pubDate>Thu, 02 Jan 2025 16:04:07 -0500</pubDate>
       <guid>http://localhost:1313/blog/02jan25/</guid>
-      <description></description>
+      <description>&lt;p&gt;So I didn&amp;rsquo;t do anything today so I&amp;rsquo;m going to take today to write about NixOS. I started using NixOS recently because I would like to incorporate declarative and immutable operating systems into my research. I was introduced to NixOS via one of my favorite podcasts &lt;a&#xA;  href=&#34;https://linuxunplugged.com/&#34;&#xA;  &#xA;  &#xA;    class=&#34;link--external&#34; target=&#34;_blank&#34; rel=&#34;noreferrer&#34;&#xA;  &#xA;&gt;Linux Unplugged&lt;/a&gt;. I wasn&amp;rsquo;t initially sold on it because it sounded like a fad, but so far its pretty cool. This is how I understand it.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

@@ -79,6 +79,9 @@
       "menu__burger",
       "menu__item",
       "pagination",
+      "pagination__button",
+      "pagination__button--next",
+      "pagination__button--previous",
       "post",
       "post-content",
       "post-content__read-more",
@@ -94,6 +97,8 @@
     ],
     "ids": [
       "contact",
+      "doh",
+      "installing-pi-hole",
       "legal",
       "menu",
       "prism-dark",
