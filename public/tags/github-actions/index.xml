@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>GitHub Actions on Thaddeus Koenig</title>
-    <link>http://localhost:1313/tags/github-actions/</link>
+    <link>https://thaddeuskoenig.com/tags/github-actions/</link>
     <description>Recent content in GitHub Actions on Thaddeus Koenig</description>
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>© 2025 Thaddeus Koenig</copyright>
     <lastBuildDate>Fri, 03 Jan 2025 20:55:02 -0500</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/github-actions/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://thaddeuskoenig.com/tags/github-actions/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>01JAN25 - Hugo Site Plans</title>
-      <link>http://localhost:1313/blog/01jan25/</link>
+      <link>https://thaddeuskoenig.com/blog/01jan25/</link>
       <pubDate>Wed, 01 Jan 2025 10:04:07 -0500</pubDate>
-      <guid>http://localhost:1313/blog/01jan25/</guid>
+      <guid>https://thaddeuskoenig.com/blog/01jan25/</guid>
       <description>&lt;p&gt;Hello, this is the beginning of my (somewhat) daily blog. The intention of this blog is less of an exercise in writing about my life and more of a exercise in making a habit of documentation. I plan to write daily about lessons I learned about computers that day and I&amp;rsquo;m sure there will be a non-computer related blog or two. When I implement tagging and search, I will make sure that things are tagged appropriately. Now let&amp;rsquo;s get into the first blog post:&lt;/p&gt;</description>
     </item>
   </channel>

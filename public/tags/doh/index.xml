@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>DoH on Thaddeus Koenig</title>
-    <link>http://localhost:1313/tags/doh/</link>
+    <link>https://thaddeuskoenig.com/tags/doh/</link>
     <description>Recent content in DoH on Thaddeus Koenig</description>
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>© 2025 Thaddeus Koenig</copyright>
-    <lastBuildDate>Thu, 04 Jan 2024 12:00:00 -0500</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/doh/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 05 Jan 2025 12:45:39 -0500</lastBuildDate>
+    <atom:link href="https://thaddeuskoenig.com/tags/doh/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>The Perfect Pihole</title>
-      <link>http://localhost:1313/projects/the_perfect_pihole/</link>
+      <link>https://thaddeuskoenig.com/projects/the_perfect_pihole/</link>
       <pubDate>Thu, 04 Jan 2024 12:00:00 -0500</pubDate>
-      <guid>http://localhost:1313/projects/the_perfect_pihole/</guid>
+      <guid>https://thaddeuskoenig.com/projects/the_perfect_pihole/</guid>
       <description>&lt;p&gt;Everyone hates advertisements and thanks to the raspberry pi and the Pi-hole project, keeping them out of your life has become easier and easier. By setting up a local Domain Name Service(DNS) server you can block the connection to add servers before they’re even initiated. Pi-hole also presents the user with a beautiful user interface and is easily configured for even the newest of IT enthusiasts (I&amp;rsquo;m serious, its like… one command.)&lt;/p&gt;</description>
     </item>
   </channel>
