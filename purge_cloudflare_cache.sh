@@ -4,8 +4,8 @@ readonly DELAY_STEP_SECONDS=15
 readonly INTERVAL_SECONDS=5
 readonly TIMEOUT_SECONDS=120
 
-readonly GITHUB_USER=schnerring
-readonly GITHUB_REPO=schnerring.github.io
+readonly GITHUB_USER=adminprivileges
+readonly GITHUB_REPO=adminprivileges.github.io
 
 ##################################################
 # Poll status of latest GitHub Pages build every INTERVAL_SECONDS seconds for up
