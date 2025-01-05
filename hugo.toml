@@ -113,7 +113,9 @@ enableGitInfo = true
   author = "Thaddeus Koenig"
   subtitle = "Person who does things"
   description = "Thaddeus Koenig is a guy who likes computers."
+  favicon = true
 
   [params.logo]
     text = "thaddeuskoenig.com"
     url = "/"
+
