@@ -2,38 +2,38 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Thaddeus&#39;s Personal Site on Thaddeus Koenig</title>
-    <link>http://localhost:1313/</link>
+    <link>https://thaddeuskoenig.com/</link>
     <description>Recent content in Thaddeus&#39;s Personal Site on Thaddeus Koenig</description>
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>© 2025 Thaddeus Koenig</copyright>
-    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://thaddeuskoenig.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>02JAN25 - NixOS</title>
-      <link>http://localhost:1313/blog/02jan25/</link>
+      <link>https://thaddeuskoenig.com/blog/02jan25/</link>
       <pubDate>Thu, 02 Jan 2025 16:04:07 -0500</pubDate>
-      <guid>http://localhost:1313/blog/02jan25/</guid>
+      <guid>https://thaddeuskoenig.com/blog/02jan25/</guid>
       <description>&lt;p&gt;So I didn&amp;rsquo;t do anything today so I&amp;rsquo;m going to take today to write about NixOS. I started using NixOS recently because I would like to incorporate declarative and immutable operating systems into my research. I was introduced to NixOS via one of my favorite podcasts &lt;a&#xA;  href=&#34;https://linuxunplugged.com/&#34;&#xA;  &#xA;  &#xA;    class=&#34;link--external&#34; target=&#34;_blank&#34; rel=&#34;noreferrer&#34;&#xA;  &#xA;&gt;Linux Unplugged&lt;/a&gt;. I wasn&amp;rsquo;t initially sold on it because it sounded like a fad, but so far its pretty cool. This is how I understand it.&lt;/p&gt;</description>
     </item>
     <item>
       <title>01JAN25 - Hugo Site Plans</title>
-      <link>http://localhost:1313/blog/01jan25/</link>
+      <link>https://thaddeuskoenig.com/blog/01jan25/</link>
       <pubDate>Wed, 01 Jan 2025 10:04:07 -0500</pubDate>
-      <guid>http://localhost:1313/blog/01jan25/</guid>
+      <guid>https://thaddeuskoenig.com/blog/01jan25/</guid>
       <description>&lt;p&gt;Hello, this is the beginning of my (somewhat) daily blog. The intention of this blog is less of an exercise in writing about my life and more of a exercise in making a habit of documentation. I plan to write daily about lessons I learned about computers that day and I&amp;rsquo;m sure there will be a non-computer related blog or two. When I implement tagging and search, I will make sure that things are tagged appropriately. Now let&amp;rsquo;s get into the first blog post:&lt;/p&gt;</description>
     </item>
     <item>
       <title>The Perfect Pihole</title>
-      <link>http://localhost:1313/projects/the_perfect_pihole/</link>
+      <link>https://thaddeuskoenig.com/projects/the_perfect_pihole/</link>
       <pubDate>Thu, 04 Jan 2024 12:00:00 -0500</pubDate>
-      <guid>http://localhost:1313/projects/the_perfect_pihole/</guid>
+      <guid>https://thaddeuskoenig.com/projects/the_perfect_pihole/</guid>
       <description>&lt;p&gt;Everyone hates advertisements and thanks to the raspberry pi and the Pi-hole project, keeping them out of your life has become easier and easier. By setting up a local Domain Name Service(DNS) server you can block the connection to add servers before they’re even initiated. Pi-hole also presents the user with a beautiful user interface and is easily configured for even the newest of IT enthusiasts (I&amp;rsquo;m serious, its like… one command.)&lt;/p&gt;</description>
     </item>
     <item>
       <title>About</title>
-      <link>http://localhost:1313/about/</link>
+      <link>https://thaddeuskoenig.com/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/about/</guid>
+      <guid>https://thaddeuskoenig.com/about/</guid>
       <description>&lt;p&gt;Growing up, I didn&amp;rsquo;t have much access to technology and wasnt really aware of the magic possible with computers. I&amp;rsquo;m a lifelong learner and love finding out new things that computers can do. I&amp;rsquo;m extremely grateful for my ability to work in technology which allows me to turn my curiosity to a profession. I enjoy using technology to scratch my own personal itches as well as experiment with new ways to solve problems with tech. I am also extremely passionate in digital privacy, security, and privacy although finding a balalce of pragmatism and convienence can be a bit of an issue. I try to be practically dilligent for my own life as well as educate others on how to do the same. I am by no means an expert or as much of a hermit as I would like to be sometimes., i&amp;rsquo;m just a guy.&lt;/p&gt;</description>
     </item>
   </channel>
