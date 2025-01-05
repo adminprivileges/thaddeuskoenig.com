@@ -5,7 +5,7 @@ readonly INTERVAL_SECONDS=5
 readonly TIMEOUT_SECONDS=120
 
 readonly GITHUB_USER=adminprivileges
-readonly GITHUB_REPO=adminprivileges.github.io
+readonly GITHUB_REPO=thaddeuskoenig.com
 
 ##################################################
 # Poll status of latest GitHub Pages build every INTERVAL_SECONDS seconds for up
