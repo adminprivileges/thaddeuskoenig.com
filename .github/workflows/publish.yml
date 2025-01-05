@@ -72,10 +72,6 @@ jobs:
       - name: Install npm Packages
         run: npm ci
 
-      - name: Run PostCSS
-        run: npm run build:css
-
-
       - name: Build Hugo
         run: hugo --minify
 
