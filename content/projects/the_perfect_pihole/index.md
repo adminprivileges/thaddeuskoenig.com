@@ -120,3 +120,48 @@ google.com.             179     IN      A       142.251.163.100
 Now that we got that going, we can go back to out Pi-hole client and configure all DNS lookups that the server performs to do so via this method via disabling the default upstream DNS Providers and setting resolution to localhost which is ultimately proxied through the Cloudflare network.
 
 Go to Settings > DNS and do the follwoing:
+
+![Upstream DNS Options](./upstream_dns.png)
+
+The advantage of doing this via the package manager method instead of getting the binary from github is that updates can be pulled from the repos along with the rest of your updates. and you don't need to use chrons or anything. 
+
+### DNSCrypt
+
+If you want to take your privacy a step forward and use anonymized DNS. DNS crypt provides a service that proxies your queries through unwitting DNS relays. These relays do not have the appropriate information to decrypt your queries to see the content, they only serve as a middle man so that your ultimate DNS provider cant tie the content queried to the intiating IP. This is a lot simpler and faster than the DNS over TOR (SOCKS) clients a lot of privacy-focused services use and its useful if you like the service Cloudflare provides, but you dont trust them to be responsible with your data. Setup is quite easy if you follow the steps outlined in the Cloudflare docs. 
+
+To install on debian, the package is already included in the standard repo so installation is possible via 
+```
+sudo apt install dnscrypt-proxy
+```
+\<IN progress\>
+
+## Denylists
+
+Now the default Pi-hole blacklists are alright, but i typically add one extra list (its a pretty big list) and it does a great job of mitigating ads as much as possible.
+
+Go to Group Management > Adlists and add https://dbl.oisd.nl/ to your adlists.
+![DenyLists](./denylists.png)
+Afterwards it a good idea to go to Tools > Update Gravity in order to update your total blocked sites.
+## Regex
+
+It’s a good idea to enhance your Blacklists with powerful regex that can widen your net of ads to catch. you can do so by downloading and running the pihole-regex python script provided by mmotti via.
+```
+curl -sSl https://raw.githubusercontent.com/mmotti/pihole-regex/master/install.py | sudo python3
+```
+
+to keep your regex up to date you can add the following lines to root’s crontab
+```
+SHELL=/bin/bash
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+30 2 * * 1 /usr/bin/curl -sSl https://raw.githubusercontent.com/mmotti/pihole-regex/master/install.py | /usr/bin/python3
+```
+## Allowlists
+
+Lastly we’ll add a list of commonly allowlisted domains so that you aren't running into the same issues as I did when I had to go into Pi-Hole at least once a week and allowlist something I needed (none of the domains in this allowlist contain trackers or ads).
+```
+curl -sSL https://github.com/anudeepND/whitelist/blob/master/scripts/whitelist.py | sudo python3
+```
+To auto update, just like the previous services we’re going to edit root’s crontab with the following line
+```
+30 2 * * 1 /usr/bin/curl -sSl https://raw.githubusercontent.com/anudeepND/whitelist/master/scripts/whitelist.py | /usr/bin/python3
+```
