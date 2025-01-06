@@ -378,11 +378,11 @@ Read my lastest posts here:">
   <article class="post">
     <div class="post-header">
       <h2>
-        <a href="/blog/02jan25/">02JAN25 - NixOS</a>
+        <a href="/projects/how_to_setup_apache_guacamole/">How to Set Up Apache Guacamole</a>
       </h2>
-      <div class="post-meta"><span>2025-01-02</span>
+      <div class="post-meta"><span>2024-01-04</span>
     <div class="post-tags">
-      <a class="post-tag" href="https://thaddeuskoenig.com/tags/nixos">nixos</a><a class="post-tag" href="https://thaddeuskoenig.com/tags/declaritive-build">declaritive&#8209;build</a><a class="post-tag" href="https://thaddeuskoenig.com/tags/immutable-operating-systems">immutable&#8209;operating&#8209;systems</a><a class="post-tag" href="https://thaddeuskoenig.com/tags/flakes">flakes</a>
+      <a class="post-tag" href="https://thaddeuskoenig.com/tags/guacamole">guacamole</a><a class="post-tag" href="https://thaddeuskoenig.com/tags/apache">apache</a><a class="post-tag" href="https://thaddeuskoenig.com/tags/remote-administration">remote&#8209;administration</a><a class="post-tag" href="https://thaddeuskoenig.com/tags/doh">doh</a>
     </div>
   
 
@@ -393,16 +393,10 @@ Read my lastest posts here:">
 
     <div class="post-content">
       
-        <p>So I didn&rsquo;t do anything today so I&rsquo;m going to take today to write about NixOS. I started using NixOS recently because I would like to incorporate declarative and immutable operating systems into my research. I was introduced to NixOS via one of my favorite podcasts <a
-  href="https://linuxunplugged.com/"
-  
-  
-    class="link--external" target="_blank" rel="noreferrer"
-  
->Linux Unplugged</a>. I wasn&rsquo;t initially sold on it because it sounded like a fad, but so far its pretty cool. This is how I understand it.</p>
+        <p>Do you ever find yourself wanting to access machines, but due to the permissions of he computer you&rsquo;re currently on or network restrictions you&rsquo;re unable to do so? Or maybe you have users that you would like to have access to remote machines, but you don&rsquo;t want to have to worry about what remote administration tools they have on their devices. Guacamole is cool because it allows a user to access Windows and Linux machines through a variety of different protocols such as SSH, RDP, or VNC through a web browser as all of the tools are separated from the client machine and resident on the server side meaning administration can be done on any computing device capable of web browsing to prove it, once we have this set up i will access a remote machine via my PlayStation 4. I’m a huge fan of web apps and this is one of my favorites so today I’m gonna show you how to set it up.</p>
         
           <div class="post-content__read-more">
-            <a href="/blog/02jan25/">Read more &gt;</a>
+            <a href="/projects/how_to_setup_apache_guacamole/">Read more &gt;</a>
           </div>
         
       
@@ -412,11 +406,11 @@ Read my lastest posts here:">
   <article class="post">
     <div class="post-header">
       <h2>
-        <a href="/blog/01jan25/">01JAN25 - Hugo Site Plans</a>
+        <a href="/projects/nebula_vpn_setup/">Nebula VPN Setup</a>
       </h2>
-      <div class="post-meta"><span>2025-01-01</span>
+      <div class="post-meta"><span>2024-01-04</span>
     <div class="post-tags">
-      <a class="post-tag" href="https://thaddeuskoenig.com/tags/ci/cd">ci/cd</a><a class="post-tag" href="https://thaddeuskoenig.com/tags/github">github</a><a class="post-tag" href="https://thaddeuskoenig.com/tags/github-pages">github&#8209;pages</a><a class="post-tag" href="https://thaddeuskoenig.com/tags/github-actions">github&#8209;actions</a>
+      <a class="post-tag" href="https://thaddeuskoenig.com/tags/mesh-networking">mesh&#8209;networking</a><a class="post-tag" href="https://thaddeuskoenig.com/tags/vpn">vpn</a><a class="post-tag" href="https://thaddeuskoenig.com/tags/nebula">nebula</a><a class="post-tag" href="https://thaddeuskoenig.com/tags/certificates">certificates</a>
     </div>
   
 
@@ -427,10 +421,69 @@ Read my lastest posts here:">
 
     <div class="post-content">
       
-        <p>Hello, this is the beginning of my (somewhat) daily blog. The intention of this blog is less of an exercise in writing about my life and more of a exercise in making a habit of documentation. I plan to write daily about lessons I learned about computers that day and I&rsquo;m sure there will be a non-computer related blog or two. When I implement tagging and search, I will make sure that things are tagged appropriately. Now let&rsquo;s get into the first blog post:</p>
+        <p>Most people see VPN and they think of the commercial, hide myself within another million people’s traffic, product such as Nord or PIA. But this article is simply an interesting take on the technology used to bridge the physical gap between work-spaces that many professionals both technical and not became intimately familiar with over the recent 2021 pandemic.</p>
+<h2 id="what-is-nebula-and-how-is-it-different">What is Nebula and how is it different?<a href="#what-is-nebula-and-how-is-it-different" class="post-heading__anchor" aria-hidden="true">#</a>
+</h2>
+<p>In a traditional sense a VPN functions as a router that bridges different LANs over an encrypted tunnel, and the traffic passed between LANs travels much like traditional traffic would when passed between LANs, in a star-like topology where all traffic destined for a peer must first pass through a switching/routing device, but what if that wasn&rsquo;t the case? What if you could simply cut out the middle man and pass traffic directly between networked nodes in a VPN network? That’s exactly what Nebula brings to the table.</p>
         
           <div class="post-content__read-more">
-            <a href="/blog/01jan25/">Read more &gt;</a>
+            <a href="/projects/nebula_vpn_setup/">Read more &gt;</a>
+          </div>
+        
+      
+    </div>
+  </article>
+
+  <article class="post">
+    <div class="post-header">
+      <h2>
+        <a href="/projects/the_perfect_pihole/">The Perfect Pihole</a>
+      </h2>
+      <div class="post-meta"><span>2024-01-04</span><span> (updated: 2025-01-05)</span>
+    <div class="post-tags">
+      <a class="post-tag" href="https://thaddeuskoenig.com/tags/pihole">pihole</a><a class="post-tag" href="https://thaddeuskoenig.com/tags/dns">dns</a><a class="post-tag" href="https://thaddeuskoenig.com/tags/cloudflare">cloudflare</a><a class="post-tag" href="https://thaddeuskoenig.com/tags/doh">doh</a>
+    </div>
+  
+
+  
+</div>
+
+    </div>
+
+    <div class="post-content">
+      
+        <p>Everyone hates advertisements and thanks to the raspberry pi and the Pi-hole project, keeping them out of your life has become easier and easier. By setting up a local Domain Name Service(DNS) server you can block the connection to add servers before they’re even initiated. Pi-hole also presents the user with a beautiful user interface and is easily configured for even the newest of IT enthusiasts (I&rsquo;m serious, its like… one command.)</p>
+        
+          <div class="post-content__read-more">
+            <a href="/projects/the_perfect_pihole/">Read more &gt;</a>
+          </div>
+        
+      
+    </div>
+  </article>
+
+  <article class="post">
+    <div class="post-header">
+      <h2>
+        <a href="/projects/setting_up_nginx_reverse_proxy/">Setting Up an NGINX Reverse Proxy</a>
+      </h2>
+      <div class="post-meta"><span>2023-11-23</span>
+    <div class="post-tags">
+      <a class="post-tag" href="https://thaddeuskoenig.com/tags/nginx">nginx</a><a class="post-tag" href="https://thaddeuskoenig.com/tags/reverse-proxy">reverse&#8209;proxy</a><a class="post-tag" href="https://thaddeuskoenig.com/tags/openssl">openssl</a><a class="post-tag" href="https://thaddeuskoenig.com/tags/https">https</a>
+    </div>
+  
+
+  
+</div>
+
+    </div>
+
+    <div class="post-content">
+      
+        <p>If you&rsquo;ve ever set up an application like Plex with a web server on a non-standard port, wanted a bit more security to go into accessing applications over networks that you may not fully trust, or even just wanted to ensure all of your requests to your web services just go to one place so you don&rsquo;t have to mess with firewall rules every time you make something new then this article is for you. My start with NGINX reverse proxies came out of my laziness to remember to specify ports when accessing different apps I had set up and its turned into a powerful tool that allows me to access certain resources that I&rsquo;m either to lazy to configure for HTTPS or it simply isn&rsquo;t supported. Don&rsquo;t get me wrong, I&rsquo;m not being disingenuous , if you have an insecure HTTP application, the traffic between the proxy and the app will be via HTTP, but what makes this cool is that the subsequent traffic between you and the proxy is all via HTTPS, meaning as long as you trust your LAN this makes accessing those applications from the greater internet a bit more safe.</p>
+        
+          <div class="post-content__read-more">
+            <a href="/projects/setting_up_nginx_reverse_proxy/">Read more &gt;</a>
           </div>
         
       

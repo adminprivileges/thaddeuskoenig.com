@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>OpenSSL on Thaddeus Koenig</title>
+    <link>https://thaddeuskoenig.com/tags/openssl/</link>
+    <description>Recent content in OpenSSL on Thaddeus Koenig</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <copyright>© 2025 Thaddeus Koenig</copyright>
+    <lastBuildDate>Thu, 23 Nov 2023 12:00:00 -0500</lastBuildDate>
+    <atom:link href="https://thaddeuskoenig.com/tags/openssl/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Setting Up an NGINX Reverse Proxy</title>
+      <link>https://thaddeuskoenig.com/projects/setting_up_nginx_reverse_proxy/</link>
+      <pubDate>Thu, 23 Nov 2023 12:00:00 -0500</pubDate>
+      <guid>https://thaddeuskoenig.com/projects/setting_up_nginx_reverse_proxy/</guid>
+      <description>&lt;p&gt;If you&amp;rsquo;ve ever set up an application like Plex with a web server on a non-standard port, wanted a bit more security to go into accessing applications over networks that you may not fully trust, or even just wanted to ensure all of your requests to your web services just go to one place so you don&amp;rsquo;t have to mess with firewall rules every time you make something new then this article is for you. My start with NGINX reverse proxies came out of my laziness to remember to specify ports when accessing different apps I had set up and its turned into a powerful tool that allows me to access certain resources that I&amp;rsquo;m either to lazy to configure for HTTPS or it simply isn&amp;rsquo;t supported. Don&amp;rsquo;t get me wrong, I&amp;rsquo;m not being disingenuous , if you have an insecure HTTP application, the traffic between the proxy and the app will be via HTTP, but what makes this cool is that the subsequent traffic between you and the proxy is all via HTTPS, meaning as long as you trust your LAN this makes accessing those applications from the greater internet a bit more safe.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -100,19 +100,32 @@
     ],
     "ids": [
       "allowlists",
+      "authentication",
+      "configuring-nginx",
+      "considerations",
       "contact",
       "denylists",
       "dnscrypt",
       "doh",
+      "how-do-i-set-it-up",
+      "install-nginx",
+      "installing-guacamole-server",
       "installing-pi-hole",
+      "installing-the-guacamole-client",
+      "installing-tomcat",
       "legal",
       "menu",
+      "okay-how-does-it-do-that",
+      "post-installation-configuration",
       "prism-dark",
       "prism-light",
       "regex",
       "search__suggestions",
       "search__text",
-      "site-tech-stack"
+      "server-setup",
+      "setup-options",
+      "site-tech-stack",
+      "what-is-nebula-and-how-is-it-different"
     ]
   }
 }

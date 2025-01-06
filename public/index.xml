@@ -23,11 +23,32 @@
       <description>&lt;p&gt;Hello, this is the beginning of my (somewhat) daily blog. The intention of this blog is less of an exercise in writing about my life and more of a exercise in making a habit of documentation. I plan to write daily about lessons I learned about computers that day and I&amp;rsquo;m sure there will be a non-computer related blog or two. When I implement tagging and search, I will make sure that things are tagged appropriately. Now let&amp;rsquo;s get into the first blog post:&lt;/p&gt;</description>
     </item>
     <item>
+      <title>How to Set Up Apache Guacamole</title>
+      <link>https://thaddeuskoenig.com/projects/how_to_setup_apache_guacamole/</link>
+      <pubDate>Thu, 04 Jan 2024 12:00:00 -0500</pubDate>
+      <guid>https://thaddeuskoenig.com/projects/how_to_setup_apache_guacamole/</guid>
+      <description>&lt;p&gt;Do you ever find yourself wanting to access machines, but due to the permissions of he computer you&amp;rsquo;re currently on or network restrictions you&amp;rsquo;re unable to do so? Or maybe you have users that you would like to have access to remote machines, but you don&amp;rsquo;t want to have to worry about what remote administration tools they have on their devices. Guacamole is cool because it allows a user to access Windows and Linux machines through a variety of different protocols such as SSH, RDP, or VNC through a web browser as all of the tools are separated from the client machine and resident on the server side meaning administration can be done on any computing device capable of web browsing to prove it, once we have this set up i will access a remote machine via my PlayStation 4. I’m a huge fan of web apps and this is one of my favorites so today I’m gonna show you how to set it up.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Nebula VPN Setup</title>
+      <link>https://thaddeuskoenig.com/projects/nebula_vpn_setup/</link>
+      <pubDate>Thu, 04 Jan 2024 12:00:00 -0500</pubDate>
+      <guid>https://thaddeuskoenig.com/projects/nebula_vpn_setup/</guid>
+      <description>&lt;p&gt;Most people see VPN and they think of the commercial, hide myself within another million people’s traffic, product such as Nord or PIA. But this article is simply an interesting take on the technology used to bridge the physical gap between work-spaces that many professionals both technical and not became intimately familiar with over the recent 2021 pandemic.&lt;/p&gt;&#xA;&lt;h2 id=&#34;what-is-nebula-and-how-is-it-different&#34;&gt;What is Nebula and how is it different?&lt;a href=&#34;#what-is-nebula-and-how-is-it-different&#34; class=&#34;post-heading__anchor&#34; aria-hidden=&#34;true&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;In a traditional sense a VPN functions as a router that bridges different LANs over an encrypted tunnel, and the traffic passed between LANs travels much like traditional traffic would when passed between LANs, in a star-like topology where all traffic destined for a peer must first pass through a switching/routing device, but what if that wasn&amp;rsquo;t the case? What if you could simply cut out the middle man and pass traffic directly between networked nodes in a VPN network? That’s exactly what Nebula brings to the table.&lt;/p&gt;</description>
+    </item>
+    <item>
       <title>The Perfect Pihole</title>
       <link>https://thaddeuskoenig.com/projects/the_perfect_pihole/</link>
       <pubDate>Thu, 04 Jan 2024 12:00:00 -0500</pubDate>
       <guid>https://thaddeuskoenig.com/projects/the_perfect_pihole/</guid>
       <description>&lt;p&gt;Everyone hates advertisements and thanks to the raspberry pi and the Pi-hole project, keeping them out of your life has become easier and easier. By setting up a local Domain Name Service(DNS) server you can block the connection to add servers before they’re even initiated. Pi-hole also presents the user with a beautiful user interface and is easily configured for even the newest of IT enthusiasts (I&amp;rsquo;m serious, its like… one command.)&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Setting Up an NGINX Reverse Proxy</title>
+      <link>https://thaddeuskoenig.com/projects/setting_up_nginx_reverse_proxy/</link>
+      <pubDate>Thu, 23 Nov 2023 12:00:00 -0500</pubDate>
+      <guid>https://thaddeuskoenig.com/projects/setting_up_nginx_reverse_proxy/</guid>
+      <description>&lt;p&gt;If you&amp;rsquo;ve ever set up an application like Plex with a web server on a non-standard port, wanted a bit more security to go into accessing applications over networks that you may not fully trust, or even just wanted to ensure all of your requests to your web services just go to one place so you don&amp;rsquo;t have to mess with firewall rules every time you make something new then this article is for you. My start with NGINX reverse proxies came out of my laziness to remember to specify ports when accessing different apps I had set up and its turned into a powerful tool that allows me to access certain resources that I&amp;rsquo;m either to lazy to configure for HTTPS or it simply isn&amp;rsquo;t supported. Don&amp;rsquo;t get me wrong, I&amp;rsquo;m not being disingenuous , if you have an insecure HTTP application, the traffic between the proxy and the app will be via HTTP, but what makes this cool is that the subsequent traffic between you and the proxy is all via HTTPS, meaning as long as you trust your LAN this makes accessing those applications from the greater internet a bit more safe.&lt;/p&gt;</description>
     </item>
     <item>
       <title>About</title>

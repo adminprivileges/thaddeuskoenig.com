@@ -66,6 +66,20 @@
       <description></description>
     </item>
     <item>
+      <title>Apache</title>
+      <link>https://thaddeuskoenig.com/tags/apache/</link>
+      <pubDate>Thu, 04 Jan 2024 12:00:00 -0500</pubDate>
+      <guid>https://thaddeuskoenig.com/tags/apache/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Certificates</title>
+      <link>https://thaddeuskoenig.com/tags/certificates/</link>
+      <pubDate>Thu, 04 Jan 2024 12:00:00 -0500</pubDate>
+      <guid>https://thaddeuskoenig.com/tags/certificates/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>Cloudflare</title>
       <link>https://thaddeuskoenig.com/tags/cloudflare/</link>
       <pubDate>Thu, 04 Jan 2024 12:00:00 -0500</pubDate>
@@ -87,10 +101,73 @@
       <description></description>
     </item>
     <item>
+      <title>Guacamole</title>
+      <link>https://thaddeuskoenig.com/tags/guacamole/</link>
+      <pubDate>Thu, 04 Jan 2024 12:00:00 -0500</pubDate>
+      <guid>https://thaddeuskoenig.com/tags/guacamole/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Mesh Networking</title>
+      <link>https://thaddeuskoenig.com/tags/mesh-networking/</link>
+      <pubDate>Thu, 04 Jan 2024 12:00:00 -0500</pubDate>
+      <guid>https://thaddeuskoenig.com/tags/mesh-networking/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Nebula</title>
+      <link>https://thaddeuskoenig.com/tags/nebula/</link>
+      <pubDate>Thu, 04 Jan 2024 12:00:00 -0500</pubDate>
+      <guid>https://thaddeuskoenig.com/tags/nebula/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>Pihole</title>
       <link>https://thaddeuskoenig.com/tags/pihole/</link>
       <pubDate>Thu, 04 Jan 2024 12:00:00 -0500</pubDate>
       <guid>https://thaddeuskoenig.com/tags/pihole/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Remote Administration</title>
+      <link>https://thaddeuskoenig.com/tags/remote-administration/</link>
+      <pubDate>Thu, 04 Jan 2024 12:00:00 -0500</pubDate>
+      <guid>https://thaddeuskoenig.com/tags/remote-administration/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>VPN</title>
+      <link>https://thaddeuskoenig.com/tags/vpn/</link>
+      <pubDate>Thu, 04 Jan 2024 12:00:00 -0500</pubDate>
+      <guid>https://thaddeuskoenig.com/tags/vpn/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>HTTPS</title>
+      <link>https://thaddeuskoenig.com/tags/https/</link>
+      <pubDate>Thu, 23 Nov 2023 12:00:00 -0500</pubDate>
+      <guid>https://thaddeuskoenig.com/tags/https/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>NGINX</title>
+      <link>https://thaddeuskoenig.com/tags/nginx/</link>
+      <pubDate>Thu, 23 Nov 2023 12:00:00 -0500</pubDate>
+      <guid>https://thaddeuskoenig.com/tags/nginx/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>OpenSSL</title>
+      <link>https://thaddeuskoenig.com/tags/openssl/</link>
+      <pubDate>Thu, 23 Nov 2023 12:00:00 -0500</pubDate>
+      <guid>https://thaddeuskoenig.com/tags/openssl/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Reverse Proxy</title>
+      <link>https://thaddeuskoenig.com/tags/reverse-proxy/</link>
+      <pubDate>Thu, 23 Nov 2023 12:00:00 -0500</pubDate>
+      <guid>https://thaddeuskoenig.com/tags/reverse-proxy/</guid>
       <description></description>
     </item>
   </channel>

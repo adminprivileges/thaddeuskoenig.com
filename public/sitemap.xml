@@ -35,6 +35,12 @@
     <loc>https://thaddeuskoenig.com/tags/github-pages/</loc>
     <lastmod>2025-01-03T20:55:02-05:00</lastmod>
   </url><url>
+    <loc>https://thaddeuskoenig.com/tags/apache/</loc>
+    <lastmod>2024-01-04T12:00:00-05:00</lastmod>
+  </url><url>
+    <loc>https://thaddeuskoenig.com/tags/certificates/</loc>
+    <lastmod>2024-01-04T12:00:00-05:00</lastmod>
+  </url><url>
     <loc>https://thaddeuskoenig.com/tags/cloudflare/</loc>
     <lastmod>2025-01-05T19:23:38-05:00</lastmod>
   </url><url>
@@ -44,11 +50,47 @@
     <loc>https://thaddeuskoenig.com/tags/doh/</loc>
     <lastmod>2025-01-05T19:23:38-05:00</lastmod>
   </url><url>
+    <loc>https://thaddeuskoenig.com/tags/guacamole/</loc>
+    <lastmod>2024-01-04T12:00:00-05:00</lastmod>
+  </url><url>
+    <loc>https://thaddeuskoenig.com/projects/how_to_setup_apache_guacamole/</loc>
+    <lastmod>2024-01-04T12:00:00-05:00</lastmod>
+  </url><url>
+    <loc>https://thaddeuskoenig.com/tags/mesh-networking/</loc>
+    <lastmod>2024-01-04T12:00:00-05:00</lastmod>
+  </url><url>
+    <loc>https://thaddeuskoenig.com/tags/nebula/</loc>
+    <lastmod>2024-01-04T12:00:00-05:00</lastmod>
+  </url><url>
+    <loc>https://thaddeuskoenig.com/projects/nebula_vpn_setup/</loc>
+    <lastmod>2024-01-04T12:00:00-05:00</lastmod>
+  </url><url>
     <loc>https://thaddeuskoenig.com/tags/pihole/</loc>
     <lastmod>2025-01-05T19:23:38-05:00</lastmod>
   </url><url>
+    <loc>https://thaddeuskoenig.com/tags/remote-administration/</loc>
+    <lastmod>2024-01-04T12:00:00-05:00</lastmod>
+  </url><url>
     <loc>https://thaddeuskoenig.com/projects/the_perfect_pihole/</loc>
     <lastmod>2025-01-05T19:23:38-05:00</lastmod>
+  </url><url>
+    <loc>https://thaddeuskoenig.com/tags/vpn/</loc>
+    <lastmod>2024-01-04T12:00:00-05:00</lastmod>
+  </url><url>
+    <loc>https://thaddeuskoenig.com/tags/https/</loc>
+    <lastmod>2023-11-23T12:00:00-05:00</lastmod>
+  </url><url>
+    <loc>https://thaddeuskoenig.com/tags/nginx/</loc>
+    <lastmod>2023-11-23T12:00:00-05:00</lastmod>
+  </url><url>
+    <loc>https://thaddeuskoenig.com/tags/openssl/</loc>
+    <lastmod>2023-11-23T12:00:00-05:00</lastmod>
+  </url><url>
+    <loc>https://thaddeuskoenig.com/tags/reverse-proxy/</loc>
+    <lastmod>2023-11-23T12:00:00-05:00</lastmod>
+  </url><url>
+    <loc>https://thaddeuskoenig.com/projects/setting_up_nginx_reverse_proxy/</loc>
+    <lastmod>2023-11-23T12:00:00-05:00</lastmod>
   </url><url>
     <loc>https://thaddeuskoenig.com/about/</loc>
     <lastmod>2025-01-03T15:23:52-05:00</lastmod>
