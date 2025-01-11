@@ -1,6 +1,6 @@
 ---
 date: '2025-01-09T12:00:00-05:00'
-draft: true
+draft: false
 title: '09JAN25 - Diffie Helman'
 tags:
   - Diffie Helman
