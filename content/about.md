@@ -23,6 +23,7 @@ I've been largely off of social media, but feel free to reach out in the few way
 | Favicon | [RealFavIconGenerator](https://realfavicongenerator.net/)|
 | Build System | [Github Actions](https://github.com/features/actions) |
 | Hosting | [Github Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/about-github-pages) |
+| Graphics | [Draw](https://app.diagrams.net/) |
 
 ## Legal
 
