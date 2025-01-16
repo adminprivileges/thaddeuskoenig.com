@@ -6,6 +6,7 @@ tags:
   - SSH
   - SSH Agent
   - FreeBSD
+  - Legacy
 ---
 So i was trying to make a script that would automate SSL key exports from a BSD machine to another so I don't have to go through the pain of doing it manually every time and i ran into the issue of me not being able to ssh-copy-id my files over but i keep running  into the issue of it not being able to connect to my auth agent due to a lack of keys even though i generated them with ssh-keygen, nonetheless no matter what I did i kept getting met with: 
 ```

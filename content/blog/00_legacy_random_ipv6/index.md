@@ -6,6 +6,7 @@ tags:
   - IPv6
   - RFC4193
   - Networking
+  - Legacy
 ---
 	
 If you're anything like me and (and a good other portion of the internet) you don't want to be bothered with IPv6 addressing because "IPv4 still works" but eventually its time to grow up and realize you need to start becoming more familiar with IPv6 outside of basic textbook knowledge and today I'm gonna teach you how to create a random IPv6 private range for if you need to set up VLANs, VPN tunnels, or whatever. 

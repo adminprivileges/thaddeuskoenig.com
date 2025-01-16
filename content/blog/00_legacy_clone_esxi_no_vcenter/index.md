@@ -7,6 +7,7 @@ tags:
   - ESXI
   - Virtual Machines
   - vCenter
+  - Legacy
 ---
 	
 When you're running ESXI without vCenter, sometimes really niche things come up and you have situations that are kind of a pain without the appropriate management software so sometimes you gotta be a little janky. 

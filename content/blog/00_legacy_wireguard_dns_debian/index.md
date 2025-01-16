@@ -6,6 +6,7 @@ tags:
   - Wireguard
   - VPN
   - Debian
+  - Legacy
 ---
 	
 When utilizing debian based distros, I've run into this issue a lot when I'm trying to use wireguard and specify DNS settings:
