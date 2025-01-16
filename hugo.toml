@@ -19,6 +19,16 @@ enableGitInfo = true
   # JPEG and WebP quality
   quality = 90
 
+[outputs]
+  home = ["html", "rss", "searchIndex"]
+
+[outputFormats]
+  [outputFormats.searchIndex]
+    mediaType = "application/json"
+    baseName = "search-index"
+    isPlainText = true
+    notAlternative = true
+
 # This hopefully will be simpler in the future.
 # See: https://github.com/schnerring/hugo-theme-gruvbox/issues/16
 [module]
