@@ -1,0 +1,17 @@
+---
+date: '2025-02-06T06:30:00-05:00'
+draft: false
+title: '06FEB25 - DLL Hijacking '
+tags:
+  - SOC
+  - Windows
+  - DLL Hijacking
+  - Persistence
+  - Privilege Escalation
+  - Fundamentals
+---
+Today I was looking at something new to learn and I came accross some material on DLL Hijacking. Previously I was only really aware of DLL search order hijacking, but I was interested to see that theres actually several varients to this idea. It may be best to first explain what a DLL is before talking about methods of manipulation. A DLL is a shared object or a snippet of code that several applications and operating system components can import for many common functions as to not have to re-invent the wheel on many things. Since many vital applications and operating system components need these DLLs, there is an opportunity for arbitrary code execution if you can somehow influence an application to load your DLL. There are many techniques to do so, many of them are very similar so I categorize them as such:
+- Replacing DLLS: This is the easiest concept to understand as you simply replace the legitimate DLL with your compromised one. This typically requires a higher level of privilege as many DLLs reside in privileged locations. This can be taken a step further with DLL Proxying, which consists of trojanizing a DLL, which can forward calls to the intended location as well as intercept and interpret calls itself. I would like to talk more about DLL Proxying in a later blog post because it is the coolest one in my opinion, but until then you can check out this blog post: https://kevinalmansa.github.io/application%20security/DLL-Proxying/ .  
+- Hijacking Priority: Windows has a specific order in which is searches for libraries as many versions of the same DLL can exist on a system, the order itself isn't as important but you can read more about it [here](https://learn.microsoft.com/en-us/windows/win32/dlls/dynamic-link-library-search-order). What is more important is if you can place a cmpromised DLL in a location higher in the search priority than the legitimate application, then your compromised DLL will be loaded instead. This is referred to as DLL search order hijacking and many flavors of it exist that do it in slightly different ways, you can read more about them [here](https://www.wietzebeukema.nl/blog/hijacking-dlls-in-windows).
+
+At the time of writing (20250211) Windows has over opportunities for DLL Hijacking. You can scan a system using the Sysinternals Procmon utility to identify them, the blog post linked above also has a helper script that outputs your candidates to a CSV: https://github.com/wietze/windows-dll-hijacking/tree/master/1_finding_candidates . When Hijacking DLLs, you are largely subject to the privilege levels that the application that loads the DLL has. This technique can be combined with User Accont Control (UAC) bypass to elevate privileges while also bypassing the need for the user to confirm. There are many sneaky techniques such as taking advantage of the "friendliness" in the windows command environment to include characters such as white spaces that are eliminated upon evaluation [this](https://medium.com/tenable-techblog/uac-bypass-by-mocking-trusted-directories-24a96675f6e) is a pretty good blog post that goes more in depth. I have only scratched the surface but I would like to explore more on these in the future as it is an incredibly interesting concept.    
