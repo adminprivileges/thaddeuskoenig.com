@@ -1,13 +1,13 @@
 ---
 date: '2025-07-16T011:22:00-05:00'
 draft: false
-title: 'The Credential Theft Shuffle'
+title: '16JUL25 - The Credential Theft Shuffle'
 tags:
   - Hackthebox
   - Password Attacks
   - Pivoting
   - Pass The Hash
-  - Acrive Directory
+  - Active Directory
 ---
 ## 01. Intro
 I was doing the Password Attacks lab in hackthebox academy and I found it pretty interesting so I figured I would redo it and step through how I did it and my thought process to help solidify concepts and because I enjoyed this one, even though it was a bit frustrating initially.
