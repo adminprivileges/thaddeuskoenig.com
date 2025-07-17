@@ -1,5 +1,5 @@
 ---
-date: '2025-07-16T011:22:00-05:00'
+date: '2025-07-16T11:22:00-05:00'
 draft: false
 title: '16JUL25 - The Credential Theft Shuffle'
 tags:
