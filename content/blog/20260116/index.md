@@ -1,6 +1,6 @@
 ---
 date: '2026-01-16T15:50:00-05:00'
-draft: true
+draft: false
 title: '16JAN26 - NextJS Authentication Bypass '
 tags:
   - Javascript
