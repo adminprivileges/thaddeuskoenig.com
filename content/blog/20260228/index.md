@@ -22,17 +22,17 @@ git log --oneline --decorate --graph --all -n 30
 ```  
 Here was my output
 ```bash
-thadmin@frankensmonster:~/ebpH$ git status
+adminprivileges@computer:~/ebpH$ git status
 On branch container-scope
 Your branch is up to date with 'origin/master'.
 
 nothing to commit, working tree clean
 
-thadmin@frankensmonster:~/ebpH$ git branch -vv
+adminprivileges@computer:~/ebpH$ git branch -vv
 * container-scope aa5d986 [origin/master] Implemented container-aware key derivation and container context helpers
   master          4baee67 [origin/master: behind 3] bootstrap should be working now.
 
-thadmin@frankensmonster:~/ebpH$ git log --oneline --decorate --graph --all -n 30
+adminprivileges@computer:~/ebpH$ git log --oneline --decorate --graph --all -n 30
 * aa5d986 (HEAD -> container-scope, origin/master, origin/HEAD) Implemented container-aware key derivation and container context helpers
 * fefaca8 added arguments to userspace tool as well
 * 4e75ad2 added arguments so ebph accepts --scope-mode
@@ -70,7 +70,7 @@ git branch --set-upstream-to=origin/<REMOTE_BRANCH_NAME> <LOCAL_BRANCH_NAME>
 ```
 In my case I did the following:
 ```bash
-thadmin@frankensmonster:~/ebpH$ git push -u origin container-scope
+adminprivileges@computer:~/ebpH$ git push -u origin container-scope
 Total 0 (delta 0), reused 0 (delta 0), pack-reused 0
 remote: 
 remote: Create a pull request for 'container-scope' on GitHub by visiting:
@@ -80,7 +80,7 @@ To github.com:adminprivileges/ebpH.git
  * [new branch]      container-scope -> container-scope
 branch 'container-scope' set up to track 'origin/container-scope'.
 
-thadmin@frankensmonster:~/ebpH$ git branch --set-upstream-to=origin/container-scope container-scope
+adminprivileges@computer:~/ebpH$ git branch --set-upstream-to=origin/container-scope container-scope
 branch 'container-scope' set up to track 'origin/container-scope'.
 ```
 ## 3.Put everything back where it belongs
@@ -93,11 +93,11 @@ branch 'container-scope' set up to track 'origin/container-scope'.
     - Doing it this way (--force-with-lease) allows me to erase the shame of being bad at git and pretend it never happened. `--force-with-lease` also provides a safer alternative to `--force` which will overwrite remote changes, which isnt a big deal to me right now, but could be to someone working on a team.
 
         ```bash
-        thadmin@frankensmonster:~/ebpH$ git switch master
+        adminprivileges@computer:~/ebpH$ git switch master
         Switched to branch 'master'
         Your branch is behind 'origin/master' by 3 commits, and can be fast-forwarded.
         (use "git pull" to update your local branch)
-        thadmin@frankensmonster:~/ebpH$ git push --force-with-lease origin master
+        adminprivileges@computer:~/ebpH$ git push --force-with-lease origin master
         Total 0 (delta 0), reused 0 (delta 0), pack-reused 0
         To github.com:adminprivileges/ebpH.git
         + aa5d986...4baee67 master -> master (forced update)
@@ -134,17 +134,17 @@ Now i can see master is tracking master and container-scoped is tracking contain
   ```
 Here are the outputs of my verification:
 ```bash
-thadmin@frankensmonster:~/ebpH$ git rev-parse --abbrev-ref HEAD
+adminprivileges@computer:~/ebpH$ git rev-parse --abbrev-ref HEAD
 master
 
-thadmin@frankensmonster:~/ebpH$ git rev-parse --abbrev-ref --symbolic-full-name @{u} 
+adminprivileges@computer:~/ebpH$ git rev-parse --abbrev-ref --symbolic-full-name @{u} 
 origin/master
 
-thadmin@frankensmonster:~/ebpH$ git branch -vv
+adminprivileges@computer:~/ebpH$ git branch -vv
   container-scope aa5d986 [origin/container-scope] Implemented container-aware key derivation and container context helpers
 * master          4baee67 [origin/master] bootstrap should be working now.
 
-thadmin@frankensmonster:~/ebpH$ git log --oneline --decorate --graph --all -n 15
+adminprivileges@computer:~/ebpH$ git log --oneline --decorate --graph --all -n 15
 * aa5d986 (origin/container-scope, container-scope) Implemented container-aware key derivation and container context helpers
 * fefaca8 added arguments to userspace tool as well
 * 4e75ad2 added arguments so ebph accepts --scope-mode
