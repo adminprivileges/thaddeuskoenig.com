@@ -7,6 +7,7 @@ tags:
   - zfsbootmenu
   - initramfs
   - boot
+  - lessons learned
 ---
 ## 01. Intro
 I use ZFSBootMenu to manage my boot environments and help me roll back when I inevitably do something destructive to my system. Today I decided to change my encryption password because my current one has a key combination that confused my fingers so I almost always typed it incorrectly the first time. I changed my zfs rpool password, but I neglected to update initramfs. Im documenting the steps to properly change my password here so that i dont forget.
