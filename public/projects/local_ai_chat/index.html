@@ -1,0 +1,2503 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  data-theme="dark"
+>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  
+
+
+<link
+  rel="preload"
+  as="font"
+  type="font/woff2"
+  href="/fonts/roboto-slab-latin-400.woff2"
+  crossorigin="anonymous"
+/>
+
+<link
+  rel="preload"
+  as="font"
+  type="font/woff2"
+  href="/fonts/roboto-slab-latin-700.woff2"
+  crossorigin="anonymous"
+/>
+
+
+<link
+  rel="preload"
+  as="font"
+  type="font/woff2"
+  href="/fonts/fira-code-latin-300.woff2"
+  crossorigin="anonymous"
+/>
+<link
+  rel="preload"
+  as="font"
+  type="font/woff2"
+  href="/fonts/fira-code-latin-400.woff2"
+  crossorigin="anonymous"
+/>
+
+<link
+  rel="preload"
+  as="font"
+  type="font/woff2"
+  href="/fonts/fira-code-latin-700.woff2"
+  crossorigin="anonymous"
+/>
+
+  
+  
+    <meta
+      name="robots"
+      content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
+    />
+  
+
+
+
+
+<title>A complete guide to setting up a local AI Chatbot</title>
+
+<meta
+  name="description"
+  content="Overview# For school and personal curiosity I wanted to mess around with hosting my own local AI Chat server for testing and evaluation. I wanted this to be open source, private, and privacy concious. This setup enables a LAN-locked AU chat web UI backed by Ollama models with the ability to enable web search, code execution, and HTTPS through a reverse proxy. Its important to note, that this is simply meant to be something contained and not sitting on the public internet.
+"
+/>
+
+<link rel="canonical" href="http://localhost:1313/projects/local_ai_chat/" />
+
+
+
+
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="A complete guide to setting up a local AI Chatbot">
+	<meta name="twitter:description" content="Overview# For school and personal curiosity I wanted to mess around with hosting my own local AI Chat server for testing and evaluation. I wanted this to be open source, private, and privacy concious. This setup enables a LAN-locked AU chat web UI backed by Ollama models with the ability to enable web search, code execution, and HTTPS through a reverse proxy. Its important to note, that this is simply meant to be something contained and not sitting on the public internet.">
+
+<meta property="og:url" content="http://localhost:1313/projects/local_ai_chat/">
+	<meta property="og:site_name" content="Thaddeus Koenig">
+	<meta property="og:title" content="A complete guide to setting up a local AI Chatbot">
+	<meta property="og:description" content="Overview# For school and personal curiosity I wanted to mess around with hosting my own local AI Chat server for testing and evaluation. I wanted this to be open source, private, and privacy concious. This setup enables a LAN-locked AU chat web UI backed by Ollama models with the ability to enable web search, code execution, and HTTPS through a reverse proxy. Its important to note, that this is simply meant to be something contained and not sitting on the public internet.">
+	<meta property="og:locale" content="en_us">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="projects">
+		<meta property="article:published_time" content="2026-05-29T12:00:00-05:00">
+		<meta property="article:modified_time" content="2026-05-30T06:59:10-04:00">
+		<meta property="article:tag" content="Local-Ai">
+		<meta property="article:tag" content="Ollama">
+		<meta property="article:tag" content="Open-Webui">
+		<meta property="article:tag" content="Docker">
+		<meta property="article:tag" content="Swag">
+		<meta property="article:tag" content="Searxng">
+
+
+	<meta itemprop="name" content="A complete guide to setting up a local AI Chatbot">
+	<meta itemprop="description" content="Overview# For school and personal curiosity I wanted to mess around with hosting my own local AI Chat server for testing and evaluation. I wanted this to be open source, private, and privacy concious. This setup enables a LAN-locked AU chat web UI backed by Ollama models with the ability to enable web search, code execution, and HTTPS through a reverse proxy. Its important to note, that this is simply meant to be something contained and not sitting on the public internet.">
+	<meta itemprop="datePublished" content="2026-05-29T12:00:00-05:00">
+	<meta itemprop="dateModified" content="2026-05-30T06:59:10-04:00">
+	<meta itemprop="wordCount" content="2054">
+	<meta itemprop="keywords" content="Local-Ai,Ollama,Open-Webui,Docker,Swag,Searxng,Homelab">
+
+
+
+
+
+
+
+
+  
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+<style>
+   
+  /*
+  Critical CSS for above-the-fold content, delivered inline to increase first
+  paint performance
+*/
+
+/*! purgecss start ignore */
+
+/* Typefaces */
+
+/* roboto-slab-100normal - latin */
+
+@font-face {
+  font-family: 'Roboto Slab';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100;
+  src:
+    local('Roboto Slab Thin '),
+    local('Roboto Slab-Thin'),
+    url('/fonts/roboto-slab-latin-100.woff2') format('woff2'), 
+    url('/fonts/roboto-slab-latin-100.woff') format('woff'); /* Modern Browsers */
+}
+
+/* roboto-slab-200normal - latin */
+
+@font-face {
+  font-family: 'Roboto Slab';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 200;
+  src:
+    local('Roboto Slab Extra Light '),
+    local('Roboto Slab-Extra Light'),
+    url('/fonts/roboto-slab-latin-200.woff2') format('woff2'), 
+    url('/fonts/roboto-slab-latin-200.woff') format('woff'); /* Modern Browsers */
+}
+
+/* roboto-slab-300normal - latin */
+
+@font-face {
+  font-family: 'Roboto Slab';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 300;
+  src:
+    local('Roboto Slab Light '),
+    local('Roboto Slab-Light'),
+    url('/fonts/roboto-slab-latin-300.woff2') format('woff2'), 
+    url('/fonts/roboto-slab-latin-300.woff') format('woff'); /* Modern Browsers */
+}
+
+/* roboto-slab-400normal - latin */
+
+@font-face {
+  font-family: 'Roboto Slab';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src:
+    local('Roboto Slab Regular '),
+    local('Roboto Slab-Regular'),
+    url('/fonts/roboto-slab-latin-400.woff2') format('woff2'), 
+    url('/fonts/roboto-slab-latin-400.woff') format('woff'); /* Modern Browsers */
+}
+
+/* roboto-slab-500normal - latin */
+
+@font-face {
+  font-family: 'Roboto Slab';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 500;
+  src:
+    local('Roboto Slab Medium '),
+    local('Roboto Slab-Medium'),
+    url('/fonts/roboto-slab-latin-500.woff2') format('woff2'), 
+    url('/fonts/roboto-slab-latin-500.woff') format('woff'); /* Modern Browsers */
+}
+
+/* roboto-slab-600normal - latin */
+
+@font-face {
+  font-family: 'Roboto Slab';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 600;
+  src:
+    local('Roboto Slab SemiBold '),
+    local('Roboto Slab-SemiBold'),
+    url('/fonts/roboto-slab-latin-600.woff2') format('woff2'), 
+    url('/fonts/roboto-slab-latin-600.woff') format('woff'); /* Modern Browsers */
+}
+
+/* roboto-slab-700normal - latin */
+
+@font-face {
+  font-family: 'Roboto Slab';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 700;
+  src:
+    local('Roboto Slab Bold '),
+    local('Roboto Slab-Bold'),
+    url('/fonts/roboto-slab-latin-700.woff2') format('woff2'), 
+    url('/fonts/roboto-slab-latin-700.woff') format('woff'); /* Modern Browsers */
+}
+
+/* roboto-slab-800normal - latin */
+
+@font-face {
+  font-family: 'Roboto Slab';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 800;
+  src:
+    local('Roboto Slab ExtraBold '),
+    local('Roboto Slab-ExtraBold'),
+    url('/fonts/roboto-slab-latin-800.woff2') format('woff2'), 
+    url('/fonts/roboto-slab-latin-800.woff') format('woff'); /* Modern Browsers */
+}
+
+/* roboto-slab-900normal - latin */
+
+@font-face {
+  font-family: 'Roboto Slab';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 900;
+  src:
+    local('Roboto Slab Black '),
+    local('Roboto Slab-Black'),
+    url('/fonts/roboto-slab-latin-900.woff2') format('woff2'), 
+    url('/fonts/roboto-slab-latin-900.woff') format('woff'); /* Modern Browsers */
+}
+
+/* fira-code-300normal - latin */
+
+@font-face {
+  font-family: 'Fira Code';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 300;
+  src:
+    local('Fira Code Light '),
+    local('Fira Code-Light'),
+    url('/fonts/fira-code-latin-300.woff2') format('woff2'), 
+    url('/fonts/fira-code-latin-300.woff') format('woff'); /* Modern Browsers */
+}
+
+/* fira-code-400normal - latin */
+
+@font-face {
+  font-family: 'Fira Code';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src:
+    local('Fira Code Regular '),
+    local('Fira Code-Regular'),
+    url('/fonts/fira-code-latin-400.woff2') format('woff2'), 
+    url('/fonts/fira-code-latin-400.woff') format('woff'); /* Modern Browsers */
+}
+
+/* fira-code-500normal - latin */
+
+@font-face {
+  font-family: 'Fira Code';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 500;
+  src:
+    local('Fira Code Medium '),
+    local('Fira Code-Medium'),
+    url('/fonts/fira-code-latin-500.woff2') format('woff2'), 
+    url('/fonts/fira-code-latin-500.woff') format('woff'); /* Modern Browsers */
+}
+
+/* fira-code-600normal - latin */
+
+@font-face {
+  font-family: 'Fira Code';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 600;
+  src:
+    local('Fira Code SemiBold '),
+    local('Fira Code-SemiBold'),
+    url('/fonts/fira-code-latin-600.woff2') format('woff2'), 
+    url('/fonts/fira-code-latin-600.woff') format('woff'); /* Modern Browsers */
+}
+
+/* fira-code-700normal - latin */
+
+@font-face {
+  font-family: 'Fira Code';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 700;
+  src:
+    local('Fira Code Bold '),
+    local('Fira Code-Bold'),
+    url('/fonts/fira-code-latin-700.woff2') format('woff2'), 
+    url('/fonts/fira-code-latin-700.woff') format('woff'); /* Modern Browsers */
+}
+
+/* Normalize */
+
+/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+
+/* Document
+   ========================================================================== */
+
+/**
+ * 1. Correct the line height in all browsers.
+ * 2. Prevent adjustments of font size after orientation changes in iOS.
+ */
+
+html {
+  line-height: 1.15; /* 1 */
+  -webkit-text-size-adjust: 100%; /* 2 */
+}
+
+/* Sections
+   ========================================================================== */
+
+/**
+ * Remove the margin in all browsers.
+ */
+
+body {
+  margin: 0;
+}
+
+/**
+ * Render the `main` element consistently in IE.
+ */
+
+main {
+  display: block;
+}
+
+/**
+ * Correct the font size and margin on `h1` elements within `section` and
+ * `article` contexts in Chrome, Firefox, and Safari.
+ */
+
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+/* Grouping content
+   ========================================================================== */
+
+/**
+ * 1. Add the correct box sizing in Firefox.
+ * 2. Show the overflow in Edge and IE.
+ */
+
+hr {
+  box-sizing: content-box; /* 1 */
+  height: 0; /* 1 */
+  overflow: visible; /* 2 */
+}
+
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+
+pre {
+  font-family: monospace, monospace; /* 1 */
+  font-size: 1em; /* 2 */
+}
+
+/* Text-level semantics
+   ========================================================================== */
+
+/**
+ * Remove the gray background on active links in IE 10.
+ */
+
+a {
+  background-color: transparent;
+}
+
+/**
+ * 1. Remove the bottom border in Chrome 57-
+ * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
+ */
+
+abbr[title] {
+  border-bottom: none; /* 1 */
+  text-decoration: underline; /* 2 */
+  text-decoration: underline dotted; /* 2 */
+}
+
+/**
+ * Add the correct font weight in Chrome, Edge, and Safari.
+ */
+
+b,
+strong {
+  font-weight: bolder;
+}
+
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+
+code,
+kbd,
+samp {
+  font-family: monospace, monospace; /* 1 */
+  font-size: 1em; /* 2 */
+}
+
+/**
+ * Add the correct font size in all browsers.
+ */
+
+small {
+  font-size: 80%;
+}
+
+/**
+ * Prevent `sub` and `sup` elements from affecting the line height in
+ * all browsers.
+ */
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+/* Embedded content
+   ========================================================================== */
+
+/**
+ * Remove the border on images inside links in IE 10.
+ */
+
+img {
+  border-style: none;
+}
+
+/* Forms
+   ========================================================================== */
+
+/**
+ * 1. Change the font styles in all browsers.
+ * 2. Remove the margin in Firefox and Safari.
+ */
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit; /* 1 */
+  font-size: 100%; /* 1 */
+  line-height: 1.15; /* 1 */
+  margin: 0; /* 2 */
+}
+
+/**
+ * Show the overflow in IE.
+ * 1. Show the overflow in Edge.
+ */
+
+button,
+input { /* 1 */
+  overflow: visible;
+}
+
+/**
+ * Remove the inheritance of text transform in Edge, Firefox, and IE.
+ * 1. Remove the inheritance of text transform in Firefox.
+ */
+
+button,
+select { /* 1 */
+  text-transform: none;
+}
+
+/**
+ * Correct the inability to style clickable types in iOS and Safari.
+ */
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: button;
+}
+
+/**
+ * Remove the inner border and padding in Firefox.
+ */
+
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+
+/**
+ * Restore the focus styles unset by the previous rule.
+ */
+
+button:-moz-focusring,
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+
+/**
+ * Correct the padding in Firefox.
+ */
+
+fieldset {
+  padding: 0.35em 0.75em 0.625em;
+}
+
+/**
+ * 1. Correct the text wrapping in Edge and IE.
+ * 2. Correct the color inheritance from `fieldset` elements in IE.
+ * 3. Remove the padding so developers are not caught out when they zero out
+ *    `fieldset` elements in all browsers.
+ */
+
+legend {
+  box-sizing: border-box; /* 1 */
+  color: inherit; /* 2 */
+  display: table; /* 1 */
+  max-width: 100%; /* 1 */
+  padding: 0; /* 3 */
+  white-space: normal; /* 1 */
+}
+
+/**
+ * Add the correct vertical alignment in Chrome, Firefox, and Opera.
+ */
+
+progress {
+  vertical-align: baseline;
+}
+
+/**
+ * Remove the default vertical scrollbar in IE 10+.
+ */
+
+textarea {
+  overflow: auto;
+}
+
+/**
+ * 1. Add the correct box sizing in IE 10.
+ * 2. Remove the padding in IE 10.
+ */
+
+[type="checkbox"],
+[type="radio"] {
+  box-sizing: border-box; /* 1 */
+  padding: 0; /* 2 */
+}
+
+/**
+ * Correct the cursor style of increment and decrement buttons in Chrome.
+ */
+
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/**
+ * 1. Correct the odd appearance in Chrome and Safari.
+ * 2. Correct the outline style in Safari.
+ */
+
+[type="search"] {
+  -webkit-appearance: textfield; /* 1 */
+  outline-offset: -2px; /* 2 */
+}
+
+/**
+ * Remove the inner padding in Chrome and Safari on macOS.
+ */
+
+[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/**
+ * 1. Correct the inability to style clickable types in iOS and Safari.
+ * 2. Change font properties to `inherit` in Safari.
+ */
+
+::-webkit-file-upload-button {
+  -webkit-appearance: button; /* 1 */
+  font: inherit; /* 2 */
+}
+
+/* Interactive
+   ========================================================================== */
+
+/*
+ * Add the correct display in Edge, IE 10+, and Firefox.
+ */
+
+details {
+  display: block;
+}
+
+/*
+ * Add the correct display in all browsers.
+ */
+
+summary {
+  display: list-item;
+}
+
+/* Misc
+   ========================================================================== */
+
+/**
+ * Add the correct display in IE 10+.
+ */
+
+template {
+  display: none;
+}
+
+/**
+ * Add the correct display in IE 10.
+ */
+
+[hidden] {
+  display: none;
+}
+
+/*! purgecss end ignore */
+
+/*! CC BY-SA 3.0 License | https://stackoverflow.com/a/36118384/1154965 */
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Default license header for non-vendor CSS source code that follows */
+
+/*! MIT License | github.com/schnerring/hugo-theme-gruvbox */
+
+/*
+  Bootstrap 5 breakpoints
+  See: https://getbootstrap.com/docs/5.0/layout/breakpoints/#available-breakpoints
+*/
+
+:root[data-theme="light"] {
+  --bg: var(--bg0_h);
+  --bg0: #fbf1c7;
+  --bg0_h: #f9f5d7;
+  --bg0_s: #f2e5bc;
+  --bg1: #ebdbb2;
+  --bg2: #d5c4a1;
+  --bg3: #bdae93;
+  --bg4: #a89984;
+  --fg: var(--fg1);
+  --fg0: #282828;
+  --fg1: #3c3836;
+  --fg2: #504945;
+  --fg3: #665c54;
+  --fg4: #7c6f64;
+  --gray1: var(--fg4);
+  --gray2: #928374;
+  --red1: #cc241d;
+  --red2: #9d0006;
+  --green1: #98971a;
+  --green2: #797403;
+  --yellow1: #d79921;
+  --yellow2: #b57614;
+  --blue1: #458588;
+  --blue2: #076678;
+  --purple1: #b16286;
+  --purple2: #8f3f71;
+  --aqua1: #689d6a;
+  --aqua2: #427b58;
+  --orange1: #d65d0e;
+  --orange2: #af3a03;
+}
+
+[data-theme="light"]:root .light--hidden {
+    display: none;
+  }
+
+:root[data-theme="dark"] {
+  --bg: var(--bg0_h);
+  --bg0: #282828;
+  --bg0_h: #1d2021;
+  --bg0_s: #32302f;
+  --bg1: #3c3836;
+  --bg2: #504945;
+  --bg3: #665c54;
+  --bg4: #7c6f64;
+  --fg: var(--fg1);
+  --fg0: #fbf1c7;
+  --fg1: #ebdbb2;
+  --fg2: #d5c4a1;
+  --fg3: #bdae93;
+  --fg4: #a89984;
+  --gray1: var(--fg4);
+  --gray2: #928374;
+  --red1: #cc241d;
+  --red2: #fb4934;
+  --green1: #98971a;
+  --green2: #b8bb26;
+  --yellow1: #d79921;
+  --yellow2: #fabd2f;
+  --blue1: #458588;
+  --blue2: #83a598;
+  --purple1: #b16286;
+  --purple2: #d3869b;
+  --aqua1: #689d6a;
+  --aqua2: #8ec07c;
+  --orange1: #d65d0e;
+  --orange2: #fe8019;
+}
+
+[data-theme="dark"]:root .dark--hidden {
+    display: none;
+  }
+
+:root {
+  
+  --primary: var(--aqua1);
+  --primary-alt: var(--aqua2);
+}
+
+:root {
+  --font-monospace: "Fira Code", "Lucida Console", Monaco, monospace;
+  --font-sans-serif: Verdana, Helvetica, sans-serif;
+  --font-serif: "Roboto Slab", Georgia, serif;
+}
+
+html {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  line-height: 1.675;
+  word-wrap: break-word;
+}
+
+strong {
+  letter-spacing: 0.35px;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a.link--external::after {
+  /* 2009 = Thin Space */
+  content: "\2009↗";
+}
+
+img,
+video {
+  border: 2px solid var(--bg1);
+  height: auto;
+  max-width: 100%;
+}
+
+figure {
+  display: inline-block;
+}
+
+figcaption {
+  color: var(--fg3);
+  font-family: var(--font-serif);
+  font-size: 0.9rem;
+}
+
+*::selection {
+  color: var(--fg0);
+  background: var(--bg4);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--fg0);
+  font-family: var(--font-monospace);
+  font-weight: 300;
+  line-height: 1.4;
+}
+
+:is(h1,h2,h3,h4,h5,h6) code {
+    font-size: 1em;
+  }
+
+h2,
+h3,
+h4,
+h5,
+h6 {
+  border-bottom: 1px solid var(--bg1);
+}
+
+h1,
+h2 {
+  font-weight: 400;
+}
+
+h1 {
+  font-size: 1.875rem;
+}
+
+h2 {
+  font-size: 1.75rem;
+}
+
+h3 {
+  font-size: 1.625rem;
+}
+
+@media (min-width: 768px) {
+  h1 {
+    font-size: 2.375rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  h3 {
+    font-size: 1.75rem;
+  }
+}
+
+h4 {
+  font-size: 1.5rem;
+}
+
+h5 {
+  font-size: 1.375rem;
+}
+
+h6 {
+  font-size: 1.25rem;
+}
+
+table {
+  table-layout: fixed;
+  border-collapse: collapse;
+  width: 100%;
+  margin: 2rem 0;
+}
+
+table,
+th,
+td {
+  border: 1px solid var(--bg1);
+  padding: 0.5rem;
+}
+
+hr {
+  border: none;
+  background: var(--bg1);
+  height: 1px;
+  margin: 3rem auto;
+  width: 80%;
+}
+
+mark {
+  background: var(--yellow1);
+  color: var(--bg0);
+}
+
+abbr {
+  text-underline-offset: 0.2rem;
+}
+
+blockquote,
+code,
+kbd,
+mark,
+pre {
+  border-radius: 0.2rem;
+  padding: 0 0.2em;
+}
+
+pre code {
+  padding: 0;
+}
+
+blockquote,
+code,
+kbd,
+pre,
+th {
+  background: var(--bg1);
+}
+
+code,
+kbd,
+pre,
+th {
+  font-family: var(--font-monospace);
+}
+
+:is(code,kbd) code,:is(code,kbd) kbd {
+    background: var(--bg2);
+  }
+
+blockquote,
+pre {
+  padding: 1rem;
+}
+
+pre {
+  /* TODO is !important really needed because of Prism? */
+  background: var(--bg1) !important;
+  overflow: auto;
+}
+
+pre code {
+    background: none;
+  }
+
+blockquote,
+blockquote.twitter-tweet {
+  border-left: var(--primary-alt) 5px solid;
+  margin: 0.5rem 0;
+}
+
+:is(blockquote,blockquote.twitter-tweet) code {
+    background: var(--bg2);
+  }
+
+:is(blockquote,blockquote.twitter-tweet) p:first-of-type {
+    margin-top: 0;
+  }
+
+:is(blockquote,blockquote.twitter-tweet) p:last-of-type {
+    margin-bottom: 0;
+  }
+
+blockquote.twitter-tweet {
+  border-color: var(--blue2);
+  color: inherit;
+  font: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+blockquote.twitter-tweet a {
+    color: var(--blue2);
+  }
+
+blockquote.twitter-tweet a:hover {
+    color: var(--blue1);
+    text-decoration: none !important;
+  }
+
+pre::-webkit-scrollbar {
+  height: 0.5rem;
+  scrollbar-width: auto;
+}
+
+pre::-webkit-scrollbar-track {
+  background: var(--bg2);
+  border-radius: 0.2rem;
+}
+
+pre::-webkit-scrollbar-thumb {
+  background: var(--bg4);
+  border-radius: 0.2rem;
+}
+
+.layout {
+  display: grid;
+  grid-template-areas:
+    "header"
+    "main"
+    "footer";
+  grid-template-rows: auto 1fr auto;
+  height: 100vh;
+}
+
+main {
+  align-items: start;
+  display: grid;
+  grid-area: main;
+  grid-template-areas: "empty content sidebar";
+  grid-template-columns: 1fr minmax(0, 650px) 4fr;
+}
+
+header {
+  background: var(--bg1);
+  grid-area: header;
+}
+
+footer {
+  grid-area: footer;
+}
+
+main,
+footer {
+  margin: 0.5em 1.1em;
+}
+
+.content {
+  grid-area: content;
+}
+
+.sidebar {
+  display: none;
+  flex-direction: column;
+  grid-area: sidebar;
+  margin-top: 3rem;
+  position: sticky;
+  top: 2rem;
+}
+
+@media (min-width: 992px) {
+
+.sidebar {
+    display: flex;
+}
+  }
+
+header {
+  display: grid;
+  font-family: var(--font-monospace);
+  font-size: 1.125rem;
+  grid-template-columns: auto auto 1fr auto;
+  grid-template-areas: "heading search nav theme-toggle";
+  padding: 0.75rem;
+}
+
+.logo {
+  color: var(--fg0);
+  display: flex;
+  font-weight: 700;
+  grid-area: heading;
+}
+
+.logo:hover .logo__cursor {
+    animation: 1s blink infinite;
+    opacity: 1;
+  }
+
+.logo__chevron,
+.logo__cursor {
+  margin-left: 0.5rem;
+}
+
+.logo__cursor {
+  opacity: 0;
+}
+
+.logo__text {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .logo__text {
+    display: block;
+  }
+}
+
+/*! purgecss start ignore */
+
+.search {
+  display: flex;
+  grid-area: search;
+  margin: 0 1rem;
+}
+
+#search__text {
+  border: 1px solid var(--bg2);
+  border-radius: 0.2rem;
+  background: var(--bg2);
+  caret-color: var(--fg);
+  color: var(--fg);
+  outline: none;
+  padding: 0 0.5rem;
+  width: 100%;
+}
+
+#search__text:hover {
+    border-color: var(--bg3);
+  }
+
+#search__text:focus {
+    border-color: var(--bg4);
+  }
+
+#search__text::placeholder {
+    color: var(--fg3);
+  }
+
+#search__text[type="search"]::-webkit-search-cancel-button {
+    appearance: none;
+  }
+
+#search__suggestions {
+  background: var(--bg);
+  border-radius: 0.2rem;
+  box-shadow: 0 0.5rem 1rem var(--bg1);
+  font-family: var(--font-serif);
+  left: 0;
+  margin-top: 2rem;
+  position: absolute;
+  width: 95vw;
+  z-index: 1000;
+}
+
+@media (min-width: 768px) {
+  .search {
+    position: relative;
+  }
+
+  #search__suggestions {
+    width: 60vw;
+  }
+}
+
+.search__suggestions--hidden {
+  display: none;
+}
+
+.search__suggestion-item {
+  border-bottom: 1px dashed var(--bg2);
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+
+.search__suggestion-item:focus,.search__suggestion-item:focus-visible,.search__suggestion-item:hover {
+    background: var(--bg1);
+    cursor: pointer;
+    outline: none;
+  }
+
+.search__suggestion-item:last-child {
+    border: none;
+  }
+
+.search__suggestion-title,
+.search__suggestion-description {
+  padding: 0 1rem;
+  margin: 1rem 0;
+}
+
+.search__suggestion-title {
+  font-weight: 700;
+}
+
+.search__suggestion-description {
+  border-left: 1px solid var(--bg2);
+}
+
+.search__no-results {
+  padding: 0.75rem;
+}
+
+/*! purgecss end ignore */
+
+.theme__toggle {
+  align-items: center;
+  background: none;
+  border: none;
+  color: var(--yellow1);
+  cursor: pointer;
+  display: flex;
+  grid-area: theme-toggle;
+  margin: 0 1rem;
+}
+
+.theme__toggle:hover {
+    color: var(--yellow2);
+  }
+
+.theme__toggle svg {
+    height: 28px;
+    width: 28px;
+  }
+
+/* TODO: simplify deep nesting */
+
+nav#menu {
+  align-items: center;
+  display: flex;
+  grid-area: nav;
+  justify-content: flex-end;
+}
+
+nav#menu .menu__item {
+    color: var(--fg);
+  }
+
+:is(nav#menu .menu__item):hover {
+      color: var(--fg3);
+      cursor: pointer;
+    }
+
+nav#menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+nav#menu ul.menu--horizontal {
+    align-items: center;
+    display: none;
+  }
+
+:is(nav#menu ul.menu--horizontal) li {
+      display: inline-block;
+      margin: 0 0.75rem;
+    }
+
+@media (min-width: 768px) {
+
+nav#menu ul.menu--horizontal {
+      display: flex;
+  }
+    }
+
+nav#menu ul.menu--vertical {
+    background: var(--fg0);
+    bottom: 0;
+    margin: 0;
+    padding: 3rem;
+    position: fixed;
+    right: 0;
+    top: 0;
+    transform: translate(100%, 0);
+    transition: transform 0.5s cubic-bezier(0.9, 0, 0.1, 1);
+    width: 50%;
+    z-index: 10;
+  }
+
+:is(nav#menu ul.menu--vertical) .menu__item {
+      color: var(--bg1);
+    }
+
+:is(:is(nav#menu ul.menu--vertical) .menu__item):hover {
+        color: var(--bg4);
+      }
+
+nav#menu .menu__burger {
+    display: flex;
+    height: 24px;
+    width: 24px;
+  }
+
+:is(nav#menu .menu__burger) > * {
+      position: absolute;
+    }
+
+:is(nav#menu .menu__burger) svg {
+      width: inherit;
+      z-index: 20;
+      height: inherit;
+    }
+
+:is(:is(nav#menu .menu__burger) svg) line {
+        transition-duration: 0.5s;
+        transition-property: stroke, opacity, transform;
+        transition-timing-function: cubic-bezier(0.9, 0, 0.1, 1);
+      }
+
+:is(:is(nav#menu .menu__burger) svg) line:nth-of-type(1) {
+        transform-origin: center 6px;
+      }
+
+:is(:is(nav#menu .menu__burger) svg) line:nth-of-type(2) {
+        transform-origin: center 12px;
+      }
+
+:is(:is(nav#menu .menu__burger) svg) line:nth-of-type(3) {
+        transform-origin: center 18px;
+      }
+
+:is(nav#menu .menu__burger) input {
+      height: inherit;
+      opacity: 0;
+      width: inherit;
+      z-index: 30;
+    }
+
+:is(:is(nav#menu .menu__burger) input):checked ~ ul.menu--vertical {
+          transform: none;
+        }
+
+:is(:is(nav#menu .menu__burger) input):checked ~ svg {
+          stroke: var(--bg1);
+        }
+
+:is(:is(:is(nav#menu .menu__burger) input):checked ~ svg) line:nth-of-type(1) {
+            transform: translate(0, 6px) rotate(45deg);
+          }
+
+:is(:is(:is(nav#menu .menu__burger) input):checked ~ svg) line:nth-of-type(2) {
+            opacity: 0;
+            transform: scale(0.2);
+          }
+
+:is(:is(:is(nav#menu .menu__burger) input):checked ~ svg) line:nth-of-type(3) {
+            transform: translate(0, -6px) rotate(-45deg);
+          }
+
+@media (min-width: 768px) {
+
+nav#menu .menu__burger {
+      display: none;
+  }
+    }
+
+.sidebar {
+  font-family: var(--font-monospace);
+  max-width: 350px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 2.5rem;
+}
+
+.sidebar hr {
+    margin: 1.5rem auto;
+  }
+
+.sidebar svg {
+    fill: var(--fg);
+  }
+
+.sidebar__heading {
+  font-size: 1.3rem;
+}
+
+aside.toc a {
+    color: var(--primary-alt);
+  }
+
+aside.toc a:hover {
+    color: var(--primary);
+  }
+
+aside.toc ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+:is(aside.toc ul) ul {
+      font-size: 0.9rem;
+      margin-left: 0.5rem;
+    }
+
+:is(aside.toc ul) li {
+      line-height: 1.1;
+    }
+
+:is(:is(aside.toc ul) li) a {
+        display: block;
+        padding: 0.2rem 0;
+      }
+
+.jr-basics__image {
+  background: var(--bg1);
+  border: 2px solid var(--bg2);
+}
+
+.jr-basics__summary {
+  color: var(--fg3);
+  font-family: var(--font-serif);
+  margin: 0.75rem 0;
+}
+
+.jr-basics__profile a:hover {
+    color: var(--fg3);
+  }
+
+:is(.jr-basics__profile a:hover) svg {
+      fill: var(--fg3);
+    }
+
+.tag-cloud {
+  line-height: 1.1;
+  text-align: justify;
+}
+
+.tag-cloud__tag:hover {
+  color: var(--fg3);
+}
+
+.tag-cloud__tag--active {
+  text-decoration: underline;
+}
+
+.post,
+.content-section {
+  border-bottom: 2px dotted var(--bg1);
+  padding: 2rem 0;
+}
+
+.post figure,.post img:not(figure img),.post video:not(figure video) {
+    margin: 0.5rem 0;
+    box-sizing: border-box;
+  }
+
+.post-header,
+.post-content__read-more {
+  font-family: var(--font-monospace);
+}
+
+.post-meta__author {
+  font-weight: 700;
+}
+
+.post-content {
+  margin: 1.3rem 0;
+}
+
+.post-content__read-more {
+  color: var(--primary-alt);
+  margin-top: 1.3rem;
+}
+
+:is(.post-header,.post-content) a {
+    color: var(--primary-alt);
+  }
+
+:is(.post-header,.post-content) a:hover {
+    color: var(--primary);
+  }
+
+.post-tags {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  margin: 1rem 0;
+}
+
+.post-tag {
+  font-size: 0.9rem;
+  line-height: 1;
+}
+
+.post-tag::before {
+    content: "#";
+  }
+
+.post-heading__anchor {
+  display: none;
+}
+
+:is(h1:hover,h2:hover,h3:hover,h4:hover,h5:hover,h6:hover) .post-heading__anchor {
+    display: inline-block;
+  }
+
+.jr__item-meta {
+  flex-direction: column;
+}
+
+.jr__item-meta,
+.jr-basics__image,
+.jr-basics__item,
+.jr-basics__profile-icon,
+.jr-basics__profile-item {
+  align-items: center;
+  display: flex;
+}
+
+.jr-awards__title,
+.jr-certificates__name,
+.jr-education__area,
+.jr-projects__roles,
+.jr-publications__name,
+.jr-volunteer__position,
+.jr-work__position,
+.jr-basics__name {
+  font-size: 1.125rem;
+  font-weight: bold;
+}
+
+.jr-basics__item {
+  flex-direction: column;
+  text-align: center;
+}
+
+.jr-basics__item hr {
+  margin: 1.5rem auto;
+}
+
+.jr-basics__image {
+  border-radius: 50%;
+  height: 250px;
+  justify-content: center;
+  overflow: hidden;
+  width: 250px;
+}
+
+.jr-basics__name,
+.jr-basics__label,
+.jr-basics__summary {
+  margin-top: 0.75rem;
+}
+
+.jr-basics__profile svg {
+  height: 24px;
+  width: 24px;
+}
+
+.jr-basics__profile,
+.jr-basics__profile-item {
+  display: flex;
+}
+
+.jr-basics__profile-item {
+  display: flex;
+  padding: 0.2rem;
+}
+
+.jr-basics__profile--col {
+  flex-direction: column;
+}
+
+.jr-basics__profile--row {
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.jr-basics__profile-icon {
+  padding: 0 0.75rem;
+}
+
+.jr__item-meta {
+  font-family: var(--font-monospace);
+}
+
+.jr__item-meta {
+  align-items: start;
+  flex-flow: column;
+}
+
+@media (min-width: 768px) {
+  .jr__item-meta {
+    align-items: center;
+    flex-flow: row wrap;
+  }
+
+  .jr__date,
+  .jr__date-range,
+  .jr-work__location {
+    flex-grow: 1;
+    text-align: right;
+  }
+
+  .jr-awards__awarder,
+  .jr-publications__publisher,
+  .jr-education__institution,
+  .jr-volunteer__organization {
+    flex-basis: 100%;
+  }
+}
+
+.social-share {
+  align-items: center;
+  border-top: 2px dotted var(--bg1);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  margin: 3rem 0;
+  padding-top: 3rem;
+}
+
+.social-share svg {
+    fill: var(--fg);
+    width: 24px;
+    height: 24px;
+  }
+
+.icon-tabler:is(.social-share svg) {
+      fill: none;
+      stroke: var(--fg);
+    }
+
+.social-share__item {
+  background: var(--bg1);
+  padding: 0.5rem;
+  display: flex;
+}
+
+/* Sticky social bar left
+
+@media (--xl) {
+  .social-share {
+    align-items: flex-start;
+    border-top: none;
+    flex-direction: column;
+
+    position: fixed;
+    top: 15%;
+    left: 0;
+  }
+
+  .social-share__heading {
+    display: none;
+  }
+
+  .social-share__item {
+    transition: padding 0.2s ease-in;
+
+    &:hover {
+      padding: 0.5rem 1rem;
+    }
+
+    & svg {
+      &:hover {
+        fill: var(--fg);
+      }
+
+      &.icon-tabler {
+        fill: none;
+
+        &:hover {
+          stroke: var(--fg);
+        }
+      }
+    }
+  }
+}
+
+*/
+
+   
+</style>
+
+<link
+  rel="preload"
+  href="/css/non-critical.css"
+  as="style"
+  onload="this.onload=null;this.rel='stylesheet'"
+  
+/>
+
+
+<link
+  id="prism-dark"
+  rel="preload"
+  href="/prism-themes/prism-gruvbox-dark.css"
+  as="style"
+  onload="this.onload=null;this.rel='stylesheet'"
+  
+  
+/>
+
+
+<link
+  id="prism-light"
+  rel="preload"
+  href="/prism-themes/prism-gruvbox-light.css"
+  as="style"
+  onload="this.onload=null;this.rel='stylesheet'"
+  
+  disabled
+/>
+
+<noscript>
+  
+    <link
+      rel="stylesheet"
+      href="/prism-themes/prism-gruvbox-dark.css"
+      
+    />
+  
+
+
+  <link
+    rel="stylesheet"
+    href="/css/non-critical.css"
+    
+  />
+</noscript>
+
+
+  
+
+
+
+
+<script>
+  (() => {
+  // <stdin>
+  function getTheme() {
+    if (localStorage && localStorage.getItem("theme")) {
+      return localStorage.getItem("theme");
+    }
+    if (window.matchMedia) {
+      return window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+    }
+  }
+  function setTheme(theme2) {
+    document.documentElement.setAttribute("data-theme", theme2);
+    const prismDark = document.getElementById("prism-dark");
+    const prismLight = document.getElementById("prism-light");
+    prismDark.toggleAttribute("disabled", theme2 === "light");
+    prismLight.toggleAttribute("disabled", theme2 === "dark");
+    localStorage.setItem("theme", theme2);
+  }
+  var theme = getTheme();
+  if (theme) setTheme(theme);
+  function toggleTheme(e) {
+    const theme2 = e.currentTarget.classList.contains("light--hidden") ? "light" : "dark";
+    setTheme(theme2);
+  }
+  document.addEventListener("DOMContentLoaded", function() {
+    const toggleButtons = document.querySelectorAll(".theme__toggle");
+    toggleButtons.forEach((btn) => {
+      btn.addEventListener("click", toggleTheme);
+    });
+  });
+})();
+
+</script>
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="manifest" href="/site.webmanifest" />
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#282828" />
+<meta name="msapplication-TileColor" content="#282828" />
+<meta name="theme-color" content="#282828" />
+
+
+
+  
+  
+
+</head>
+
+  <body>
+    <div class="layout">
+      <header>
+  <a
+    class="logo"
+    href="/"
+  >
+    
+      <div class="logo__text">thaddeuskoenig.com</div>
+    
+    <div class="logo__chevron">></div>
+    <div class="logo__cursor">█</div>
+  </a>
+
+  <div class="search">
+    <input
+      id="search__text"
+      type="search"
+      placeholder="Search..."
+      aria-label="Search"
+      autocomplete="off"
+    />
+    <div id="search__suggestions" class="search__suggestions--hidden"></div>
+  </div>
+
+  <nav id="menu">
+    <ul class="menu--horizontal">
+      
+        <li class="menu__item">
+          <a href="/blog">Blog</a>
+        </li>
+      
+        <li class="menu__item">
+          <a href="/projects">Projects</a>
+        </li>
+      
+        <li class="menu__item">
+          <a href="/about">About</a>
+        </li>
+      
+    </ul>
+
+    <div class="menu__burger">
+      
+      <input class="menu__item" type="checkbox" aria-label="Open main menu" />
+
+      
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class="icon icon-tabler icons-tabler-outline icon-tabler-menu-2"
+>
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 6l16 0" />
+  <path d="M4 12l16 0" />
+  <path d="M4 18l16 0" />
+</svg>
+
+
+
+
+      <ul class="menu--vertical">
+        
+          <li>
+            <a class="menu__item" href="/blog">Blog</a>
+          </li>
+        
+          <li>
+            <a class="menu__item" href="/projects">Projects</a>
+          </li>
+        
+          <li>
+            <a class="menu__item" href="/about">About</a>
+          </li>
+        
+      </ul>
+    </div>
+  </nav>
+
+  <button class="theme__toggle light--hidden" aria-label="Toggle light mode">
+    
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class="icon icon-tabler icons-tabler-outline icon-tabler-sun"
+>
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
+  <path d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7" />
+</svg>
+
+
+  </button>
+
+  <button class="theme__toggle dark--hidden" aria-label="Toggle dark mode">
+    
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class="icon icon-tabler icons-tabler-outline icon-tabler-moon"
+>
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+</svg>
+
+
+  </button>
+</header>
+
+      <main>
+        <div class="content">
+          
+  <article class="post">
+    <div class="post-header">
+      <h1>A complete guide to setting up a local AI Chatbot</h1>
+      <div class="post-meta"><span>2026-05-29</span>
+    <div class="post-tags">
+      <a class="post-tag" href="http://localhost:1313/tags/local-ai">local&#8209;ai</a><a class="post-tag" href="http://localhost:1313/tags/ollama">ollama</a><a class="post-tag" href="http://localhost:1313/tags/open-webui">open&#8209;webui</a><a class="post-tag" href="http://localhost:1313/tags/docker">docker</a><a class="post-tag" href="http://localhost:1313/tags/swag">swag</a><a class="post-tag" href="http://localhost:1313/tags/searxng">searxng</a><a class="post-tag" href="http://localhost:1313/tags/homelab">homelab</a>
+    </div>
+  
+
+  
+</div>
+
+    </div>
+
+    <div class="post-content">
+      <h2 id="overview">Overview<a href="#overview" class="post-heading__anchor" aria-hidden="true">#</a>
+</h2>
+<p>For school and personal curiosity I wanted to mess around with hosting my own local AI Chat server for testing and evaluation. I wanted this to be open source, private, and privacy concious. This setup enables a LAN-locked AU chat web UI backed by Ollama models with the ability to enable web search, code execution, and HTTPS through a reverse proxy. Its important to note, that this is simply meant to be something contained and not sitting on the public internet.</p>
+<p>The stack uses Ollama as the local model, Open WebUI as the browser chat interfacem SearXNG as the local metasearch backend, Open Terminal for the code execution environment, and SWAG as an HTTPS reverse proxy. It is important to note that Ollama is run natively on my Ubuntu 24.04.04 LTS host via systemd to reduce issues accessing the GPU. All other components are run in docker. The SWAG reverse proxy is not a necessity, but I belive its best practice with the nature of the application handling logins, API tokens, and executing (somewhat) arbitrary code. With this setup, the only exposed service should be SWAG</p>
+<p>In production, the networking looks a bit like this</p>
+<pre tabindex="0"><code>Client Browser -&gt; SWAG Reverse Proxy (htsps://ai.example.com) -&gt; Open WebUI(http://localhost:8080) -&gt; Ollama (http://localhost:11434)
+# Optional Extras
+- SearXNG (https://localhost:8081)
+- Open Terminal (https://localhost:8000) 
+</code></pre><p>Since I just repurposed my old gaming PC, my local resources are as follows</p>
+<ul>
+<li>OS: Ubuntu 24.04.04 LTS</li>
+<li>GPU: NVIDIA 1080TI (11GB)</li>
+<li>CPU: Intel i7-7700K</li>
+<li>RAM: 24GB (DDR4)</li>
+</ul>
+<h2 id="privacy-and-security-considerations">Privacy and Security Considerations<a href="#privacy-and-security-considerations" class="post-heading__anchor" aria-hidden="true">#</a>
+</h2>
+<p>At its core this is an private offline AI Chat tool, the more functionality you add, the more attack surface and privacy you give up. If the prompt is answered entirely by Ollama, then nothing leaves the local machne. If you enable web search, with this setup, your search terms are sent to SearXNG, which will send it to uipstream search engines meaning any prompts that use web search arent entirely local. If Open Terminal is enabled, the model can ask to execute code in a container. this inherently changes the risk profile. While the code is containerized, you should understand the implications of running arbitrary code so be careful with the prompts you create and never enable this for a user you dont completely trust.</p>
+<p>When the stack is initialized, the first user to login is the administrator account, so make sure to immediately login to set your credentials and immediately disable open registration via <code>Admin Panel</code> &gt; <code>Settings</code> &gt; <code>General</code> &gt; <code>Enable New Sign Ups</code>. Lastly, since I have my own DNS resolver my DNS address <code>ai.example.com</code> simply resides on my local DNS resolver and is not made available to any public records. Don&rsquo;t put this address on your public resolver unless you plan on making this publicly available and understand the implications of doing so. If you plan on doing this I recommend using something like Cloudflare Access.</p>
+<h2 id="install">Install<a href="#install" class="post-heading__anchor" aria-hidden="true">#</a>
+</h2>
+<h3 id="1-install-docker-on-ubuntu">1. Install Docker on Ubuntu<a href="#1-install-docker-on-ubuntu" class="post-heading__anchor" aria-hidden="true">#</a>
+</h3>
+<p>The docker version in the Ubunutu repo can get a bit stale, especially if youre like me and ride LTS distros until they arent supported. Its a good idea to just add the Docker Repo directly and get the lastest packages from there. I will refrain from posting the install instructions for that, because it can change. You can visit the docker documentation at <a
+  href="https://docs.docker.com/engine/install/ubuntu/"
+  
+  
+    class="link--external" target="_blank" rel="noreferrer"
+  
+>https://docs.docker.com/engine/install/ubuntu/</a> .<br>
+If you are lazy, you can use the official script.</p>
+<pre tabindex="0"><code>curl -fsSL https://test.docker.com -o test-docker.sh
+sudo sh test-docker.sh
+</code></pre><h3 id="2-install-ollama">2. Install Ollama<a href="#2-install-ollama" class="post-heading__anchor" aria-hidden="true">#</a>
+</h3>
+<p>For the same reasons I will simply give you the current install instructions for Ollama here, which will walk you through the install and systemd setup <a
+  href="https://docs.ollama.com/linux"
+  
+  
+    class="link--external" target="_blank" rel="noreferrer"
+  
+>https://docs.ollama.com/linux</a> .<br>
+Here is the script for Ollama as well</p>
+<pre tabindex="0"><code>curl -fsSL https://ollama.com/install.sh | sh
+</code></pre><p>Make sure the service is started and enabled</p>
+<pre tabindex="0"><code>sudo systemctl enable --now ollama 
+sudo systemctl status ollama --no-pager
+</code></pre><p>Then you can test the local API to ensure it works</p>
+<pre tabindex="0"><code>curl http://127.0.0.1:11434/api/tags
+</code></pre><p>From here, you can pull a model to make sure you can</p>
+<pre tabindex="0"><code>ollama pull qwen3:8b
+</code></pre><p>Because I am using an older system, I am using slightly older models to prevent the system from falling over. Here are some other models I pulled for some variety and testing.</p>
+<pre tabindex="0"><code>ollama pull llama3.1:8b 
+ollama pull qwen2.5-coder:7b 
+ollama pull phi4-mini
+</code></pre><p>If you are like me and have a more modest system, here are some other settings you can enable. Run <code>sudo systemctl edit ollama</code> and add the following to keep the models from eating each other.</p>
+<pre tabindex="0"><code>[Service]
+Environment=&#34;OLLAMA_KEEP_ALIVE=0&#34;
+Environment=&#34;OLLAMA_NUM_PARALLEL=1&#34;
+Environment=&#34;OLLAMA_MAX_LOADED_MODELS=1&#34;
+Environment=&#34;OLLAMA_MAX_QUEUE=4&#34;
+</code></pre><h3 id="3-create-project-directory">3. Create Project Directory<a href="#3-create-project-directory" class="post-heading__anchor" aria-hidden="true">#</a>
+</h3>
+<p>From here I created a directory so that all my necessary files are in the correct location.</p>
+<pre tabindex="0"><code># Create the directory for the stack
+mkdir -p ~/docker/openwebui
+cd cd ~/docker/openwebui
+
+# Create the environment file with your secrets
+printf &#34;WEBUI_SECRET_KEY=%s\n&#34; &#34;$(openssl rand -hex 32)&#34; &gt; .env
+printf &#34;OPEN_TERMINAL_API_KEY=%s\n&#34; &#34;$(openssl rand -hex 32)&#34; &gt;&gt; .env
+# Your WEBUI_SECRET_KEY is persistent, so dont regen this key after the initial time
+
+# Create SearXNG config
+mkdir -p ~/docker/openwebui/searxng
+
+cat &gt; searxng/settings.yml &lt;&lt;EOF
+use_default_settings: true
+
+server:
+  bind_address: &#34;0.0.0.0&#34;
+  secret_key: &#34;$(openssl rand -hex 32)&#34;
+  limiter: false
+  public_instance: false
+
+search:
+  safe_search: 1
+  formats:
+    - html
+    - json
+EOF
+</code></pre><h3 id="4-setup-the-docker-compose">4. Setup the Docker Compose<a href="#4-setup-the-docker-compose" class="post-heading__anchor" aria-hidden="true">#</a>
+</h3>
+<p>Create <code>docker-compose.yml</code>:</p>
+<pre tabindex="0"><code>services:
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:main
+    container_name: open-webui
+    network_mode: host
+    env_file: .env
+    environment:
+      OLLAMA_BASE_URL: http://127.0.0.1:11434
+      WEBUI_URL: https://ai.example.com
+
+      ENABLE_WEB_SEARCH: &#34;True&#34;
+      WEB_SEARCH_ENGINE: &#34;searxng&#34;
+      WEB_SEARCH_RESULT_COUNT: &#34;3&#34;
+      WEB_SEARCH_CONCURRENT_REQUESTS: &#34;2&#34;
+      WEB_LOADER_CONCURRENT_REQUESTS: &#34;3&#34;
+      SEARXNG_QUERY_URL: &#34;http://127.0.0.1:8081/search?q=&lt;query&gt;&#34;
+
+      ENABLE_CODE_INTERPRETER: &#34;True&#34;
+      CODE_INTERPRETER_ENGINE: &#34;pyodide&#34;
+      ENABLE_CODE_EXECUTION: &#34;True&#34;
+      CODE_EXECUTION_ENGINE: &#34;pyodide&#34;
+    volumes:
+      - open-webui:/app/backend/data
+    restart: unless-stopped
+    depends_on:
+      - searxng
+      - open-terminal
+
+  searxng:
+    image: searxng/searxng:latest
+    container_name: searxng
+    ports:
+      - &#34;127.0.0.1:8081:8080&#34;
+    volumes:
+      - ./searxng:/etc/searxng:rw
+    restart: unless-stopped
+    logging:
+      driver: &#34;json-file&#34;
+      options:
+        max-size: &#34;1m&#34;
+        max-file: &#34;1&#34;
+
+  open-terminal:
+    image: ghcr.io/open-webui/open-terminal
+    container_name: open-terminal
+    ports:
+      - &#34;127.0.0.1:8000:8000&#34;
+    environment:
+      OPEN_TERMINAL_API_KEY: ${OPEN_TERMINAL_API_KEY}
+    volumes:
+      - open-terminal:/home/user
+    restart: unless-stopped
+
+  swag:
+    image: lscr.io/linuxserver/swag:latest
+    container_name: swag
+    network_mode: host
+    cap_add:
+      - NET_ADMIN
+    environment:
+      PUID: 1000
+      PGID: 1000
+      TZ: America/New_York
+
+      URL: example.com
+      SUBDOMAINS: ai
+      VALIDATION: dns
+      DNSPLUGIN: cloudflare
+      EMAIL: you@example.com
+      ONLY_SUBDOMAINS: &#34;true&#34;
+      STAGING: &#34;false&#34;
+    volumes:
+      - ./swag:/config
+    restart: unless-stopped
+
+volumes:
+  open-webui:
+  open-terminal:
+</code></pre><p>Ensure that you change the following values</p>
+<ul>
+<li>WEBUI_URL: <a
+  href="https://ai.example.com"
+  
+  
+    class="link--external" target="_blank" rel="noreferrer"
+  
+>https://ai.example.com</a>
+<ul>
+<li>Change this to the URL that you plan on using for your site</li>
+</ul>
+</li>
+<li>URL: example.com
+<ul>
+<li>Change this to the domain you will be using for cloudflare DNS</li>
+</ul>
+</li>
+<li>SUBDOMAINS: ai
+<ul>
+<li>Change to the subdomain you want to use for the site</li>
+</ul>
+</li>
+<li>EMAIL: <a
+  href="mailto:you@example.com"
+  
+  
+>you@example.com</a>
+<ul>
+<li>Change this to the email you use for cloudflare</li>
+</ul>
+</li>
+</ul>
+<p>The setup uses <code>network_mode: host</code> for ease of use and connectivity. If you are using your machine for more services, you may want to proxy these ports instead.</p>
+<h3 id="5-dns-setup">5. DNS Setup<a href="#5-dns-setup" class="post-heading__anchor" aria-hidden="true">#</a>
+</h3>
+<p>I use cloudflare for my DNS registrar and from there I can use the API to verfy my domain ownership for the automated certificate generation. Make sure to generate a token that has the permissions to edit the DNS for your zone. Cloudflare really likes to change the process for doing stuff in the web UI so I will link the docs to the process here: <a
+  href="https://developers.cloudflare.com/fundamentals/api/get-started/create-token/"
+  
+  
+    class="link--external" target="_blank" rel="noreferrer"
+  
+>https://developers.cloudflare.com/fundamentals/api/get-started/create-token/</a> .</p>
+<pre tabindex="0"><code># Start the stack once
+sudo docker compose up -d
+sudo docker logs -f swag
+</code></pre><p>SWAG will create its config files under <code>./swag</code>, Edit the Cloudflare DNS Plugin and add your <code>dns_cloudflare_api_token</code></p>
+<pre tabindex="0"><code>vim ./swag/dns-conf/cloudflare.ini
+</code></pre><p>From here you should be able to restart SWAG without affectin the rest of the stack.</p>
+<pre tabindex="0"><code># Change the permissions on the file so you dont get yelled at
+chmod 600 ./swag/dns-conf/cloudflare.ini
+# Retart swag and check your logs
+sudo docker restart swag
+sudo docker logs -f swag
+</code></pre><p>Once the logs say <strong>Server Ready</strong>, you should be good to go.</p>
+<h3 id="6-reverse-proxy-config">6. Reverse Proxy Config<a href="#6-reverse-proxy-config" class="post-heading__anchor" aria-hidden="true">#</a>
+</h3>
+<p>Create the SWAG Proxy config: <code>vim ./swag/nginx/proxy-confs/open-webui.subdomain.conf</code></p>
+<pre tabindex="0"><code>server {
+    listen 443 ssl;
+    listen [::]:443 ssl;
+
+    server_name ai.*;
+
+    include /config/nginx/ssl.conf;
+
+    client_max_body_size 0;
+
+    location / {
+        include /config/nginx/proxy.conf;
+
+        proxy_pass http://127.0.0.1:8080;
+
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-Proto https;
+    }
+}
+</code></pre><p>Restart SWAG:</p>
+<pre tabindex="0"><code>docker restart swag
+</code></pre><p>Check that nginx is listening:</p>
+<pre tabindex="0"><code>sudo ss -tulpn | grep -E &#39;:443|:80&#39;
+</code></pre><p>Check logs:</p>
+<pre tabindex="0"><code>docker logs --tail=100 swag
+</code></pre><p>If you see any duplicate errors in the logs, its because the default SWAG <code>proxy.conf</code> likely has the offending line, so you can just remove it from your config and be good to go.</p>
+<h3 id="7-dns">7. DNS<a href="#7-dns" class="post-heading__anchor" aria-hidden="true">#</a>
+</h3>
+<p>For a DNS setup, set ai.example.com to the IP of your server and connect to it via <code>https://ai.example.com</code> . Make sure to run <code>nslookup ai.example.com</code> to ensure this DNS record is working and coming from the correct address. If this command resolves, but you still arent able to access the site, your web browser may be bypassing your local DNS records in favor of its DNS over HTTPS provider.</p>
+<h3 id="8-first-login--initial-setup">8. First login / Initial Setup<a href="#8-first-login--initial-setup" class="post-heading__anchor" aria-hidden="true">#</a>
+</h3>
+<ol>
+<li>Open <code>https://ai.example.com</code></li>
+<li>Create your initial account <strong>This will be your admin account</strong>.</li>
+<li>Go to <code>Admin Panel</code> -&gt; <code>Settings</code> -&gt; <code>General</code>
+<ul>
+<li>Make sure your webui URL is set to <code>https://ai.example.org</code></li>
+</ul>
+</li>
+<li>Go to <code>Admin Panel</code> -&gt; <code>Settings</code> -&gt; <code>Web Search</code>
+<ul>
+<li>Ensure the following are set
+<pre tabindex="0"><code>Enable Web Search: On
+Search Engine: searxng
+SearXNG Query URL: http://127.0.0.1:8081/search?q=&lt;query&gt;
+Result Count: 3
+</code></pre></li>
+</ul>
+</li>
+<li>Go to <code>Admin Panel</code> -&gt; <code>Settings</code> -&gt; <code>Integrations</code> -&gt; <code>Open Terminal</code>
+<ul>
+<li>Ensure the following are set
+<pre tabindex="0"><code>URL: http://127.0.0.1:8000
+Auth Type: Bearer
+API Key: value of OPEN_TERMINAL_API_KEY from .env
+</code></pre><ul>
+<li>If you need the key, run the command <code>grep OPEN_TERMINAL_API_KEY ~/docker/openwebui/.env</code></li>
+</ul>
+</li>
+<li>Enable the configured terminal</li>
+</ul>
+</li>
+</ol>
+<h2 id="testing">Testing<a href="#testing" class="post-heading__anchor" aria-hidden="true">#</a>
+</h2>
+<p>At this point you are done. Here are some commands you can use for testing the individual components to ensure they are working as intended.</p>
+<ul>
+<li>Test Ollama
+<pre tabindex="0"><code>curl http://127.0.0.1:11434/api/tags
+</code></pre></li>
+<li>Test Open WebUI
+<pre tabindex="0"><code>curl -I http://127.0.0.1:8080
+</code></pre></li>
+<li>Test SearXNG:
+<pre tabindex="0"><code>curl -sG &#34;http://127.0.0.1:8081/search&#34; \
+  --data-urlencode &#34;q=open webui&#34; \
+  -d &#34;format=json&#34; | head
+</code></pre></li>
+<li>Test Open Terminal:
+<pre tabindex="0"><code>curl -s http://127.0.0.1:8000/health
+</code></pre></li>
+<li>Test HTTPS (From a remote computer):
+<pre tabindex="0"><code>curl -vk https://ai.example.com
+</code></pre></li>
+<li>Check active listeners:
+<pre tabindex="0"><code>sudo ss -tulpn | grep -E &#39;:443|:80|:8080|:8081|:8000|:11434&#39;
+</code></pre></li>
+<li>Check containers:
+<pre tabindex="0"><code>docker ps
+</code></pre></li>
+<li>Check Open WebUI logs:
+<pre tabindex="0"><code>docker logs --tail=100 open-webui
+</code></pre></li>
+<li>Check SWAG logs:
+<pre tabindex="0"><code>docker logs --tail=100 swag
+</code></pre></li>
+</ul>
+<h3 id="troubleshooting">Troubleshooting<a href="#troubleshooting" class="post-heading__anchor" aria-hidden="true">#</a>
+</h3>
+<p>while the process is pretty automated, there can still be issues. Here are some things I ran into during setup, or issues I could forsee.</p>
+<h4 id="firefox-says-it-cant-connect-to-server">Firefox says it cant connect to server<a href="#firefox-says-it-cant-connect-to-server" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<p>This usually means firefox isnt able to open a TCP connection at all so the server isnt even responding (or it cant reach it).</p>
+<ul>
+<li>Check DNS from the remote client.
+<pre tabindex="0"><code>nslookup ai.example.com
+</code></pre><ul>
+<li>If this does not resolve to your server&rsquo;s IP, you need to fix your local DNS resolution.</li>
+<li>If it does work run the command <code>curl https://ai.example.com</code> the results will help you find the problem
+<ul>
+<li>Could not resolve host (DNS Problem)</li>
+<li>Connection refused (Able to reach machine, but nothing is listening on HTTPS)
+<ul>
+<li>Check the SWAG logs to ensure that nothign stopped it from starting</li>
+</ul>
+</li>
+<li>Connection timed out (firewall, routing issues, service unreachable)
+<ul>
+<li>double check your networking settings to ensure you are able to reach this machine on port 443 and you arent being blocked.</li>
+</ul>
+</li>
+<li>SSL Certificate error(SWAG issue)
+<ul>
+<li>open your <code>./swag/nginx/proxy-confs/open-webui.subdomain.conf</code> and ensure that everything is spelled right and you have the correct key in <code>./swag/dns-conf/cloudflare.ini</code> that has permissions to edit DNS settings for your zone.</li>
+</ul>
+</li>
+<li>502 Bad Gateway
+<ul>
+<li>SWAG is working, but is unable to reach Open WebUI. Check the docker logs for the Open WebUI container to ensure it started correctly.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="swag-not-listening">SWAG not listening<a href="#swag-not-listening" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<p>Double check the docker logs with <code>sudo docker logs --tail=100 swag</code>. If the nginx is invalid, SWAG will start, but it wont serve the site. I hit this error a couple times <code>&quot;proxy_http_version&quot; directive is duplicate</code>. This is because out of habit I was manually including directives I used in the past, but SWAG is pretty smart and its already including them with <code>include /config/nginx/proxy.conf;</code>. The fix was to use the more minimal config above. If SWAG updates in the future to include more directives in proxy.conf, just remove the offending lines and restart swag after the changes with <code>sudo docker restart swag</code>.</p>
+<h4 id="swag-showing-502-bad-gateway">SWAG showing 502 Bad gateway<a href="#swag-showing-502-bad-gateway" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<p>This means that the browser reached SWAG, but SWAG could not reach Open WebUI.</p>
+<p>Check Open WebUI:</p>
+<pre tabindex="0"><code>sudo docker ps
+curl -I http://localhost:8080
+</code></pre><p>If Open WebUI is not responding, check the logs for any errors:</p>
+<pre tabindex="0"><code>sudo docker logs --tail=100 open-webui
+</code></pre><p>If everything looks okay, make sure to double check the proxy target in your <code>./swag/nginx/proxy-confs/open-webui.subdomain.conf</code> it should be:</p>
+<pre tabindex="0"><code>proxy_pass http://127.0.0.1:8080;
+</code></pre><h2 id="maintenance">Maintenance<a href="#maintenance" class="post-heading__anchor" aria-hidden="true">#</a>
+</h2>
+<p>Back up Open WebUI data before major updates:</p>
+<pre tabindex="0"><code>docker run --rm \
+  -v open-webui:/data \
+  -v &#34;$PWD&#34;:/backup \
+  alpine \
+  tar czf /backup/open-webui-backup.tar.gz -C /data .
+</code></pre><p>Back up SWAG config:</p>
+<pre tabindex="0"><code>tar czf swag-config-backup.tar.gz swag
+</code></pre><p>Check disk usage occasionally:</p>
+<pre tabindex="0"><code>docker system df
+du -sh ~/.ollama
+</code></pre><p>Remove unused Ollama models:</p>
+<pre tabindex="0"><code>ollama list
+ollama rm model-name
+</code></pre><p>Updating Containers</p>
+<pre tabindex="0"><code>docker compose pull
+docker compose up -d
+docker image prune
+</code></pre>
+    </div>
+
+    
+
+    
+  </article>
+
+        </div>
+        <div class="sidebar">
+  
+
+  
+  
+    <aside class="bio">
+      
+
+  <div class="jr__item jr-basics__item">
+    
+  <div class="jr-basics__image">
+    <img
+      src="https://i.postimg.cc/JhB8qYYT/adminprivileges-doctor-doom-as-a-young-African-American-man-wit-69ef1de7-69d7-4a18-ac87-9033e3b1fc34.png"
+      alt="Picture of Thaddeus Koenig"
+      width="250"
+      height="250"
+    />
+  </div>
+
+
+
+    
+      <div class="jr-basics__name">Thaddeus Koenig</div>
+    
+
+    
+      <div class="jr-basics__label">Person Who Does Things</div>
+    
+
+    
+      <div class="jr-basics__email">admin@thaddeuskoenig.com</div>
+    
+
+    
+
+    
+
+    
+      <div class="jr-basics__summary">Im a simple guy who likes computers. I like digital security and open source technology. This blog is mainly an excercise in documentation, but I hope you can find something useful here.</div>
+    
+
+    
+      
+
+      
+
+      
+        <div class="jr-basics__location-city">Annapolis, MD</div>
+      
+
+      
+
+      
+    
+
+    
+      <hr />
+      <div class="jr-basics__profile jr-basics__profile--col">
+        
+          
+
+<a href="https://github.com/adminprivileges" target="_blank" rel="noreferrer me">
+
+<div class="jr-basics__profile-item">
+  <div class="jr-basics__profile-icon">
+    
+    <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+  </div>
+
+  
+    <div class="jr-basics__profile-username">adminprivileges</div>
+  
+</div>
+
+
+</a>
+
+        
+      </div>
+    
+
+    
+      <hr />
+      <div class="jr-basics__profile jr-basics__profile--row">
+        
+          
+
+<a href="https://linkedin.com/in/thaddeuskoenig" target="_blank" rel="noreferrer me">
+
+<div class="jr-basics__profile-item">
+  <div class="jr-basics__profile-icon">
+    
+    <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>LinkedIn</title><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+  </div>
+
+  
+</div>
+
+
+</a>
+
+        
+      </div>
+    
+  </div>
+
+
+
+      
+    </aside>
+  
+
+  
+</div>
+
+      </main>
+      <footer>
+  <div class="copyright">
+    
+      © 2025 Thaddeus Koenig
+    
+  </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+<script src="/js/main.js" ></script>
+<script src="/js/flexsearch.js" ></script>
+
+
+
+
+
+
+    </div>
+  </body>
+</html>

@@ -114,6 +114,7 @@ enableGitInfo = true
       present = "present"
 
 [params]
+  mainSections = ["blog", "projects"]
   # dark or light, defaults to light
   defaultTheme = "dark"
   # gray red green yellow blue purple aqua orange, defaults to blue

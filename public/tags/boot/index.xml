@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>Boot on Thaddeus Koenig</title>
+		<link>http://localhost:1313/tags/boot/</link>
+		<description>Recent content in Boot on Thaddeus Koenig</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+			<copyright>© 2025 Thaddeus Koenig</copyright>
+		
+		
+			<lastBuildDate>Sat, 28 Feb 2026 14:30:21 -0500</lastBuildDate>
+		
+			<atom:link href="http://localhost:1313/tags/boot/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>28AUG25 - Dont Forget to update initramfs</title>
+				<link>http://localhost:1313/blog/20250828/</link>
+				<pubDate>Thu, 28 Aug 2025 12:47:00 -0500</pubDate>
+				<guid>http://localhost:1313/blog/20250828/</guid>
+				<description>&lt;h2 id=&#34;01-intro&#34;&gt;01. Intro&lt;a href=&#34;#01-intro&#34; class=&#34;post-heading__anchor&#34; aria-hidden=&#34;true&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;I use ZFSBootMenu to manage my boot environments and help me roll back when I inevitably do something destructive to my system. Today I decided to change my encryption password because my current one has a key combination that confused my fingers so I almost always typed it incorrectly the first time. I changed my zfs rpool password, but I neglected to update initramfs. Im documenting the steps to properly change my password here so that i dont forget.&lt;/p&gt;</description>
+			</item>
+	</channel>
+</rss>

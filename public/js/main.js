@@ -29,7 +29,7 @@
   var require_prism = __commonJS({
     "node_modules/prismjs/prism.js"(exports, module) {
       var _self = typeof window !== "undefined" ? window : typeof WorkerGlobalScope !== "undefined" && self instanceof WorkerGlobalScope ? self : {};
-      var Prism3 = function(_self2) {
+      var Prism3 = (function(_self2) {
         var lang = /(?:^|\s)lang(?:uage)?-([\w-]+)(?=\s|$)/i;
         var uniqueId = 0;
         var plainTextGrammar = {};
@@ -914,7 +914,7 @@
           }
         }
         return _;
-      }(_self);
+      })(_self);
       if (typeof module !== "undefined" && module.exports) {
         module.exports = Prism3;
       }
@@ -1474,9 +1474,9 @@
     }
   });
 
-  // ns-hugo:/home/th/code/hugo/thaddeuskoenig.com/node_modules/prismjs/plugins/normalize-whitespace/prism-normalize-whitespace.js
+  // ns-hugo-imp:/home/thadmin/Code/github/thaddeuskoenig.com/node_modules/prismjs/plugins/normalize-whitespace/prism-normalize-whitespace.js
   var require_prism_normalize_whitespace = __commonJS({
-    "ns-hugo:/home/th/code/hugo/thaddeuskoenig.com/node_modules/prismjs/plugins/normalize-whitespace/prism-normalize-whitespace.js"(exports, module) {
+    "ns-hugo-imp:/home/thadmin/Code/github/thaddeuskoenig.com/node_modules/prismjs/plugins/normalize-whitespace/prism-normalize-whitespace.js"(exports, module) {
       (function() {
         if (typeof Prism === "undefined") {
           return;
@@ -1674,7 +1674,7 @@
   // <stdin>
   var import_prismjs = __toESM(require_prism());
 
-  // ns-hugo:/home/th/code/hugo/thaddeuskoenig.com/node_modules/prismjs/components/prism-markup.js
+  // ns-hugo-imp:/home/thadmin/Code/github/thaddeuskoenig.com/node_modules/prismjs/components/prism-markup.js
   Prism.languages.markup = {
     "comment": {
       pattern: /<!--(?:(?!<!--)[\s\S])*?-->/,
@@ -1853,7 +1853,7 @@
   Prism.languages.atom = Prism.languages.xml;
   Prism.languages.rss = Prism.languages.xml;
 
-  // ns-hugo:/home/th/code/hugo/thaddeuskoenig.com/node_modules/prismjs/components/prism-css.js
+  // ns-hugo-imp:/home/thadmin/Code/github/thaddeuskoenig.com/node_modules/prismjs/components/prism-css.js
   (function(Prism3) {
     var string = /(?:"(?:\\(?:\r\n|[\s\S])|[^"\\\r\n])*"|'(?:\\(?:\r\n|[\s\S])|[^'\\\r\n])*')/;
     Prism3.languages.css = {
@@ -1914,7 +1914,7 @@
     }
   })(Prism);
 
-  // ns-hugo:/home/th/code/hugo/thaddeuskoenig.com/node_modules/prismjs/components/prism-clike.js
+  // ns-hugo-imp:/home/thadmin/Code/github/thaddeuskoenig.com/node_modules/prismjs/components/prism-clike.js
   Prism.languages.clike = {
     "comment": [
       {
@@ -1947,7 +1947,7 @@
     "punctuation": /[{}[\];(),.:]/
   };
 
-  // ns-hugo:/home/th/code/hugo/thaddeuskoenig.com/node_modules/prismjs/components/prism-javascript.js
+  // ns-hugo-imp:/home/thadmin/Code/github/thaddeuskoenig.com/node_modules/prismjs/components/prism-javascript.js
   Prism.languages.javascript = Prism.languages.extend("clike", {
     "class-name": [
       Prism.languages.clike["class-name"],
@@ -2089,7 +2089,7 @@
   }
   Prism.languages.js = Prism.languages.javascript;
 
-  // ns-hugo:/home/th/code/hugo/thaddeuskoenig.com/node_modules/prismjs/components/prism-bash.js
+  // ns-hugo-imp:/home/thadmin/Code/github/thaddeuskoenig.com/node_modules/prismjs/components/prism-bash.js
   (function(Prism3) {
     var envVars = "\\b(?:BASH|BASHOPTS|BASH_ALIASES|BASH_ARGC|BASH_ARGV|BASH_CMDS|BASH_COMPLETION_COMPAT_DIR|BASH_LINENO|BASH_REMATCH|BASH_SOURCE|BASH_VERSINFO|BASH_VERSION|COLORTERM|COLUMNS|COMP_WORDBREAKS|DBUS_SESSION_BUS_ADDRESS|DEFAULTS_PATH|DESKTOP_SESSION|DIRSTACK|DISPLAY|EUID|GDMSESSION|GDM_LANG|GNOME_KEYRING_CONTROL|GNOME_KEYRING_PID|GPG_AGENT_INFO|GROUPS|HISTCONTROL|HISTFILE|HISTFILESIZE|HISTSIZE|HOME|HOSTNAME|HOSTTYPE|IFS|INSTANCE|JOB|LANG|LANGUAGE|LC_ADDRESS|LC_ALL|LC_IDENTIFICATION|LC_MEASUREMENT|LC_MONETARY|LC_NAME|LC_NUMERIC|LC_PAPER|LC_TELEPHONE|LC_TIME|LESSCLOSE|LESSOPEN|LINES|LOGNAME|LS_COLORS|MACHTYPE|MAILCHECK|MANDATORY_PATH|NO_AT_BRIDGE|OLDPWD|OPTERR|OPTIND|ORBIT_SOCKETDIR|OSTYPE|PAPERSIZE|PATH|PIPESTATUS|PPID|PS1|PS2|PS3|PS4|PWD|RANDOM|REPLY|SECONDS|SELINUX_INIT|SESSION|SESSIONTYPE|SESSION_MANAGER|SHELL|SHELLOPTS|SHLVL|SSH_AUTH_SOCK|TERM|UID|UPSTART_EVENTS|UPSTART_INSTANCE|UPSTART_JOB|UPSTART_SESSION|USER|WINDOWID|XAUTHORITY|XDG_CONFIG_DIRS|XDG_CURRENT_DESKTOP|XDG_DATA_DIRS|XDG_GREETER_DATA_DIR|XDG_MENU_PREFIX|XDG_RUNTIME_DIR|XDG_SEAT|XDG_SEAT_PATH|XDG_SESSION_DESKTOP|XDG_SESSION_ID|XDG_SESSION_PATH|XDG_SESSION_TYPE|XDG_VTNR|XMODIFIERS)\\b";
     var commandAfterHeredoc = {
@@ -2317,7 +2317,7 @@
     Prism3.languages.shell = Prism3.languages.bash;
   })(Prism);
 
-  // ns-hugo:/home/th/code/hugo/thaddeuskoenig.com/node_modules/prismjs/components/prism-diff.js
+  // ns-hugo-imp:/home/thadmin/Code/github/thaddeuskoenig.com/node_modules/prismjs/components/prism-diff.js
   (function(Prism3) {
     Prism3.languages.diff = {
       "coord": [
@@ -2367,7 +2367,7 @@
     });
   })(Prism);
 
-  // ns-hugo:/home/th/code/hugo/thaddeuskoenig.com/node_modules/prismjs/components/prism-toml.js
+  // ns-hugo-imp:/home/thadmin/Code/github/thaddeuskoenig.com/node_modules/prismjs/components/prism-toml.js
   (function(Prism3) {
     var key = /(?:[\w-]+|'[^'\n\r]*'|"(?:\\.|[^\\"\r\n])*")/.source;
     function insertKey(pattern) {
@@ -2417,7 +2417,7 @@
   // <stdin>
   var import_prism_normalize_whitespace = __toESM(require_prism_normalize_whitespace());
 
-  // ns-hugo:/home/th/code/hugo/thaddeuskoenig.com/node_modules/prismjs/plugins/toolbar/prism-toolbar.js
+  // ns-hugo-imp:/home/thadmin/Code/github/thaddeuskoenig.com/node_modules/prismjs/plugins/toolbar/prism-toolbar.js
   (function() {
     if (typeof Prism === "undefined" || typeof document === "undefined") {
       return;
@@ -2537,7 +2537,7 @@
     Prism.hooks.add("complete", hook);
   })();
 
-  // ns-hugo:/home/th/code/hugo/thaddeuskoenig.com/node_modules/prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard.js
+  // ns-hugo-imp:/home/thadmin/Code/github/thaddeuskoenig.com/node_modules/prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard.js
   (function() {
     if (typeof Prism === "undefined" || typeof document === "undefined") {
       return;
@@ -2646,7 +2646,7 @@
     });
   })();
 
-  // ns-hugo:/home/th/code/hugo/thaddeuskoenig.com/node_modules/prismjs/plugins/line-numbers/prism-line-numbers.js
+  // ns-hugo-imp:/home/thadmin/Code/github/thaddeuskoenig.com/node_modules/prismjs/plugins/line-numbers/prism-line-numbers.js
   (function() {
     if (typeof Prism === "undefined" || typeof document === "undefined") {
       return;
@@ -2831,7 +2831,7 @@
     });
   })();
 
-  // ns-hugo:/home/th/code/hugo/thaddeuskoenig.com/node_modules/prismjs/plugins/command-line/prism-command-line.js
+  // ns-hugo-imp:/home/thadmin/Code/github/thaddeuskoenig.com/node_modules/prismjs/plugins/command-line/prism-command-line.js
   (function() {
     if (typeof Prism === "undefined" || typeof document === "undefined") {
       return;
@@ -2996,7 +2996,7 @@
     });
   })();
 
-  // ns-hugo:/home/th/code/hugo/thaddeuskoenig.com/node_modules/prismjs/plugins/diff-highlight/prism-diff-highlight.js
+  // ns-hugo-imp:/home/thadmin/Code/github/thaddeuskoenig.com/node_modules/prismjs/plugins/diff-highlight/prism-diff-highlight.js
   (function() {
     if (typeof Prism === "undefined") {
       return;

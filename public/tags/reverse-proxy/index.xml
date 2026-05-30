@@ -1,20 +1,33 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Reverse Proxy on Thaddeus Koenig</title>
-    <link>https://thaddeuskoenig.com/tags/reverse-proxy/</link>
-    <description>Recent content in Reverse Proxy on Thaddeus Koenig</description>
-    <generator>Hugo</generator>
-    <language>en</language>
-    <copyright>© 2025 Thaddeus Koenig</copyright>
-    <lastBuildDate>Thu, 23 Nov 2023 12:00:00 -0500</lastBuildDate>
-    <atom:link href="https://thaddeuskoenig.com/tags/reverse-proxy/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Setting Up an NGINX Reverse Proxy</title>
-      <link>https://thaddeuskoenig.com/projects/setting_up_nginx_reverse_proxy/</link>
-      <pubDate>Thu, 23 Nov 2023 12:00:00 -0500</pubDate>
-      <guid>https://thaddeuskoenig.com/projects/setting_up_nginx_reverse_proxy/</guid>
-      <description>&lt;p&gt;If you&amp;rsquo;ve ever set up an application like Plex with a web server on a non-standard port, wanted a bit more security to go into accessing applications over networks that you may not fully trust, or even just wanted to ensure all of your requests to your web services just go to one place so you don&amp;rsquo;t have to mess with firewall rules every time you make something new then this article is for you. My start with NGINX reverse proxies came out of my laziness to remember to specify ports when accessing different apps I had set up and its turned into a powerful tool that allows me to access certain resources that I&amp;rsquo;m either to lazy to configure for HTTPS or it simply isn&amp;rsquo;t supported. Don&amp;rsquo;t get me wrong, I&amp;rsquo;m not being disingenuous , if you have an insecure HTTP application, the traffic between the proxy and the app will be via HTTP, but what makes this cool is that the subsequent traffic between you and the proxy is all via HTTPS, meaning as long as you trust your LAN this makes accessing those applications from the greater internet a bit more safe.&lt;/p&gt;</description>
-    </item>
-  </channel>
+	<channel>
+		<title>Reverse Proxy on Thaddeus Koenig</title>
+		<link>http://localhost:1313/tags/reverse-proxy/</link>
+		<description>Recent content in Reverse Proxy on Thaddeus Koenig</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+			<copyright>© 2025 Thaddeus Koenig</copyright>
+		
+		
+			<lastBuildDate>Tue, 07 Jan 2025 09:03:41 -0500</lastBuildDate>
+		
+			<atom:link href="http://localhost:1313/tags/reverse-proxy/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Secure Web Application Gateway (SWAG) Setup</title>
+				<link>http://localhost:1313/projects/secure_web_application_gateway_setup/</link>
+				<pubDate>Thu, 23 Nov 2023 12:00:00 -0500</pubDate>
+				<guid>http://localhost:1313/projects/secure_web_application_gateway_setup/</guid>
+				<description>&lt;h2 id=&#34;intro&#34;&gt;Intro&lt;a href=&#34;#intro&#34; class=&#34;post-heading__anchor&#34; aria-hidden=&#34;true&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;I was a pretty big user of the LinuxServer.io LetsEncrypt container since it integrated all of the things that I wanted to put in front of my applications into a simple-to-setup container with minimal configuration. Unfortunately, the team has had to transition to a different setup due to a trademark request. Due to my own laziness, I didn&amp;rsquo;t really feel like learning how to use the new system so I ended up doing things the hard way for a couple of years, don&amp;rsquo;t do what I did. If you take the time to learn how to use it, the new container, dubbed SWAG is actually pretty cool. This is how I have it set up in my environment with Cloudflare DNS.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Setting Up an NGINX Reverse Proxy</title>
+				<link>http://localhost:1313/projects/setting_up_nginx_reverse_proxy/</link>
+				<pubDate>Thu, 23 Nov 2023 12:00:00 -0500</pubDate>
+				<guid>http://localhost:1313/projects/setting_up_nginx_reverse_proxy/</guid>
+				<description>&lt;p&gt;If you&amp;rsquo;ve ever set up an application like Plex with a web server on a non-standard port, wanted a bit more security to go into accessing applications over networks that you may not fully trust, or even just wanted to ensure all of your requests to your web services just go to one place so you don&amp;rsquo;t have to mess with firewall rules every time you make something new then this article is for you. My start with NGINX reverse proxies came out of my laziness to remember to specify ports when accessing different apps I had set up and its turned into a powerful tool that allows me to access certain resources that I&amp;rsquo;m either to lazy to configure for HTTPS or it simply isn&amp;rsquo;t supported. Don&amp;rsquo;t get me wrong, I&amp;rsquo;m not being disingenuous , if you have an insecure HTTP application, the traffic between the proxy and the app will be via HTTP, but what makes this cool is that the subsequent traffic between you and the proxy is all via HTTPS, meaning as long as you trust your LAN this makes accessing those applications from the greater internet a bit more safe.&lt;/p&gt;</description>
+			</item>
+	</channel>
 </rss>

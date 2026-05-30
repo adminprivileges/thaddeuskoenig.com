@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>Python on Thaddeus Koenig</title>
+		<link>http://localhost:1313/tags/python/</link>
+		<description>Recent content in Python on Thaddeus Koenig</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+			<copyright>© 2025 Thaddeus Koenig</copyright>
+		
+		
+			<lastBuildDate>Tue, 07 Jan 2025 09:03:41 -0500</lastBuildDate>
+		
+			<atom:link href="http://localhost:1313/tags/python/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Systemd Service Guide</title>
+				<link>http://localhost:1313/projects/systemd_service_guide/</link>
+				<pubDate>Thu, 23 Nov 2023 12:00:00 -0500</pubDate>
+				<guid>http://localhost:1313/projects/systemd_service_guide/</guid>
+				<description>&lt;p&gt;When creating applications that you&amp;rsquo;d like to run over a continuous period of time, you&amp;rsquo;re eventually going to need to worry about timing, system integration, and startup/exit behavior, but while creating your own methods to do so I&amp;rsquo;m sure you&amp;rsquo;ll learn a lot about the Linux operating system, but often times its a bit more work than one would like just to get a simple application running. For this tutorial I&amp;rsquo;m going to show you how I created a service to run my &lt;a&#xA;  href=&#34;https://github.com/adminprivileges/Eva-Unit-01&#34;&#xA;  &#xA;  &#xA;    class=&#34;link--external&#34; target=&#34;_blank&#34; rel=&#34;noreferrer&#34;&#xA;  &#xA;&gt;Eva Unit-01 discord bot&lt;/a&gt;. Eva is a python script that runs out of a virtual environment. I would like for it to be run on startup with any issues or output logged to the systemd journal.&lt;/p&gt;</description>
+			</item>
+	</channel>
+</rss>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>Drives on Thaddeus Koenig</title>
+		<link>http://localhost:1313/tags/drives/</link>
+		<description>Recent content in Drives on Thaddeus Koenig</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+			<copyright>© 2025 Thaddeus Koenig</copyright>
+		
+		
+			<lastBuildDate>Thu, 16 Jan 2025 06:06:24 -0500</lastBuildDate>
+		
+			<atom:link href="http://localhost:1313/tags/drives/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Testing Drive Read/Write Speed Via Terminal</title>
+				<link>http://localhost:1313/blog/00_legacy_testing_drive_read_write/</link>
+				<pubDate>Thu, 23 Nov 2023 00:00:00 -0500</pubDate>
+				<guid>http://localhost:1313/blog/00_legacy_testing_drive_read_write/</guid>
+				<description>&lt;p&gt;Just a quick example of how to use dd to test drive read/write speed. NOTE: Dont do this a lot or you could shorten the live of your drive since youre making arbitrary writes.&lt;/p&gt;&#xA;&lt;h2 id=&#34;reading&#34;&gt;Reading&lt;a href=&#34;#reading&#34; class=&#34;post-heading__anchor&#34; aria-hidden=&#34;true&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sudo dd if=/dev/zero of=/tmp/test.img bs=1G count=1 oflag=dsync&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;This command will write 1G of zeros to an arbitrary file of your choosing. Feel free to delete it when you&amp;rsquo;re done.&lt;/p&gt;&#xA;&lt;p&gt;Your output will look a little like this.&lt;/p&gt;</description>
+			</item>
+	</channel>
+</rss>

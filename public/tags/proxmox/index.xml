@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>Proxmox on Thaddeus Koenig</title>
+		<link>http://localhost:1313/tags/proxmox/</link>
+		<description>Recent content in Proxmox on Thaddeus Koenig</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+			<copyright>© 2025 Thaddeus Koenig</copyright>
+		
+		
+			<lastBuildDate>Thu, 16 Jan 2025 06:06:24 -0500</lastBuildDate>
+		
+			<atom:link href="http://localhost:1313/tags/proxmox/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>ProxMox LXC Deployment</title>
+				<link>http://localhost:1313/projects/proxmox_lxc_automation/</link>
+				<pubDate>Thu, 23 Nov 2023 12:00:00 -0500</pubDate>
+				<guid>http://localhost:1313/projects/proxmox_lxc_automation/</guid>
+				<description>&lt;p&gt;In an attempt to automate the deployment as well as get my feet wet with a little Ansible in my homelab i created a playbook to automate the deployment of the minimal LXCs that build to deploy certain apps like pi-hole, nginx proxies, and sql databases. The documentation on certain things were pretty sparse so I will try to explain the intentions that I had, the issues that I ran into, as well as why I chose the routes that I took for my solution.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Change Proxmox Default Port (Kinda)</title>
+				<link>http://localhost:1313/blog/00_legacy_change_proxmox_port/</link>
+				<pubDate>Thu, 23 Nov 2023 00:00:00 -0500</pubDate>
+				<guid>http://localhost:1313/blog/00_legacy_change_proxmox_port/</guid>
+				<description>&lt;p&gt;The Proxmox team doesnt really have any plans on changing the default port assigned to Proxmox (8006) and their documentation just tells you to use nginx to proxy the traffic if you want to change the default port so the following script should change your port to the port of your choosing [with 443 as the default].&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;#!/bin/bash&#xD;&#xA;#Install nginx&#xD;&#xA;apt install nginx&#xD;&#xA;&#xD;&#xA;#Checks for your default nginx file and deletes it&#xD;&#xA;FILE=/etc/nginx/conf.d/default&#xD;&#xA;if [-f &amp;#34;FILE&amp;#34;];then&#xD;&#xA;&#x9;rm $FILE&#xD;&#xA;else&#xD;&#xA;&#x9;rm /etc/nginx/sites-enabled/default&#xD;&#xA;fi&#xD;&#xA;&#xD;&#xA;#Pull the FQDN out of the hosts file&#xD;&#xA;read -p &amp;#34;Enter the FQDN of your server or [ENTER] to set to default from /etc/hosts file&amp;#34; FQDN&#xD;&#xA;if [ -z FQDN ]&#xD;&#xA;then FQDN=$(hostname -f)&#xD;&#xA;fi&#xD;&#xA;&#xD;&#xA;#Create your new nginx File&#xD;&#xA;cat &amp;gt; /etc/nginx/conf.d/proxmox.conf &amp;lt;&amp;lt; EOF&#xD;&#xA;upstream proxmox {&#xD;&#xA;    server &amp;#34;$FQDN&amp;#34;;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;server {&#xD;&#xA;    listen 80 default_server;&#xD;&#xA;    rewrite ^(.*) https://$host$1 permanent;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;server {&#xD;&#xA;    listen 443;&#xD;&#xA;    server_name _;&#xD;&#xA;    ssl on;&#xD;&#xA;    ssl_certificate /etc/pve/local/pve-ssl.pem;&#xD;&#xA;    ssl_certificate_key /etc/pve/local/pve-ssl.key;&#xD;&#xA;    proxy_redirect off;&#xD;&#xA;    location / {&#xD;&#xA;        proxy_http_version 1.1;&#xD;&#xA;        proxy_set_header Upgrade $http_upgrade;&#xD;&#xA;        proxy_set_header Connection &amp;#34;upgrade&amp;#34;; &#xD;&#xA;        proxy_pass https://localhost:8006;&#xD;&#xA;&#x9;proxy_buffering off;&#xD;&#xA;&#x9;client_max_body_size 0;&#xD;&#xA;&#x9;proxy_connect_timeout  3600s;&#xD;&#xA;        proxy_read_timeout  3600s;&#xD;&#xA;        proxy_send_timeout  3600s;&#xD;&#xA;        send_timeout  3600s;&#xD;&#xA;    }&#xD;&#xA;}&#xD;&#xA;EOF&#xD;&#xA;&#xD;&#xA;#test your config&#xD;&#xA;nginx -t&#xD;&#xA;#reload nginx&#xD;&#xA;nginx -s reload&#xD;&#xA;&#xD;&#xA;#creating some dependencies via systemd overrides&#xD;&#xA;cat &amp;gt; /etc/systemd/system/nginx.service.d/override.conf &amp;lt;&amp;lt; EOF&#xD;&#xA;[Unit]&#xD;&#xA;Requires=pve-cluster.service&#xD;&#xA;After=pve-cluster.service&#xD;&#xA;EOF&#xD;&#xA;&#xD;&#xA;systemctl restart nginx&#xD;&#xA;systemctl enable --now nginx&#xA;&lt;/code&gt;&lt;/pre&gt;</description>
+			</item>
+			<item>
+				<title>Change Proxmox to DHCP Client</title>
+				<link>http://localhost:1313/blog/00_legacy_change_proxmox_to_dhcp/</link>
+				<pubDate>Thu, 23 Nov 2023 00:00:00 -0500</pubDate>
+				<guid>http://localhost:1313/blog/00_legacy_change_proxmox_to_dhcp/</guid>
+				<description>&lt;p&gt;I don&amp;rsquo;t really like like allowing servers to set their own IP addresses, i think its kinda weird and i like to handle things at the network level so I typically have all my servers as DHCP clients and I set their addresses statically on the network device they&amp;rsquo;re attached to. Unfortunately proxmox doesn&amp;rsquo;t like that so it doesn&amp;rsquo;t include DHCP in the installer, which is fine. Its easily fixed.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Connecting ProxMox cluster over Tailscale</title>
+				<link>http://localhost:1313/blog/00_legacy_proxmox_over_tailscale/</link>
+				<pubDate>Thu, 23 Nov 2023 00:00:00 -0500</pubDate>
+				<guid>http://localhost:1313/blog/00_legacy_proxmox_over_tailscale/</guid>
+				<description>&lt;p&gt;This tutorial is assuming that you already have Tailscale installed on your Proxmox hosts, if you havent done so look at the &lt;a&#xA;  href=&#34;https://tailscale.com/kb/1038/install-debian-bullseye/&#34;&#xA;  &#xA;  &#xA;    class=&#34;link--external&#34; target=&#34;_blank&#34; rel=&#34;noreferrer&#34;&#xA;  &#xA;&gt;installation for Tailscale on Debaian Bullseye&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;h2 id=&#34;install&#34;&gt;Install&lt;a href=&#34;#install&#34; class=&#34;post-heading__anchor&#34; aria-hidden=&#34;true&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Because /etc/hosts has priority in all host lookups we are just going to edit the these files on any of the machines that we would like to connect. To do so you can simply vim /etc/hosts and your new host files will end up looking like this with host being the node you want to start the cluster on and remote being the node that will join the cluster&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Proxmox Delete Cluster</title>
+				<link>http://localhost:1313/blog/00_legacy_proxmox_delete_cluster/</link>
+				<pubDate>Thu, 23 Nov 2023 00:00:00 -0500</pubDate>
+				<guid>http://localhost:1313/blog/00_legacy_proxmox_delete_cluster/</guid>
+				<description>&lt;p&gt;Theres no real way to delete a cluster in the gui with out doing a fresh install (that i know of) but the following set of commands should stop the cluster service, force it to local, delete the configs and restart it like new.&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;systemctl stop pve-cluster&#xD;&#xA;systemctl stop corosync&#xD;&#xA;pmxcfs -l&#xD;&#xA;rm /etc/pve/corosync.conf&#xD;&#xA;rm -r /etc/corosync/*&#xD;&#xA;killall pmxcfs&#xD;&#xA;systemctl start pve-cluster&#xA;&lt;/code&gt;&lt;/pre&gt;</description>
+			</item>
+			<item>
+				<title>Proxmox Qcow2 Import</title>
+				<link>http://localhost:1313/blog/00_legacy_proxmox_qcow2_import/</link>
+				<pubDate>Thu, 23 Nov 2023 00:00:00 -0500</pubDate>
+				<guid>http://localhost:1313/blog/00_legacy_proxmox_qcow2_import/</guid>
+				<description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;a href=&#34;#introduction&#34; class=&#34;post-heading__anchor&#34; aria-hidden=&#34;true&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;For those who aren&amp;rsquo;t familiar with the concept. Different hypervisors use different file formats to represent VM images and due to the fact that Proxmox uses Qemu (Quick Emulator)/KVM (Kernel-based Virtual Machine) to provide virtualization, it in turn uses Qcow2 (Qemu Copy-On-Write) as the storage file format for virtual machines data. The process to move Qcow2 files into Proxmox may not be as straight forward as it is on VMware, but its still a relatively painless process.&lt;/p&gt;</description>
+			</item>
+	</channel>
+</rss>

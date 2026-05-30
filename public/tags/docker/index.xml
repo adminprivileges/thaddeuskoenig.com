@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>Docker on Thaddeus Koenig</title>
+		<link>http://localhost:1313/tags/docker/</link>
+		<description>Recent content in Docker on Thaddeus Koenig</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+			<copyright>© 2025 Thaddeus Koenig</copyright>
+		
+		
+			<lastBuildDate>Sat, 30 May 2026 06:59:10 -0400</lastBuildDate>
+		
+			<atom:link href="http://localhost:1313/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>A complete guide to setting up a local AI Chatbot</title>
+				<link>http://localhost:1313/projects/local_ai_chat/</link>
+				<pubDate>Fri, 29 May 2026 12:00:00 -0500</pubDate>
+				<guid>http://localhost:1313/projects/local_ai_chat/</guid>
+				<description>&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;a href=&#34;#overview&#34; class=&#34;post-heading__anchor&#34; aria-hidden=&#34;true&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;For school and personal curiosity I wanted to mess around with hosting my own local AI Chat server for testing and evaluation. I wanted this to be open source, private, and privacy concious. This setup enables a LAN-locked AU chat web UI backed by Ollama models with the ability to enable web search, code execution, and HTTPS through a reverse proxy. Its important to note, that this is simply meant to be something contained and not sitting on the public internet.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Secure Web Application Gateway (SWAG) Setup</title>
+				<link>http://localhost:1313/projects/secure_web_application_gateway_setup/</link>
+				<pubDate>Thu, 23 Nov 2023 12:00:00 -0500</pubDate>
+				<guid>http://localhost:1313/projects/secure_web_application_gateway_setup/</guid>
+				<description>&lt;h2 id=&#34;intro&#34;&gt;Intro&lt;a href=&#34;#intro&#34; class=&#34;post-heading__anchor&#34; aria-hidden=&#34;true&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;I was a pretty big user of the LinuxServer.io LetsEncrypt container since it integrated all of the things that I wanted to put in front of my applications into a simple-to-setup container with minimal configuration. Unfortunately, the team has had to transition to a different setup due to a trademark request. Due to my own laziness, I didn&amp;rsquo;t really feel like learning how to use the new system so I ended up doing things the hard way for a couple of years, don&amp;rsquo;t do what I did. If you take the time to learn how to use it, the new container, dubbed SWAG is actually pretty cool. This is how I have it set up in my environment with Cloudflare DNS.&lt;/p&gt;</description>
+			</item>
+	</channel>
+</rss>

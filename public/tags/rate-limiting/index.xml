@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>Rate Limiting on Thaddeus Koenig</title>
+		<link>http://localhost:1313/tags/rate-limiting/</link>
+		<description>Recent content in Rate Limiting on Thaddeus Koenig</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+			<copyright>© 2025 Thaddeus Koenig</copyright>
+		
+		
+			<lastBuildDate>Tue, 07 Jan 2025 09:03:41 -0500</lastBuildDate>
+		
+			<atom:link href="http://localhost:1313/tags/rate-limiting/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Rate Limiting with IPTables</title>
+				<link>http://localhost:1313/projects/rate_limiting_with_iptables/</link>
+				<pubDate>Thu, 23 Nov 2023 12:00:00 -0500</pubDate>
+				<guid>http://localhost:1313/projects/rate_limiting_with_iptables/</guid>
+				<description>&lt;h2 id=&#34;synopsis&#34;&gt;Synopsis&lt;a href=&#34;#synopsis&#34; class=&#34;post-heading__anchor&#34; aria-hidden=&#34;true&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;When hosting public servers, whether that be Web, SSH, or whatever you want to roll out, people&amp;rsquo;s biggest concerns are either automated attacks consuming resources and denying your access or those same attacks constantly attempting to authenticate to your application through brute forcing your authentication. I&amp;rsquo;m going to write this from the perspective of someone simply trying to secure a service that they expect a limited amount of use to, in my case ssh.&lt;/p&gt;</description>
+			</item>
+	</channel>
+</rss>
