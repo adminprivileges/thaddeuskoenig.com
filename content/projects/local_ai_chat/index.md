@@ -196,30 +196,40 @@ volumes:
 ```
 
 Ensure that you change the following values
-- WEBUI_URL: https://ai.example.com
+- WEBUI_URL: https://ai.example.com 
+  - Change this to the URL that you plan on using for your site
 - URL: example.com
+  - Change this to the domain you will be using for cloudflare DNS
 - SUBDOMAINS: ai
+  - Change to the subdomain you want to use for the site
 - EMAIL: you@example.com
+  - Change this to the email you use for cloudflare
 
 The setup uses `network_mode: host` for ease of use and connectivity. If you are using your machine for more services, you may want to proxy these ports instead. 
 
 ### 5. DNS Setup
-I use cloudflare for my DNS registrar and from there I can use the API to verfy my domain ownership for the automated certificate generation. Make sure to generate a token that has the permissions to edit the DNS for your zone. 
+I use cloudflare for my DNS registrar and from there I can use the API to verfy my domain ownership for the automated certificate generation. Make sure to generate a token that has the permissions to edit the DNS for your zone. Cloudflare really likes to change the process for doing stuff in the web UI so I will link the docs to the process here: https://developers.cloudflare.com/fundamentals/api/get-started/create-token/ . 
 ```
 # Start the stack once
 sudo docker compose up -d
 sudo docker logs -f swag
-
-# SWAG will create its config files under `./swag`
-# Edit the Cloudflare DNS Plugin and add your 'dns_cloudflare_api_token' 
+```
+SWAG will create its config files under `./swag`, Edit the Cloudflare DNS Plugin and add your `dns_cloudflare_api_token`
+```
 vim ./swag/dns-conf/cloudflare.ini
+```
+From here you should be able to restart SWAG without affectin the rest of the stack.
+```
+# Change the permissions on the file so you dont get yelled at
 chmod 600 ./swag/dns-conf/cloudflare.ini
+# Retart swag and check your logs
 sudo docker restart swag
 sudo docker logs -f swag
-# Wait until you see `Server Started`
 ```
+Once the logs say **Server Ready**, you should be good to go. 
+
 ### 6. Reverse Proxy Config
-Create the SWAG Proxy config:`vim ./swag/nginx/proxy-confs/open-webui.subdomain.conf`
+Create the SWAG Proxy config: `vim ./swag/nginx/proxy-confs/open-webui.subdomain.conf`
 ```
 server {
     listen 443 ssl;
@@ -253,6 +263,142 @@ Check logs:
 ```
 docker logs --tail=100 swag
 ```
-### 7. DNS
-For a DNS setup, set ai.example.com to the IP of your server and connect to it via `https://ai.example.com` .
+If you see any duplicate errors in the logs, its because the default SWAG `proxy.conf` likely has the offending line, so you can just remove it from your config and be good to go. 
 
+### 7. DNS
+For a DNS setup, set ai.example.com to the IP of your server and connect to it via `https://ai.example.com` . Make sure to run `nslookup ai.example.com` to ensure this DNS record is working and coming from the correct address. If this command resolves, but you still arent able to access the site, your web browser may be bypassing your local DNS records in favor of its DNS over HTTPS provider.
+
+### 8. First login / Initial Setup
+1. Open `https://ai.example.com`
+1. Create your initial account **This will be your admin account**.
+1. Go to `Admin Panel` -> `Settings` -> `General`
+    - Make sure your webui URL is set to `https://ai.example.org`
+1. Go to `Admin Panel` -> `Settings` -> `Web Search`
+    - Ensure the following are set
+      ```
+      Enable Web Search: On
+      Search Engine: searxng
+      SearXNG Query URL: http://127.0.0.1:8081/search?q=<query>
+      Result Count: 3
+      ```
+1. Go to `Admin Panel` -> `Settings` -> `Integrations` -> `Open Terminal`
+    - Ensure the following are set
+      ```
+      URL: http://127.0.0.1:8000
+      Auth Type: Bearer
+      API Key: value of OPEN_TERMINAL_API_KEY from .env
+      ```
+        - If you need the key, run the command `grep OPEN_TERMINAL_API_KEY ~/docker/openwebui/.env`
+    - Enable the configured terminal
+
+
+## Testing
+At this point you are done. Here are some commands you can use for testing the individual components to ensure they are working as intended. 
+- Test Ollama
+  ```
+  curl http://127.0.0.1:11434/api/tags
+  ```
+- Test Open WebUI
+  ```
+  curl -I http://127.0.0.1:8080
+  ```
+- Test SearXNG:
+  ```
+  curl -sG "http://127.0.0.1:8081/search" \
+    --data-urlencode "q=open webui" \
+    -d "format=json" | head
+  ```
+- Test Open Terminal:
+  ```
+  curl -s http://127.0.0.1:8000/health
+  ```
+- Test HTTPS (From a remote computer):
+  ```
+  curl -vk https://ai.example.com
+  ```
+- Check active listeners:
+  ```
+  sudo ss -tulpn | grep -E ':443|:80|:8080|:8081|:8000|:11434'
+  ```
+- Check containers:
+  ```
+  docker ps
+  ```
+- Check Open WebUI logs:
+  ```
+  docker logs --tail=100 open-webui
+  ```
+- Check SWAG logs:
+  ```
+  docker logs --tail=100 swag
+  ```
+### Troubleshooting
+while the process is pretty automated, there can still be issues. Here are some things I ran into during setup, or issues I could forsee. 
+
+#### Firefox says it cant connect to server
+This usually means firefox isnt able to open a TCP connection at all so the server isnt even responding (or it cant reach it). 
+- Check DNS from the remote client.
+  ```
+  nslookup ai.example.com
+  ```
+  - If this does not resolve to your server's IP, you need to fix your local DNS resolution.
+  - If it does work run the command `curl https://ai.example.com` the results will help you find the problem
+    - Could not resolve host (DNS Problem)
+    - Connection refused (Able to reach machine, but nothing is listening on HTTPS)
+      - Check the SWAG logs to ensure that nothign stopped it from starting
+    - Connection timed out (firewall, routing issues, service unreachable)
+      - double check your networking settings to ensure you are able to reach this machine on port 443 and you arent being blocked. 
+    - SSL Certificate error(SWAG issue)
+      - open your `./swag/nginx/proxy-confs/open-webui.subdomain.conf` and ensure that everything is spelled right and you have the correct key in `./swag/dns-conf/cloudflare.ini` that has permissions to edit DNS settings for your zone. 
+    - 502 Bad Gateway
+      - SWAG is working, but is unable to reach Open WebUI. Check the docker logs for the Open WebUI container to ensure it started correctly.
+
+#### SWAG not listening
+Double check the docker logs with `sudo docker logs --tail=100 swag`. If the nginx is invalid, SWAG will start, but it wont serve the site. I hit this error a couple times `"proxy_http_version" directive is duplicate`. This is because out of habit I was manually including directives I used in the past, but SWAG is pretty smart and its already including them with `include /config/nginx/proxy.conf;`. The fix was to use the more minimal config above. If SWAG updates in the future to include more directives in proxy.conf, just remove the offending lines and restart swag after the changes with `sudo docker restart swag`.
+
+#### SWAG showing 502 Bad gateway
+This means that the browser reached SWAG, but SWAG could not reach Open WebUI. 
+
+Check Open WebUI:
+```
+sudo docker ps
+curl -I http://localhost:8080
+```
+If Open WebUI is not responding, check the logs for any errors:
+```
+sudo docker logs --tail=100 open-webui
+```
+If everything looks okay, make sure to double check the proxy target in your `./swag/nginx/proxy-confs/open-webui.subdomain.conf` it should be:
+```
+proxy_pass http://127.0.0.1:8080;
+```
+
+## Maintenance
+Back up Open WebUI data before major updates:
+```
+docker run --rm \
+  -v open-webui:/data \
+  -v "$PWD":/backup \
+  alpine \
+  tar czf /backup/open-webui-backup.tar.gz -C /data .
+```
+Back up SWAG config:
+```
+tar czf swag-config-backup.tar.gz swag
+```
+Check disk usage occasionally:
+```
+docker system df
+du -sh ~/.ollama
+```
+Remove unused Ollama models:
+```
+ollama list
+ollama rm model-name
+```
+Updating Containers
+```
+docker compose pull
+docker compose up -d
+docker image prune
+```
