@@ -179,4 +179,4 @@ Lastly, since i enjoy a good belt and suspenders approach, we'll `vi /etc/rc.loc
 
 # Conclution
 
-From here you should be done, I will revisit this blog post to add some extra troubleshooting steps, and reading another time, but I spent too much time troubleshooting and writing this as it is so I need a break.
+From here you should be done, I will revisit this blog post to add some extra troubleshooting steps, and reading another time, but I spent too much time troubleshooting and writing this as it is so I need a break.  
