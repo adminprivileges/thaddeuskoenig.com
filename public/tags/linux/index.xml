@@ -1,61 +1,20 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-	<channel>
-		<title>Linux on Thaddeus Koenig</title>
-		<link>http://localhost:1313/tags/linux/</link>
-		<description>Recent content in Linux on Thaddeus Koenig</description>
-		<generator>Hugo</generator>
-		<language>en-us</language>
-		
-		
-		
-			<copyright>© 2025 Thaddeus Koenig</copyright>
-		
-		
-			<lastBuildDate>Thu, 16 Jan 2025 06:06:24 -0500</lastBuildDate>
-		
-			<atom:link href="http://localhost:1313/tags/linux/index.xml" rel="self" type="application/rss+xml" />
-			<item>
-				<title>Exposing Services Behind a Firewall</title>
-				<link>http://localhost:1313/projects/exposing_services_behind_firewall/</link>
-				<pubDate>Thu, 23 Nov 2023 12:00:00 -0500</pubDate>
-				<guid>http://localhost:1313/projects/exposing_services_behind_firewall/</guid>
-				<description>&lt;h2 id=&#34;synopsis&#34;&gt;Synopsis&lt;a href=&#34;#synopsis&#34; class=&#34;post-heading__anchor&#34; aria-hidden=&#34;true&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;Sometimes you may find yourself in a situation in which you would like to host a service but sometimes you&amp;rsquo;re stuck behind a double NAT, or even just a firewall in which you do not control all of the rules for. Here I&amp;rsquo;m going to show you how to use Wireguard VPN to finagle around this issue and simply give your private server a public IP address. Important note: in order for this to work, you will need a publicly accessible VPS, preferably with a static IP address, i would recommend either AWS Lighsail or Linode as they are both cost-effective options with their cheapest tiers being bout $3.50/mo and $5/mo respectively (I like Linode&amp;rsquo;s speed more, they aren&amp;rsquo;t paying me to say this although I wish they were).&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>Rate Limiting with IPTables</title>
-				<link>http://localhost:1313/projects/rate_limiting_with_iptables/</link>
-				<pubDate>Thu, 23 Nov 2023 12:00:00 -0500</pubDate>
-				<guid>http://localhost:1313/projects/rate_limiting_with_iptables/</guid>
-				<description>&lt;h2 id=&#34;synopsis&#34;&gt;Synopsis&lt;a href=&#34;#synopsis&#34; class=&#34;post-heading__anchor&#34; aria-hidden=&#34;true&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;When hosting public servers, whether that be Web, SSH, or whatever you want to roll out, people&amp;rsquo;s biggest concerns are either automated attacks consuming resources and denying your access or those same attacks constantly attempting to authenticate to your application through brute forcing your authentication. I&amp;rsquo;m going to write this from the perspective of someone simply trying to secure a service that they expect a limited amount of use to, in my case ssh.&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>Systemd Service Guide</title>
-				<link>http://localhost:1313/projects/systemd_service_guide/</link>
-				<pubDate>Thu, 23 Nov 2023 12:00:00 -0500</pubDate>
-				<guid>http://localhost:1313/projects/systemd_service_guide/</guid>
-				<description>&lt;p&gt;When creating applications that you&amp;rsquo;d like to run over a continuous period of time, you&amp;rsquo;re eventually going to need to worry about timing, system integration, and startup/exit behavior, but while creating your own methods to do so I&amp;rsquo;m sure you&amp;rsquo;ll learn a lot about the Linux operating system, but often times its a bit more work than one would like just to get a simple application running. For this tutorial I&amp;rsquo;m going to show you how I created a service to run my &lt;a&#xA;  href=&#34;https://github.com/adminprivileges/Eva-Unit-01&#34;&#xA;  &#xA;  &#xA;    class=&#34;link--external&#34; target=&#34;_blank&#34; rel=&#34;noreferrer&#34;&#xA;  &#xA;&gt;Eva Unit-01 discord bot&lt;/a&gt;. Eva is a python script that runs out of a virtual environment. I would like for it to be run on startup with any issues or output logged to the systemd journal.&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>/bin/bash^M: bad interpreter</title>
-				<link>http://localhost:1313/blog/00_legacy_bash_bad_interpreter/</link>
-				<pubDate>Thu, 23 Nov 2023 00:00:00 -0500</pubDate>
-				<guid>http://localhost:1313/blog/00_legacy_bash_bad_interpreter/</guid>
-				<description>&lt;p&gt;Bash scripts are very sensitive to line endings which can cause some portability issues between windows and unix-like systems (depending on how the text editor encodes line breaks). If you would like to see the invisible characters that are making your life confusing simply type:&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;cat -v &amp;lt;FILE&amp;gt;&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;The easiest solution to this issue is a simple sed replace line:&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sed -i -e &amp;#39;s/\r$//&amp;#39; &amp;lt;FILE&amp;gt;&#xA;&lt;/code&gt;&lt;/pre&gt;</description>
-			</item>
-			<item>
-				<title>Sed alternate delimiters</title>
-				<link>http://localhost:1313/blog/00_legacy_sed_alternate_delimeters/</link>
-				<pubDate>Thu, 23 Nov 2023 00:00:00 -0500</pubDate>
-				<guid>http://localhost:1313/blog/00_legacy_sed_alternate_delimeters/</guid>
-				<description>&lt;p&gt;Sometimes when trying to replace text using the &lt;code&gt;sed&lt;/code&gt; command line tool you will tun into the issue in which your text has the forward slash characters which can be a bit of a headache because thats what sed uses to delimit strings. Thankfully the delimiter is pretty flexible. I like to use the pipe &amp;ldquo;|&amp;rdquo; symbol, but pretty much any other symbol will work such as the tilde &amp;ldquo;`&amp;rdquo; or the colon &amp;ldquo;:&amp;rdquo; ex:&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>Testing Drive Read/Write Speed Via Terminal</title>
-				<link>http://localhost:1313/blog/00_legacy_testing_drive_read_write/</link>
-				<pubDate>Thu, 23 Nov 2023 00:00:00 -0500</pubDate>
-				<guid>http://localhost:1313/blog/00_legacy_testing_drive_read_write/</guid>
-				<description>&lt;p&gt;Just a quick example of how to use dd to test drive read/write speed. NOTE: Dont do this a lot or you could shorten the live of your drive since youre making arbitrary writes.&lt;/p&gt;&#xA;&lt;h2 id=&#34;reading&#34;&gt;Reading&lt;a href=&#34;#reading&#34; class=&#34;post-heading__anchor&#34; aria-hidden=&#34;true&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;sudo dd if=/dev/zero of=/tmp/test.img bs=1G count=1 oflag=dsync&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;This command will write 1G of zeros to an arbitrary file of your choosing. Feel free to delete it when you&amp;rsquo;re done.&lt;/p&gt;&#xA;&lt;p&gt;Your output will look a little like this.&lt;/p&gt;</description>
-			</item>
-	</channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Linux on Thaddeus Koenig</title><link>https://thaddeuskoenig.com/tags/linux/</link><description>Recent content in Linux on Thaddeus Koenig</description><generator>Hugo</generator><language>en-US</language><copyright>© 2025 Thaddeus Koenig</copyright><lastBuildDate>Thu, 16 Jan 2025 06:06:24 -0500</lastBuildDate><atom:link href="https://thaddeuskoenig.com/tags/linux/index.xml" rel="self" type="application/rss+xml"/><item><title>Exposing Services Behind a Firewall</title><link>https://thaddeuskoenig.com/projects/exposing_services_behind_firewall/</link><pubDate>Thu, 23 Nov 2023 12:00:00 -0500</pubDate><guid>https://thaddeuskoenig.com/projects/exposing_services_behind_firewall/</guid><description>&lt;h2 id="synopsis"&gt;Synopsis&lt;a href="#synopsis" class="post-heading__anchor" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Sometimes you may find yourself in a situation in which you would like to host a service but sometimes you&amp;rsquo;re stuck behind a double NAT, or even just a firewall in which you do not control all of the rules for. Here I&amp;rsquo;m going to show you how to use Wireguard VPN to finagle around this issue and simply give your private server a public IP address. Important note: in order for this to work, you will need a publicly accessible VPS, preferably with a static IP address, i would recommend either AWS Lighsail or Linode as they are both cost-effective options with their cheapest tiers being bout $3.50/mo and $5/mo respectively (I like Linode&amp;rsquo;s speed more, they aren&amp;rsquo;t paying me to say this although I wish they were).&lt;/p&gt;</description></item><item><title>Rate Limiting with IPTables</title><link>https://thaddeuskoenig.com/projects/rate_limiting_with_iptables/</link><pubDate>Thu, 23 Nov 2023 12:00:00 -0500</pubDate><guid>https://thaddeuskoenig.com/projects/rate_limiting_with_iptables/</guid><description>&lt;h2 id="synopsis"&gt;Synopsis&lt;a href="#synopsis" class="post-heading__anchor" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;When hosting public servers, whether that be Web, SSH, or whatever you want to roll out, people&amp;rsquo;s biggest concerns are either automated attacks consuming resources and denying your access or those same attacks constantly attempting to authenticate to your application through brute forcing your authentication. I&amp;rsquo;m going to write this from the perspective of someone simply trying to secure a service that they expect a limited amount of use to, in my case ssh.&lt;/p&gt;</description></item><item><title>Systemd Service Guide</title><link>https://thaddeuskoenig.com/projects/systemd_service_guide/</link><pubDate>Thu, 23 Nov 2023 12:00:00 -0500</pubDate><guid>https://thaddeuskoenig.com/projects/systemd_service_guide/</guid><description>&lt;p&gt;When creating applications that you&amp;rsquo;d like to run over a continuous period of time, you&amp;rsquo;re eventually going to need to worry about timing, system integration, and startup/exit behavior, but while creating your own methods to do so I&amp;rsquo;m sure you&amp;rsquo;ll learn a lot about the Linux operating system, but often times its a bit more work than one would like just to get a simple application running. For this tutorial I&amp;rsquo;m going to show you how I created a service to run my &lt;a
+ href="https://github.com/adminprivileges/Eva-Unit-01"
+ 
+ 
+ class="link--external" target="_blank" rel="noreferrer"
+ 
+&gt;Eva Unit-01 discord bot&lt;/a&gt;. Eva is a python script that runs out of a virtual environment. I would like for it to be run on startup with any issues or output logged to the systemd journal.&lt;/p&gt;</description></item><item><title>/bin/bash^M: bad interpreter</title><link>https://thaddeuskoenig.com/blog/00_legacy_bash_bad_interpreter/</link><pubDate>Thu, 23 Nov 2023 00:00:00 -0500</pubDate><guid>https://thaddeuskoenig.com/blog/00_legacy_bash_bad_interpreter/</guid><description>&lt;p&gt;Bash scripts are very sensitive to line endings which can cause some portability issues between windows and unix-like systems (depending on how the text editor encodes line breaks). If you would like to see the invisible characters that are making your life confusing simply type:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;cat -v &amp;lt;FILE&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;The easiest solution to this issue is a simple sed replace line:&lt;/p&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;sed -i -e &amp;#39;s/\r$//&amp;#39; &amp;lt;FILE&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;</description></item><item><title>Sed alternate delimiters</title><link>https://thaddeuskoenig.com/blog/00_legacy_sed_alternate_delimeters/</link><pubDate>Thu, 23 Nov 2023 00:00:00 -0500</pubDate><guid>https://thaddeuskoenig.com/blog/00_legacy_sed_alternate_delimeters/</guid><description>&lt;p&gt;Sometimes when trying to replace text using the &lt;code&gt;sed&lt;/code&gt; command line tool you will tun into the issue in which your text has the forward slash characters which can be a bit of a headache because thats what sed uses to delimit strings. Thankfully the delimiter is pretty flexible. I like to use the pipe &amp;ldquo;|&amp;rdquo; symbol, but pretty much any other symbol will work such as the tilde &amp;ldquo;`&amp;rdquo; or the colon &amp;ldquo;:&amp;rdquo; ex:&lt;/p&gt;</description></item><item><title>Testing Drive Read/Write Speed Via Terminal</title><link>https://thaddeuskoenig.com/blog/00_legacy_testing_drive_read_write/</link><pubDate>Thu, 23 Nov 2023 00:00:00 -0500</pubDate><guid>https://thaddeuskoenig.com/blog/00_legacy_testing_drive_read_write/</guid><description>&lt;p&gt;Just a quick example of how to use dd to test drive read/write speed. NOTE: Dont do this a lot or you could shorten the live of your drive since youre making arbitrary writes.&lt;/p&gt;
+&lt;h2 id="reading"&gt;Reading&lt;a href="#reading" class="post-heading__anchor" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;sudo dd if=/dev/zero of=/tmp/test.img bs=1G count=1 oflag=dsync
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;This command will write 1G of zeros to an arbitrary file of your choosing. Feel free to delete it when you&amp;rsquo;re done.&lt;/p&gt;
+&lt;p&gt;Your output will look a little like this.&lt;/p&gt;</description></item></channel></rss>

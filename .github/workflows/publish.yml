@@ -1,101 +1,78 @@
-name: Publish Hugo Site
+name: Deploy Hugo site
 
 on:
   push:
     branches:
       - main
-    paths-ignore:
-      # readme-scribe workflow will trigger the workflow instead
-      - templates/**
+  workflow_dispatch:
 
-  workflow_run:
-    workflows: ["Update Projects Page"]
-    types:
-      - completed
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
 
 jobs:
-  update_hugo_npm_dependencies:
-    name: Update Hugo npm Dependencies
+  build:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    outputs:
-      commit_hash: ${{ steps.commit_changes.outputs.commit_hash }}
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
 
-      - name: Install Node
-        uses: actions/setup-node@v4
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v6
+
+      - name: Setup Go
+        uses: actions/setup-go@v6
+        with:
+          go-version: "1.23.4"
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
         with:
           node-version: "20"
+          cache: npm
 
       - name: Install Hugo
-        uses: peaceiris/actions-hugo@v3
-        with:
-          hugo-version: "0.133.0"
-          extended: true
+        run: |
+          HUGO_VERSION="0.133.0"
+          curl -L \
+            "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.tar.gz" \
+            -o /tmp/hugo.tar.gz
 
-      - name: Write composite package.json
-        run: hugo mod npm pack
+          sudo tar -C /usr/local/bin -xzf /tmp/hugo.tar.gz hugo
 
-      - name: Install npm Packages
-        run: npm install
-
-      - name: Display Changes
-        run: git status
-
-      - name: Commit Changes
-        id: commit_changes
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: Update Hugo npm Dependencies
-          commit_author:
-            renovate[bot] <29139614+renovate[bot]@users.noreply.github.com>
-
-  publish:
-    name: Publish Hugo Site
-    needs: update_hugo_npm_dependencies
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0 # Fetch all history for .GitInfo and .Lastmod
-          ref: ${{ needs.update_hugo_npm_dependencies.outputs.commit_hash }}
-
-      - name: Install Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-
-      - name: Install Hugo
-        uses: peaceiris/actions-hugo@v3
-        with:
-          hugo-version: "0.133.0"
-          extended: true
-
-      - name: Install npm Packages
+      - name: Install dependencies
         run: npm ci
 
-      - name: Build Hugo
-        run: hugo --minify
+      - name: Build
+        run: |
+          hugo \
+            --gc \
+            --minify \
+            --baseURL "${{ steps.pages.outputs.base_url }}/"
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v5
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
-          user_name: github-actions[bot]
-          user_email: 41898282+github-actions[bot]@users.noreply.github.com
+          path: ./public
 
-#      - name: Purge Cloudflare Cache
-#        env:
-#          CLOUDFLARE_ZONE_ID: ${{ secrets.CLOUDFLARE_ZONE_ID }}
-#          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#        run: |
-#          chmod +x ./purge_cloudflare_cache.sh
-#          ./purge_cloudflare_cache.sh
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v5

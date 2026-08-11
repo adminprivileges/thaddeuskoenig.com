@@ -1,26 +1,3 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-	<channel>
-		<title>DNS on Thaddeus Koenig</title>
-		<link>http://localhost:1313/tags/dns/</link>
-		<description>Recent content in DNS on Thaddeus Koenig</description>
-		<generator>Hugo</generator>
-		<language>en-us</language>
-		
-		
-		
-			<copyright>© 2025 Thaddeus Koenig</copyright>
-		
-		
-			<lastBuildDate>Sun, 05 Jan 2025 19:23:38 -0500</lastBuildDate>
-		
-			<atom:link href="http://localhost:1313/tags/dns/index.xml" rel="self" type="application/rss+xml" />
-			<item>
-				<title>The Perfect Pihole</title>
-				<link>http://localhost:1313/projects/the_perfect_pihole/</link>
-				<pubDate>Thu, 04 Jan 2024 12:00:00 -0500</pubDate>
-				<guid>http://localhost:1313/projects/the_perfect_pihole/</guid>
-				<description>&lt;p&gt;Everyone hates advertisements and thanks to the raspberry pi and the Pi-hole project, keeping them out of your life has become easier and easier. By setting up a local Domain Name Service(DNS) server you can block the connection to add servers before they’re even initiated. Pi-hole also presents the user with a beautiful user interface and is easily configured for even the newest of IT enthusiasts (I&amp;rsquo;m serious, its like… one command.)&lt;/p&gt;</description>
-			</item>
-	</channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>DNS on Thaddeus Koenig</title><link>https://thaddeuskoenig.com/tags/dns/</link><description>Recent content in DNS on Thaddeus Koenig</description><generator>Hugo</generator><language>en-US</language><copyright>© 2025 Thaddeus Koenig</copyright><lastBuildDate>Sun, 09 Aug 2026 16:45:08 -0400</lastBuildDate><atom:link href="https://thaddeuskoenig.com/tags/dns/index.xml" rel="self" type="application/rss+xml"/><item><title>09AUG2026 - Using travel routers the hard way.</title><link>https://thaddeuskoenig.com/blog/20260809/</link><pubDate>Sun, 09 Aug 2026 15:50:00 -0500</pubDate><guid>https://thaddeuskoenig.com/blog/20260809/</guid><description>&lt;h1 id="01-intro"&gt;01. Intro&lt;a href="#01-intro" class="post-heading__anchor" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h1&gt;
+&lt;p&gt;When I travel, I have a few technology essentials that I like to bring along to include 1) travel router 2) streaming device 3) laptop. Im more likely to forget my toothbrush than I am these things and theyre going to be the focal point of this post. I like to bring a travel router for a few different reasons. The primary reason is that I dont trust any shared network so I would like to ensure there is some kind of VPN, either back to my house or to a VPN provider of my choosing. Next is that the devices I bring along with me have the travel router login pre-programmed, so once the router is plugged in they&amp;rsquo;ll auto-connect. Lastly I can continue to use my DNS ad blocking and it just helps me get around any weird network restrictions imposed wherever I am, whether thats having to pay per-device in the captive portal, or blocking websites that I like to go to. I will admit that the way I wanted it set up is very particilar, but for documentation purposed this is what I have going for my situation.&lt;/p&gt;</description></item><item><title>The Perfect Pihole</title><link>https://thaddeuskoenig.com/projects/the_perfect_pihole/</link><pubDate>Thu, 04 Jan 2024 12:00:00 -0500</pubDate><guid>https://thaddeuskoenig.com/projects/the_perfect_pihole/</guid><description>&lt;p&gt;Everyone hates advertisements and thanks to the raspberry pi and the Pi-hole project, keeping them out of your life has become easier and easier. By setting up a local Domain Name Service(DNS) server you can block the connection to add servers before they’re even initiated. Pi-hole also presents the user with a beautiful user interface and is easily configured for even the newest of IT enthusiasts (I&amp;rsquo;m serious, its like… one command.)&lt;/p&gt;</description></item></channel></rss>

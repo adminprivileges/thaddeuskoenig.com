@@ -1,26 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-	<channel>
-		<title>Tailscale on Thaddeus Koenig</title>
-		<link>http://localhost:1313/tags/tailscale/</link>
-		<description>Recent content in Tailscale on Thaddeus Koenig</description>
-		<generator>Hugo</generator>
-		<language>en-us</language>
-		
-		
-		
-			<copyright>© 2025 Thaddeus Koenig</copyright>
-		
-		
-			<lastBuildDate>Thu, 16 Jan 2025 06:06:24 -0500</lastBuildDate>
-		
-			<atom:link href="http://localhost:1313/tags/tailscale/index.xml" rel="self" type="application/rss+xml" />
-			<item>
-				<title>Connecting ProxMox cluster over Tailscale</title>
-				<link>http://localhost:1313/blog/00_legacy_proxmox_over_tailscale/</link>
-				<pubDate>Thu, 23 Nov 2023 00:00:00 -0500</pubDate>
-				<guid>http://localhost:1313/blog/00_legacy_proxmox_over_tailscale/</guid>
-				<description>&lt;p&gt;This tutorial is assuming that you already have Tailscale installed on your Proxmox hosts, if you havent done so look at the &lt;a&#xA;  href=&#34;https://tailscale.com/kb/1038/install-debian-bullseye/&#34;&#xA;  &#xA;  &#xA;    class=&#34;link--external&#34; target=&#34;_blank&#34; rel=&#34;noreferrer&#34;&#xA;  &#xA;&gt;installation for Tailscale on Debaian Bullseye&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;h2 id=&#34;install&#34;&gt;Install&lt;a href=&#34;#install&#34; class=&#34;post-heading__anchor&#34; aria-hidden=&#34;true&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Because /etc/hosts has priority in all host lookups we are just going to edit the these files on any of the machines that we would like to connect. To do so you can simply vim /etc/hosts and your new host files will end up looking like this with host being the node you want to start the cluster on and remote being the node that will join the cluster&lt;/p&gt;</description>
-			</item>
-	</channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Tailscale on Thaddeus Koenig</title><link>https://thaddeuskoenig.com/tags/tailscale/</link><description>Recent content in Tailscale on Thaddeus Koenig</description><generator>Hugo</generator><language>en-US</language><copyright>© 2025 Thaddeus Koenig</copyright><lastBuildDate>Thu, 16 Jan 2025 06:06:24 -0500</lastBuildDate><atom:link href="https://thaddeuskoenig.com/tags/tailscale/index.xml" rel="self" type="application/rss+xml"/><item><title>Connecting ProxMox cluster over Tailscale</title><link>https://thaddeuskoenig.com/blog/00_legacy_proxmox_over_tailscale/</link><pubDate>Thu, 23 Nov 2023 00:00:00 -0500</pubDate><guid>https://thaddeuskoenig.com/blog/00_legacy_proxmox_over_tailscale/</guid><description>&lt;p&gt;This tutorial is assuming that you already have Tailscale installed on your Proxmox hosts, if you havent done so look at the &lt;a
+ href="https://tailscale.com/kb/1038/install-debian-bullseye/"
+ 
+ 
+ class="link--external" target="_blank" rel="noreferrer"
+ 
+&gt;installation for Tailscale on Debaian Bullseye&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id="install"&gt;Install&lt;a href="#install" class="post-heading__anchor" aria-hidden="true"&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Because /etc/hosts has priority in all host lookups we are just going to edit the these files on any of the machines that we would like to connect. To do so you can simply vim /etc/hosts and your new host files will end up looking like this with host being the node you want to start the cluster on and remote being the node that will join the cluster&lt;/p&gt;</description></item></channel></rss>

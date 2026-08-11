@@ -1,26 +1,87 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-	<channel>
-		<title>Encryption on Thaddeus Koenig</title>
-		<link>http://localhost:1313/tags/encryption/</link>
-		<description>Recent content in Encryption on Thaddeus Koenig</description>
-		<generator>Hugo</generator>
-		<language>en-us</language>
-		
-		
-		
-			<copyright>© 2025 Thaddeus Koenig</copyright>
-		
-		
-			<lastBuildDate>Thu, 06 Feb 2025 06:28:20 -0500</lastBuildDate>
-		
-			<atom:link href="http://localhost:1313/tags/encryption/index.xml" rel="self" type="application/rss+xml" />
-			<item>
-				<title>09JAN25 - Diffie Helman</title>
-				<link>http://localhost:1313/blog/20250109/</link>
-				<pubDate>Thu, 09 Jan 2025 12:00:00 -0500</pubDate>
-				<guid>http://localhost:1313/blog/20250109/</guid>
-				<description>&lt;p&gt;Today I was looking into some stuff for SSH and I wanted to know more about the maths behind how diffie helman works and since its just always something I took for granted so today I learned. Below is a simple graphic that I made that illustrates the process of the key exchange.&lt;br&gt;&#xA;&#xA;&#xA;&#xA;&#xA;  &#xA;  &#xA;    &#xA;    &#xA;  &#xA;  &#xA;  &#xA;  &#xA;  &#xA;    &#xA;    &#xA;    &#xA;    &#xA;    &#xA;    &#xA;      &#xA;    &#xA;    &#xA;&#xA;    &#xA;    &#xA;    &#xA;    &#xA;      &#xA;        &#xA;          &#xA;          &#xA;        &#xA;        &#xA;        &#xA;        &#xA;          &#xA;          &#xA;          &#xA;        &#xA;      &#xA;    &#xA;      &#xA;    &#xA;      &#xA;    &#xA;      &#xA;        &#xA;          &#xA;        &#xA;        &#xA;        &#xA;        &#xA;          &#xA;          &#xA;          &#xA;        &#xA;      &#xA;    &#xA;&#xA;&#xA;    &lt;picture&gt;&#xA;      &lt;source&#xA;        type=&#34;image/webp&#34;&#xA;        srcset=&#34;http://localhost:1313/blog/20250109/diffie_hel_hu_e687558d05e52fa6.webp 300w,/blog/20250109/diffie_hel_hu_bda7f0d499872a46.webp 472w&#34;&#xA;        sizes=&#34;(max-width: 499px) 300px,472px&#34;&#xA;      /&gt;&#xA;      &lt;img&#xA;        src=&#34;http://localhost:1313/blog/20250109/diffie_hel.png&#34;&#xA;        srcset=&#34;http://localhost:1313/blog/20250109/diffie_hel_hu_3a08669cd4cf907d.png 300w,/blog/20250109/diffie_hel_hu_27d5f1c22dca8914.png 472w&#34;&#xA;        sizes=&#34;(max-width: 499px) 300px,472px&#34;&#xA;        alt=&#34;Diffie Helman Key Exchange&#34;&#xA;        &#xA;        loading=&#34;lazy&#34;&#xA;        width=&#34;472&#34;&#xA;        height=&#34;437&#34;&#xA;      /&gt;&#xA;    &lt;/picture&gt;&#xA;  &#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&lt;/p&gt;&#xA;&lt;p&gt;So what does this mean? Well asymetric cryptography is built upon the idea of creating a shared secret independently without passing it over the public internet. Diffie-Helman arised as a method of doing so. So how does this work you ask? Our first subject Alice comes up with a random number, for illustration purposes this number is small, but his is usually a very large number. Bob indenpendently does the same, both of these numbers are unique and never shared and will be regfered to as a private key. What is shared are two other numbers g and n, these numbers can be whatever as long as g is small and prime and n is very large. These numbers will be used in a mathematcal function to create something they can share, a piblic key. This public key can easily be derived if you have the private key, but the math doesnt work that well the other way around, this is due to the modulus operation. Modulus is simply the remander left over after a number is divided into another one evenly as many times as possibly. It is improbable for me to know how many times the number fit into the other one cleanly with just the remainder without simply guessing every possibility. If our private keys and n operator are large enough, this will again be very impractical. The colors here are to represent that our numbers as they are combined. While I know that yellow is in the public domain and alice&amp;rsquo;s public key is orange, i dont know the exact shade of red or quantity that she used to make this orange which would make it very difficult to replicate without trial and error.&lt;/p&gt;</description>
-			</item>
-	</channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Encryption on Thaddeus Koenig</title><link>https://thaddeuskoenig.com/tags/encryption/</link><description>Recent content in Encryption on Thaddeus Koenig</description><generator>Hugo</generator><language>en-US</language><copyright>© 2025 Thaddeus Koenig</copyright><lastBuildDate>Thu, 06 Feb 2025 06:28:20 -0500</lastBuildDate><atom:link href="https://thaddeuskoenig.com/tags/encryption/index.xml" rel="self" type="application/rss+xml"/><item><title>09JAN25 - Diffie Helman</title><link>https://thaddeuskoenig.com/blog/20250109/</link><pubDate>Thu, 09 Jan 2025 12:00:00 -0500</pubDate><guid>https://thaddeuskoenig.com/blog/20250109/</guid><description>&lt;p&gt;Today I was looking into some stuff for SSH and I wanted to know more about the maths behind how diffie helman works and since its just always something I took for granted so today I learned. Below is a simple graphic that I made that illustrates the process of the key exchange.&lt;br&gt;
+
+
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+ &lt;picture&gt;
+ &lt;source
+ type="image/webp"
+ srcset="https://thaddeuskoenig.com/blog/20250109/diffie_hel_hu_6bea86911294a365.webp 300w,/blog/20250109/diffie_hel_hu_ac906aabe8406d88.webp 472w"
+ sizes="(max-width: 499px) 300px,472px"
+ /&gt;
+ &lt;img
+ src="https://thaddeuskoenig.com/blog/20250109/diffie_hel.png"
+ srcset="https://thaddeuskoenig.com/blog/20250109/diffie_hel_hu_c657a4b2ae423973.png 300w,/blog/20250109/diffie_hel_hu_b1a2260c82dba0f4.png 472w"
+ sizes="(max-width: 499px) 300px,472px"
+ alt="Diffie Helman Key Exchange"
+ 
+ loading="lazy"
+ width="472"
+ height="437"
+ /&gt;
+ &lt;/picture&gt;
+ 
+
+
+
+
+
+
+&lt;/p&gt;
+&lt;p&gt;So what does this mean? Well asymetric cryptography is built upon the idea of creating a shared secret independently without passing it over the public internet. Diffie-Helman arised as a method of doing so. So how does this work you ask? Our first subject Alice comes up with a random number, for illustration purposes this number is small, but his is usually a very large number. Bob indenpendently does the same, both of these numbers are unique and never shared and will be regfered to as a private key. What is shared are two other numbers g and n, these numbers can be whatever as long as g is small and prime and n is very large. These numbers will be used in a mathematcal function to create something they can share, a piblic key. This public key can easily be derived if you have the private key, but the math doesnt work that well the other way around, this is due to the modulus operation. Modulus is simply the remander left over after a number is divided into another one evenly as many times as possibly. It is improbable for me to know how many times the number fit into the other one cleanly with just the remainder without simply guessing every possibility. If our private keys and n operator are large enough, this will again be very impractical. The colors here are to represent that our numbers as they are combined. While I know that yellow is in the public domain and alice&amp;rsquo;s public key is orange, i dont know the exact shade of red or quantity that she used to make this orange which would make it very difficult to replicate without trial and error.&lt;/p&gt;</description></item></channel></rss>

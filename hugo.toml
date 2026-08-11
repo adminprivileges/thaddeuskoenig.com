@@ -1,6 +1,5 @@
-baseURL = 'https://thaddeuskoenig.com'
-copyright = "© 2025 Thaddeus Koenig"
-languageCode = 'en-us'
+baseURL = 'https://thaddeuskoenig.com/'
+copyright = "© 2026 Thaddeus Koenig"
 title = 'Thaddeus Koenig'
 enableRobotsTXT = true
 enableGitInfo = true
@@ -108,8 +107,10 @@ enableGitInfo = true
 
 [languages]
   [languages.en]
-    languageName = "English"
+    label = "English"
+    locale = "en-US"
     weight = 10
+
     [languages.en.params.jsonResume]
       present = "present"
 

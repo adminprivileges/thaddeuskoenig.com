@@ -1,0 +1,20 @@
+{{ if .url }}<a href="{{ .url }}" target="_blank" rel="noreferrer me">{{ end }}
+
+<div class="jr-basics__profile-item">
+  {{ $path := printf "simple-icons/%s.svg" (lower .network) }}
+  {{ $icon := resources.Get $path }}
+
+  {{ with $icon }}
+    <div class="jr-basics__profile-icon">
+      {{ .Content | safeHTML }}
+    </div>
+  {{ end }}
+
+  {{ if .username }}
+    <div class="jr-basics__profile-username">{{ .username }}</div>
+  {{ else if not $icon }}
+    <div class="jr-basics__profile-username">{{ .network }}</div>
+  {{ end }}
+</div>
+
+{{ if .url }}</a>{{ end }}
