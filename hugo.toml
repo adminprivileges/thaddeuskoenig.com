@@ -27,6 +27,9 @@ enableGitInfo = true
     baseName = "search-index"
     isPlainText = true
     notAlternative = true
+[caches]
+  [caches.images]
+    dir = ':cacheDir/images'
 
 # This hopefully will be simpler in the future.
 # See: https://github.com/schnerring/hugo-theme-gruvbox/issues/16
