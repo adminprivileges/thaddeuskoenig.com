@@ -9,10 +9,10 @@ tags:
   - tracking
 --- 
 # 01. Intro
-Usually when I share links to people I try to clean out the tracking infomation. Anyone who has been shared a social media link by somone has likely seen the little indicator of the person who shared them the link. Its just another way that companies track you around the internet to gather information about you. I wont go on too long about my opinions about tracking and ads, I'll just show you the point of the post. See this link here to the live shark cam at the Monterey Bay Aquarium https://www.youtube.com/live/tEtg5Kg3voQ?si=kslcgshej56klows . I have alterred the tracking string, but in this case, the actual usable url is https://www.youtube.com/live/tEtg5Kg3voQ and the tracking info is ?si=kslcgshej56klows. This tracking string comes in many forms, but it should include a question mark `?` a number of alphabetic characters and an equal sign `=`. Because I get tired of removing this tracking string myself, I wanted a quicker solution. I know apps for this exist, but this is hardly a job for an entire app, this is where IOS shortcuts come in handy. 
+Usually when I share links to people I try to clean out the tracking infomation. Anyone who has been shared a social media link by somone has likely seen the little indicator of the person who shared them the link. Its just another way that companies track you around the internet to gather information about you. I wont go on too long about my opinions about tracking and ads, I'll just show you the point of the post. See this link here to the live shark cam at the Monterey Bay Aquarium https://www.youtube.com/live/tEtg5Kg3voQ?si=kslcgshej56klows . I have alterred the tracking string, but in this case, the actual usable url is https://www.youtube.com/live/tEtg5Kg3voQ and the tracking info is `?si=kslcgshej56klows`. This tracking string comes in many forms, but it should include a question mark `?` a number of alphabetic characters and an equal sign `=`. Because I get tired of removing this tracking string myself, I wanted a quicker solution. I know apps for this exist, but this is hardly a job for an entire app, this is where IOS shortcuts come in handy. 
 
-# 02. The Shortcur
-Here is a link to the shortcut https://www.icloud.com/shortcuts/c4211f0c4e1b41a1908f3dfd0af06c92 . It does this.
+# 02. The Shortcut
+Here is a link to the shortcut https://www.icloud.com/shortcuts/c4211f0c4e1b41a1908f3dfd0af06c92 . It does the following:  
 1. Receive URLs from Sharesheet
     - If there is no input, copy from clipboard
 1. Set Veriable `x` to the URL it grabs. 

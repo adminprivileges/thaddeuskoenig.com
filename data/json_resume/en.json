@@ -3,21 +3,17 @@
   "basics": {
     "name": "Thaddeus Koenig",
     "label": "Person Who Does Things",
-    "image": "https://i.postimg.cc/JhB8qYYT/adminprivileges-doctor-doom-as-a-young-African-American-man-wit-69ef1de7-69d7-4a18-ac87-9033e3b1fc34.png",
+    "image": "https://raw.githubusercontent.com/adminprivileges/thaddeuskoenig.com/refs/heads/main/static/doom.png",
     "email": "admin@thaddeuskoenig.com",
-    "summary": "Im a simple guy who likes computers. I like digital security and open source technology. This blog is mainly an excercise in documentation, but I hope you can find something useful here.",
+    "summary": "I like computers. I like digital security and open source technology. This blog is mainly an excercise in documentation, but I hope you can find something useful here.",
     "location": {
-      "city": "Annapolis, MD"
+      "city": "Maryland"
     },
     "profiles": [
       {
         "network": "GitHub",
         "username": "adminprivileges",
         "url": "https://github.com/adminprivileges"
-      },
-      {
-        "network": "LinkedIn",
-        "url": "https://linkedin.com/in/thaddeuskoenig"
       }
     ]
   }
