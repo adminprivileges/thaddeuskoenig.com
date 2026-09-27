@@ -102,6 +102,13 @@ enableGitInfo = true
     name = "About"
     url = "/about"
     weight = 40
+
+  [[menu.main]]
+    identifier = "links"
+    name = "Reference_Links"
+    url = "/links"
+    weight = 50
+
   #[[menu.main]]
   #  identifier = "stats"
   #  name = "Stats"
