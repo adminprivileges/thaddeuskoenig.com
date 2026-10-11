@@ -3,10 +3,9 @@ date: '2026-10-11T07:31:00-05:00'
 draft: false
 title: '11OCT2026 - Downloading All of Wikipedia.'
 tags:
-  - privacy
-  - ios
-  - link
-  - tracking
+  - wikipedia
+  - offline
+  - prepping
 --- 
 # 01. Intro
 This isnt something thats immediately practical, but I thought it was interesting party trick. I saw this on the Proton youtube page here: https://youtu.be/3VJ5Htyhm7k?si=LTC5sgaAbNU-b6Ff . The video itself is a bit gimmicky, but I still enjoyed it so I  decided to check out how to do the wikipedia thing. Its actually pretty simple, you just download a special browser and a (pretty big) file to search using the browser. The browser id developed by a group called Kiwix, which has a mission to bring tech to places that don't have it and making free education offline and accessible, check them out here and you can donate if you are so inclined: https://get.kiwix.org/en/about-us/ .   
