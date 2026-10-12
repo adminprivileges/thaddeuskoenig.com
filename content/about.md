@@ -10,7 +10,7 @@ This website is largely a place that I created to come back and read my own note
 
 I've been largely off of social media, but feel free to reach out in the few ways that I have available if you use them as well. 
 - Reddit: <https://www.reddit.com/user/AdminPrivileges/>
-- Email: <mailto:admin@thaddeuskoenig.com>
+- Email (the best way to get to me) : <mailto:admin@thaddeuskoenig.com>
 - LinkedIn (I don't use this very much at all): <https://linkedin.com/in/thaddeuskoenig>
 
 

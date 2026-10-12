@@ -2,7 +2,7 @@
 title: Reference Links
 draft: false
 ---
-A page of different reference links that I think are interesting or useful.
+A page of different reference links that I think are interesting or useful. None of these are sponsored links or anything. This is basically a bookmarks page for when I dont have my bookmarks.
 
 ## Security
 - Sample Exploitation/Reverse Engineering Practice Binaries: https://crackmes.one/
